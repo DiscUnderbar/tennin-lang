@@ -1,0 +1,12 @@
+<svg data-dc-tpl="19" width="220" height="220" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
+        <clipPath data-dc-tpl="20" id="clipA"><path data-dc-tpl="21" d="M 90 45 Q 175 160 105 285 L -200 500 L -200 -200 Z"/></clipPath>
+        <clipPath data-dc-tpl="22" id="clipB"><path data-dc-tpl="23" d="M 90 45 Q 175 160 105 285 L 500 500 L 500 -200 Z"/></clipPath>
+        <mask data-dc-tpl="24" id="gapMask">
+          <rect data-dc-tpl="25" x="-300" y="-300" width="900" height="900" fill="#fff"/>
+          <path data-dc-tpl="26" d="M 90 45 Q 175 160 105 285" stroke="#000" stroke-width="30" fill="none" stroke-linecap="round"/>
+        </mask>
+        <g data-dc-tpl="27" transform="rotate(130 160 160)">
+          <circle data-dc-tpl="28" cx="160" cy="160" r="130" fill="#39844f" clip-path="url(#clipA)" mask="url(#gapMask)"/>
+          <circle data-dc-tpl="29" cx="160" cy="160" r="130" fill="#408c57" clip-path="url(#clipB)" mask="url(#gapMask)"/>
+        </g>
+      </svg>
