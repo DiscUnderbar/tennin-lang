@@ -107,7 +107,7 @@ const rankData = [
   { rank: 25, grade: 2.4, name: "Proxima Centauri", score: 27.35,  author: "ChatGPT free", tagline: "유능한 표절자" },
   { rank: 26, grade: 2.2, name: "pew 1.0",          score: 25.75,  author: "Manus",        tagline: "사용자의 아이디어까지 베꼈다" },
   { rank: 27, grade: 1.0, name: "Fusion++",         score: 11.9,   author: "ChatGPT free", tagline: "무능한 표절자" },
-];
+];v
 ```
 
 ## 지대 경계 (그래프 밴드용)

@@ -339,27 +339,43 @@ if/while 같은 핵심 제어는 expand 로 정의된다. expand 는 호출을 �
 | string | 문자열                           |
 | char   | 문자                             |
 | boolean | true / false                   |
-| template | 클래스 만들 때 처음 self 의 틀     |
+| template | 클래스 만들 때 처음 self 의 틀    |
 | condition | 조건                           |
-| Yulist   | 그냥 아무런 Yulist, 유일한 자료 구조라 PascalCase 를 쓴다. |
+| anyVar    | 동적 타입 변수
+| Yulist   | 그냥 아무런 Yulist               |
 | void   | 아무것도 없는것                    |
 | nothing   | nothing                       |
 | NaN    | 숫자가 아닌데 숫자                 |
 | never  | 값이 진짜 없음                     |
-| byte[타입]   | 8비트 그 타입                |
-| short[타입]  | 16비트 그 타입               |
-| middle[타입] | 32비트 그 타입               |
-| decimal[타입] | 숫자 타입을 10진수 형태로 저장 |
-| typeof[타입]  | 그 타입 자체 타입 안넣으면 그냥 아무런 타입 |
-| would[타입]   | 지금은 그 타입이 아니지만 그 타입이 될것이다. |
+| byte[T]   | 8비트 T 타입                   |
+| short[T]  | 16비트 T 타입                  |
+| middle[T] | 32비트 T 타입                  |
+| decimal[T] | 숫자 타입을 10진수 형태로 저장   |
+| variable[T] | 변수, 정적이고 타입은 T        |
+| typeof[T]  | T 타입 자체                   |
+| would[T]   | 지금은 T 타입이 아니지만 T 타입이 될것이다. |
+| any         | 아무거나
 
 일부 타입 제외 모든 타입은 64 비트를 소모한다.
 
 > 타입 이름은 camelCase(소문자 시작)를 원칙으로 하되, `NaN`은 예외다. Not a Number 는 표준적으로 `NaN`으로 표기하고 그 표기가 훨씬 익숙하기 때문이다. (익숙함이 규칙 일관성보다 이득인 유일한 예외로 둔다.)
+> 자료 구조 관련 타입은 PascalCase 를 쓴다.
 
 뒤에 ? 가 붙으면 nothing, NaN, void 또는 never 일 수도 있다는 것이다.
 
 naming 은 특이한 타입인데 "" 로 감싸지 않고 바로 온다. 인자 함수의 naming 들이 이 `(...naming)` 이런 형식으로 온다.
+
+**falsy, truthy** 가 있다. 하지만 조건식에선 falsy 는 모두 똑같게 굴고 조건식에서 truthy 도 똑같이 군다.
+
+nothing, NaN, never 다 falsy 값이다. Yulist 는 안이 비었든 말든 다 truthy 다.\
+왜냐면 Yulist 로 자기만의 자료구조를 만들때 언제나 truthy 야아 할때가 있을수도 있기 때문이다.\
+만약 비어있나 알려면 .isEmpty 함수를 사용해야 한다. 만약 char 이나 string 에서 이게 '' 나 "" 이런식으로 비어 있는지 알려면\
+그냥 == '' 나 == "" 를 사용해야한다.
+
+단점은 if (Yulist.isEmpty()) 로 더 길어질수도 있지만 비어 있어도 애초에 한 자료 구조고 안에 Interception 이 내장되어 있기 때문에 truthy 로 본다.\
+0 이 falsy 인 이유는 0 도 값은 값인데 falsy 라고 하기엔 좀 이상하기 때문이다. '' 이나 "" 도 truthy 인 이유도 같다.
+
+참고로 'a' == 97 이거 false 다 왜냐면 둘이 타입이 다르기 때문이다. 만약 'a' == 97 이거 true 로 하게 하고 싶으면 'a' ~= 97 이렇게 하면 된다.
 
 // TODO: Tennin 의 복잡한 인자 함수 기반 함수 시스템을 어떤 식으로 타입으로 표현할지 생각하기.
 // TODO: Tennin 의 Yulist 를 어떤식으로 타입으로 표기하게 할지 생각하기
@@ -1256,6 +1272,8 @@ CPU 무거운 큐를 **실제 OS 스레드**에 올려 멀티코어 병렬을 �
 
 ## 1-E. bash
 
+### 실행
+
 먼저 tennin 파일 실행하는 법이다.
 
 ```bash
@@ -1283,6 +1301,100 @@ tenn "C:\WorldWar\START.tenn"
 ```
 
 이렇게 하면 된다.
+
+또한 tenn 혼자 치면
+
+```bash
+tenn
+```
+
+이러면 tenn 터미널 사용법 관련 help 가 출력된다.
+
+### 라이브러리
+
+라이브러리 관련 플래그는 --library 다.
+
+설치는 install 이다. 뒤에 `@버전` 으로 특정 버전을 다운로드 받을수 있다.
+
+```bash
+tenn --library install <라이브러리 이름>
+```
+
+```bash
+tenn --library install <라이브러리 이름>@<버전>
+```
+
+라이브러리 삭제는 remove 다. -A 를 하면 모든 라이브러리가 삭제된다.
+
+```bash
+tenn --library remove -A # 전체 삭제
+```
+
+```bash
+tenn --library remove <라이브러리 이름>
+```
+
+라이브러리 현제 설치된거 리스트는 list 다.
+
+```bash
+tenn --library list
+```
+
+라이브러리 업데이트는 update 고 -A 로 모든걸 다 업데이트할수 있다.
+
+```bash
+tenn --library update -A
+```
+
+```bash
+tenn --library update <라이브러리 이름>
+```
+
+특정 라이브러리의 버전을 볼려면 version 을 사용하면 된다.
+
+```bash
+tenn --library version <라이브러리 이름>
+```
+
+예시:
+
+```bash
+tenn --library install translate  # 번역기 라이브러리 설치
+tenn --library list               # translate 0.0.1
+tenn --library remove translate   # 번역기 라이브러리 삭제됨
+tenn --library list               # 아무것도 않나옴
+tenn --library install websockets # websockets 라이브러리 설치됨
+tenn --library install tython     # tython 라이브러리 설치됨
+tenn --library list               # websockets 0.0.1 tython 0.0.1
+# websockets 와 tython 에 새 버전이 나옴
+tenn --library update -A          # 모두다 업데이트 됨
+tenn --library version websockets # websockets 0.0.2
+tenn --library list               # websockets 0.0.2 tython 0.0.2
+```
+
+### 라이브러리 만들기
+
+라이브러리를 만들려면 코드 맨 위에 `using library` 를 넣어야 한다.
+
+그리고 라이브러리를 설치하면 거기서 사용하는 모듈도 다 딸려온다.
+
+만드는법은 create 를 사용하면 된다.
+
+```bash
+tenn --create "라이브러리 파일 경로" <그 라이브러리 이름>
+```
+
+업데이트는
+
+```bash
+tenn --update <라이브러리 이름> <버전> 
+```
+
+만약 파일 경로가 봐뀌면
+
+```bash
+tenn --update <라이브러리 이름> "파일 경로" <버전>
+```
 
 ## 2. 컴파일 파이프라인
 
