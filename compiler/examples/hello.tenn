@@ -1,0 +1,7 @@
+using tenn;
+
+#main
+func main ():(
+   @... 첫 Tennin 프로그램
+   Line.addLine("Hello, World");
+):();

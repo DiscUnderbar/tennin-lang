@@ -1,0 +1,11 @@
+using tenn;
+
+#main
+func main ():(
+   @... 우선순위 확인: 2 + 3 * 4 = 14
+   var x :: int = 2 + 3 * 4;
+   var y :: int = (x + 1) * 2;
+   print(x);
+   print(y);
+   Line.addLine("done");
+):();

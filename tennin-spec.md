@@ -93,7 +93,8 @@ Tennin 자체를 만들 때 지키는 원칙. 우선순위 순.
 
 먼저 표현 지향은 간단히 무엇이든지 option 으로 받지 않고 표현으로 받는것이다. 예를 들어서 이게 반복문인지를 받지 않고 그냥 이거의 종류가 반복문이라는걸 받는다.\
 그러니까 그런거다. 옵션에서 선택하는 방식 그러니까 스무고개 이건 ; 으로 구분 하나요?, 이건 블럭이 {} 인가요? 이런 식으로 받지 말고 그냥 사용자가 표현을 하게 한다.\
-이게 표현 지향임
+이게 표현 지향이다. 왜 있냐면 단순히 Option 으로 받으면 자기만의 새로운 구조를 만들지 못한다. 전혀, 하지만 표현지향은 자신만의 새로운 구조를 만들수 있게 한다. 슬롯에 특이한 방식으로 값을 받는걸 넣거나\
+아예 이세상에는 없는 자료 구조를 만들어 벌리수도 있다. 이게 표현지향이다. 이게 표현지향인지 구분하는법은 여기서 새로운 구조를 새로 만들수 있냐다.
 
 정보지향은 무엇이 전달될 때 필요한 정보는 모두 보존한다. 그러니까 예를 들어서 일반적인 언어는 함수를 callback 으로 받을 때 이름은 안 받고 그냥 함수 자체를 받음 그 대신 정보지향에서는\
 이 함수의 이름이 뭔지, 어디서 호출이 됐는지, 이 호출된 위치가 어딘지 그런것까지 모두 기록해서 줌
@@ -163,7 +164,7 @@ Tennin 언어의 사용법, 문법.
 
 먼저 인자 함수를 적는 법이다 (기본형)
 
-```Tennin
+```tennin
 {인자들}:(내용);
 ```
 
@@ -185,7 +186,7 @@ Tennin 언어의 사용법, 문법.
 
 이때 2국은 1국이 존재해야지만 쓸 수 있고 3국은 2국이 존재해야지만 사용 가능하다. 무슨 뜻이냐면
 
-```Tennin
+```tennin
 else (
 
 ):();
@@ -214,7 +215,7 @@ x <= y
 
 그리고 이 인자 함수 바로 앞, 함수 이름 바로 뒤에 오는것을 naming 이라고 하는데
 
-```Tennin
+```tennin
 func moveTo (x :: int, y :: int, z :: int):(
    @... 본문
 ):();
@@ -286,7 +287,7 @@ if/while 같은 핵심 제어는 expand 로 정의된다. expand 는 호출을 �
 
 함수 이름 뒤에 **최소한의 인자 함수가 오면 실행(호출), 안 오면 참조**다.
 
-```Tennin
+```tennin
 anything b = break ();   @... break 뒤에 최소 인자 함수 () 가 왔다 → 실행(호출)
 anything b = break ;     @... break 뒤에 인자 함수가 없다 → 참조 (실행 안 됨)
 ```
@@ -420,6 +421,7 @@ condition 세부:
 
 - 필드는 값이 아니라 참조다 — 재평가가 가능하다. (`ref(< condition.first = i; condition.second = 3; >);` 모델)
 - 복잡한 식은 condition.equations 로 부분식 리스트를 얻는다 (`(...condition)` 타입).
+- **condition vs expression — 같은 식, 다른 층.** `1 + 1 == 2` 처럼 연산자(`+`)와 비교(`==`)가 같이 있는 식을 볼 때: `condition` 으로 받으면 산술 부분은 평가되고 비교 구조가 남는다 → `2 == 2` (first=2, op===, second=2). 같은 걸 `expression` 으로 받으면 **에러**다 — expression 은 순수 산술식(계산·결과)만 받고 비교(`==`)를 품지 못한다. 즉 **condition = 불리언/비교 층, expression = 산술 층**. (왜: 두 타입이 서로 다른 층을 캡처하므로, 층이 안 맞으면 조용히 뭉개지 말고 에러를 낸다 — 원칙 3·비용 정직.)
 - 단락: equations 는 왼쪽부터 평가한다. and 는 첫 거짓에서, or 는 첫 참에서 멈춘다. (`x <> 0 and 10 ~/ x > 1` 의 0 나눗셈 방지가 여기에 걸린다.)
 - 성능: expand 문맥에서 구조는 컴파일 타임에만 존재하고, 런타임엔 기계어만 남는다. 구조를 런타임에 해석하면 Smalltalk 식 감속이다 — 이 문장이 성능 방어벽이다.
 - 탈출: condition 은 자기 국의 변수를 품는다 — 클로저와 같은 취급. 국 밖으로 나가는 경로는 send 뿐이고, send 하면 캡처된 변수가 함께 이주한다. 이주는 그 시점의 스냅샷이다.
@@ -438,7 +440,7 @@ condition 세부:
 
 Yulist (배열·연결 리스트·딕셔너리 전부 — → Yulist 섹션) 의 타입 표기는 `Yulist[...]` 다.
 
-```Tennin
+```tennin
 Yulist[init = ...]
 ```
 
@@ -569,7 +571,7 @@ OR, AND, NOT : or 은 `or` 을 사용하고 and 는 `and` 를 사용하며 not �
 그리고 // 는 입력하려면 좀 손가락이 애매하게 위치된다 하지만 @ 는 2 아주 편안한 위치다 Shift 도 많이 사용하기 때문에 불편하진 않을것이다.\
 또 . 은 손이 좀 애매해지긴 하지만 그래도 익숙하면 쓰기 많이 편하다. 여러줄 주석은 보관함 느낌을 주기 위해\
 
-```Tennin
+```tennin
 @<<
    오늘 할 거:
    TODO 좀 완성하고
@@ -585,13 +587,13 @@ OR, AND, NOT : or 은 `or` 을 사용하고 and 는 `and` 를 사용하며 not �
 
 `@=` 가 기대 출력 주석인데 예시만 보여주자면
 
-```Tennin
+```tennin
 print(5) @= 5
 ```
 
 이게 기대 출력 주석의 쓰임새의 예시다. 또는
 
-```Tennin
+```tennin
 if {5 == 5}:( @= true 기 때문에 실행됨
    print(5) @= 5
 );
@@ -609,7 +611,7 @@ if {5 == 5}:( @= true 기 때문에 실행됨
 
 먼저 변수를 만드는 방법이다.
 
-```Tennin
+```tennin
 var x :: int = 1;
 var p :: string = "Hello, World";
 ```
@@ -625,7 +627,7 @@ string p = "Hello, World"
 
 그리고 만약 동적을 원한다면
 
-```Tennin
+```tennin
 anything x = 1;
 anything p = "Hello, World";
 ```
@@ -634,13 +636,13 @@ anything p = "Hello, World";
 
 var와 글자 수 차이를 줘 일반 변수 (정적 변수) 랑은 다른 느낌을 준다.
 
-```Tennin
+```tennin
 var x::int = 1;
 ```
 
 도 가능하다 가독성을 위해
 
-```Tennin
+```tennin
 var x :: int = 1;
 ```
 
@@ -648,7 +650,7 @@ var x :: int = 1;
 
 상수 만드는 법도 간단하다.
 
-```Tennin
+```tennin
 const x :: int = 1;
 @... 가독성을 위해 `const x :: int = 1;` 이런 형태 권장
 const y::int = 2;
@@ -661,14 +663,14 @@ const 는 타입이 필수다. 그리고 타입으로 any 도 가능하다.
 
 그리고 anything 이나 var 를 변경하는 법이다.
 
-```Tennin
+```tennin
 var x :: int = 1;
 x = 2;
 ```
 
 이렇게 var 는 간단하게 값을 바꿀 수 있다. 그리고 anything 동적 변수는
 
-```Tennin
+```tennin
 anything x = 1;
 x = 2 :: int; @... anything 동적 변수를 바꿀 때는 무슨 타입으로 바꾸는지 적어놔야한다.
 ```
@@ -710,6 +712,55 @@ anything 은 그냥 동적 변수로 본다.
 
 상수는 상수 특유의 느낌을 위해 SCREAMING_SNAKE_CASE 나 camelCase 를 선택했다.
 
+### 내장 함수
+
+#### if
+
+가장 많이 국의 쓰임세, 인자함수의 쓰임세 예제로 가장 많이 사용되는 함수다. 일반적인 언어의 if 문이다.
+
+문법부터 보겠다.
+
+```tennin
+if {조건}:(
+   실행할것
+) else if {조건}:(
+   만약 조건이 아닐때 이 조건이 맞으면 실행할꺼
+) else {}:(
+   조건이 아닌데 else if 의 조건까지 아닐때 실행할것
+);
+```
+
+일반적인 구조의 if 문이며, else 에서 if 는 naming 으로 받는다. 또한 조건은 `condition` 타입 매직으로 받는다 — `{i > 3}` 의 구조(first/op/second)가 그대로 온다. 
+
+#### 반복문 (while / repeat)
+
+```tennin
+while {i < 3}:(
+   ...
+   break;        @... FuncKind.LOOP 의 소국. continue 도 이 반복 국의 소국.
+);
+```
+
+`while` 은 `condition` 을 받아 참인 동안 내용을 돈다. `break`/`continue` 는 이 반복 국 안에서만 존재하는 소국이다 (→ return/break/continue = 소국 + level). 정해진 횟수는 `repeat {n}:( ... );`.
+
+#### switch (값 분기)
+
+```tennin
+switch "Luau" (
+   case "Luau" ( ...; break; );
+   case "Python" ( ...; break; );
+   nothing ( ... );   @... 아무 case 도 안 맞을 때
+);
+```
+
+switch 뒤와 case 뒤의 값은 **values** 로 받는다 (naming 과 구분). `nothing` 은 기본 분기다.
+
+> 이벤트(emit/when/give)는 두지 않는다 — 1-D 액터 메시징(`send`/`ask`/`on`/`receive`)과 요청-응답이 겹쳐 #10(중복 금지)에 걸리므로, 신호·요청-응답은 메시징 하나로 간다. (→ CHANGELOG)
+
+#### 기타 내장 함수
+
+출력 `print` / `Line.addLine` (→ 출력 섹션). 그 밖의 것(입력, `.isEmpty` 등 Yulist 메서드, 타입 질의)은 대부분 표준 라이브러리(`tenn`)로 가고, **컴파일러 바닥이 꼭 필요한 것만** 내장으로 남긴다 (내장 목록 최소화 — 1-B 방향성). 확정 목록은 미정.
+
 ### 함수
 
 **함수의 두 쓰임 (용어).** 같은 인자 함수를 어떻게 쓰느냐로 둘로 부른다. **다른 메커니즘이 아니라 쓰임의 구분일 뿐이다.**
@@ -725,19 +776,24 @@ anything 은 그냥 동적 변수로 본다.
 
 먼저 func 를 사용한다. func 를 사용해 함수를 만들 수 있다.
 
-```Tennin
+```tennin
 func ...
 ```
 
 또한 func 뒤에는 함수 이름이 온다.
 
-```Tennin
+```tennin
 func helloWorld ...
 ```
 
 **다메커니즘 func 문법 스케치 (미확정).** 아래는 국·소국·확장 슬롯을 갖는 체계적 함수의 대략적 뼈대다. 각 국의 실제 **내용(코드) 문법**, 제너릭 자리, values 바인딩은 아직 미정이다(→ 미정 사항 / TODO).
 
-```Tennin
+
+```ㅅ두ㅜㅑㅜ
+
+```
+
+```tennin
 func 함수이름 {
      at countrys (
           @... 이 함수가 갖는 국들을 선언한다.
@@ -755,7 +811,7 @@ func 함수이름 {
      in slot (                     @... 확장 슬롯 선언. 확장 슬롯 매개변수 칸은 모두 () 를 쓴다.
           slot 슬롯이름 (
                step = 몇 번째에 오는지 순서 (인자·내용 포함);   @... 간단한 값은 at 보다 = 가 낫다.
-               at manual ( ... );  @... 슬롯의 성격(타입 받음/스크립트 받음 등)을 선언.
+               at manual ( ... );  @... 슬롯의 성격을 선언.
                                    @... 단, 표현 지향(원칙)에 따라 isScript 같은 옵션이 아니라
                                    @... 표현형으로 재설계해야 한다 (→ TODO).
                at smallCountrys ( 이 슬롯 전용 소국 );
@@ -770,7 +826,7 @@ func 함수이름 {
 
 **재디스패치 원시요소 (special / Feature Absorption 의 기반).** 다른 언어의 시그니처 기능을 다메커니즘 함수로 흡수(Feature Absorption)하려면, **받은 콜백(실행 안 된 호출)을 들여다보고 그 함수의 다른 이름표 블록으로 다시 디스패치**하는 능력이 필요하다. look 언어의 "함수마다 시그니처 코드, `special` 붙여야 실행" 기능을 파생하며 드러난 원시요소다.
 
-```Tennin
+```tennin
 func greet (name :: string):(
     print("Hello, " + name);           @... 일반 본문
 
@@ -785,7 +841,7 @@ special greet("Kim");    @... "[sig] greet 호출됨: Kim"
 
 `special` 은 키워드가 아니라 그냥 함수다. 실행 안 된 호출 `greet("Kim")` 을 매개변수 `call` 로 받아서, 그 안을 들여다본다:
 
-```Tennin
+```tennin
 func special (call):(
     let f = call.target;           @... 대상 함수 (greet)
     let a = call.args;             @... 넘긴 인자 ("Kim")
@@ -827,7 +883,9 @@ Tennin 에는 class 가 없다. Luau 가 class 없이 **table + metatable** 로 
 
 - **왜:** 상속은 **구조가 명확하다는 장점**이 있다 (무엇이 무엇을 물려받는지 한 트리로 보인다). 하지만 상속은 어쩔 때 코드를 오히려 더 복잡하게 만든다 (계층이 깊어지고 갈래가 얽힌다). Tennin 의 목적이 구현 복잡도를 낮추는 것이므로, 복잡해질 위험이 있는 상속 대신 합성을 택한다. Luau 의 metatable `__index` 체인(상속 흉내)도 기각 — 흉내내지 않고 아예 합성으로 간다.
 - **포기 (정직):** 상속의 '구조가 한눈에 보임' 이점은 내려놓는다 — 합성은 어떤 동작이 어느 컴포넌트에서 왔는지 추적해야 해서, 상속 트리만큼 즉각적이진 않다.
-- **미정:** 컴포넌트를 Yulist 에 넣는 정확한 문법·의미(포함? 위임?), 같은 컴포넌트를 여러 곳에서 쓸 때 이름 충돌 해소.
+- **미정:** 컴포넌트를 Yulist 에 넣는 정확한 문법·의미(포함? 위임?).
+
+**state — 같은 컴포넌트를 공유하는 구역.** 여러 곳이 같은 컴포넌트를 공유하는 구역을 `state` 라 부른다. `state` 는 **같은 이름의 컴포넌트가 겹칠 때 둘을 다른 팀으로 분류하거나 구조를 명확히** 하는 데 쓴다. (왜: 합성은 공유 컴포넌트가 여기저기 흩어지기 쉬운데 — 앞의 "구조가 한눈에 안 보임" 포기 — `state` 로 공유 구역을 묶으면 이름 충돌을 가르고 어느 팀/구역의 컴포넌트인지 드러난다. #10 방언·팀 구분과도 정합.) 정확한 문법은 미정.
 
 **아직 미해결 (대체 문법 미확정 → TODO 5·6):**
 
@@ -836,7 +894,7 @@ Tennin 에는 class 가 없다. Luau 가 class 없이 **table + metatable** 로 
 
 Point 를 Yulist 로 옮기면 대략 이런 그림이다 (**개념 스케치 — 문법 미확정**):
 
-```Tennin
+```tennin
 @... Point 라는 Yulist 타입 정의: 필드 x,y + 함수-값 moveTo + create 훅
 @...   (정의 문법은 미정 — TODO 6)
 @... 인스턴스 생성:
@@ -860,7 +918,7 @@ Point 를 Yulist 로 옮기면 대략 이런 그림이다 (**개념 스케치 �
 
 예시:
 
-```Tennin
+```tennin
 var i :: int = 1;
 
 Line.addLine(next i); @... 1 + 1 해서 i 는 2 가 되고 2 출력
@@ -868,7 +926,7 @@ Line.addLine(next i); @... 1 + 1 해서 i 는 2 가 되고 2 출력
 
 그리고 비슷하게 prev 는 next 의 반대다 1 을 빼고 그 값을 return 한다.
 
-```Tennin
+```tennin
 var i :: int = 2;
 
 Line.addLine(prev i); @... 2 - 1 은 1 이고 1 을 출력하니까 1 출력
@@ -894,7 +952,7 @@ job 이란 시작 기호 `(<` 닫는 기호 `>)` 으로 이 함수, 변수, Yuli
 
 예를 들어 만약 언제나 이 변수는 참조를 하게 하고 싶으면
 
-```Tennin
+```tennin
 var x :: int = 1;
 
 ref(<
@@ -922,7 +980,7 @@ Line.addLine(b); @= 1
 
 또 # 를 쓰는법은
 
-```Tennin
+```tennin
 var x :: int = 1;
 
 #ref
@@ -935,7 +993,7 @@ Line.addLine(y); @... 2
 
 참고로 Tennin 의 if /\s/ then continue 원칙에 의해
 
-```Tennin
+```tennin
 var x :: int = 1;
 
 # ref
@@ -951,7 +1009,7 @@ Line.addLine(y); @... 2
 
 또한 어떤 job 안에 있는 것들은 그 job 이 아닌데 이게 뭔 소리냐면
 
-```Tennin
+```tennin
 #main
 func main ():(
    var x :: int = 1; @... #main 이 여기까지 적용되면 안 된다.
@@ -960,7 +1018,7 @@ func main ():(
 
 그래서
 
-```Tennin
+```tennin
 main(<
 func main ():(
    var x :: int = 1;
@@ -993,13 +1051,13 @@ job 형식으로 모듈은 #export 또는 #module 이 좋을듯
 
 다른 모듈을 불러 오는 법은 다음과 같다.
 
-```Tennin
+```tennin
 take 모듈 아이디 import 가져올 함수나 Yulist(타입) 이름 as 그 모듈을 사용할 때 사용할 이름;
 ```
 
 여기서 import 랑 as 를 생략할 수 있다. as 를 생략하면 그 모듈의 id 가 자동으로 사용할 때 사용할 이름이 되고 import 가 없으면 그 파일의 모든 모듈이 가져와진다.
 
-```Tennin
+```tennin
 take MyWayArray;
 ```
 
@@ -1013,7 +1071,7 @@ main 은 이게 메인 함수, 변수, Yulist 같은 거라고 말하는 job 이
 
 원래 전체 Tennin 코드는 이래야 한다.
 
-```Tennin
+```tennin
 using tenn;
 
 #main
@@ -1029,7 +1087,7 @@ func helloWorld():(
 
 처음에 바로 시작하면
 
-```Tennin
+```tennin
 #main
 func helloWorld():(
    Line.addLine("Hello, World!");
@@ -1040,7 +1098,7 @@ func helloWorld():(
 
 하지만 처음에 `using tenn;` 부터 시작하고 뜸을 들이면
 
-```Tennin
+```tennin
 using tenn;
 
 #main
@@ -1068,6 +1126,8 @@ Yulist 는 언제나 참조다. 만약 그냥 복사를 쓰고 싶다면 .clone(
 **국적**: Yulist 에 값을 넣으면 그 값은 Yulist 의 국적으로 이주한다 (컨테이너 탈출 규칙과 정합 — → 메모리 관리).
 
 **탐색**: `Yulist[?]` — 인덱스 자리를 condition 타입으로 선언하면 `bricks[name == "door" and color == "red"]` 같은 질의가 성립한다 (M.G.S 2.0 의 where 를 문법 추가 없이 흡수 — → 타입 매직).
+
+**멤버식 접근**: `Yulist[?]` 뿐 아니라 `Yulist.키` 형태의 점 접근도 된다 (`bricks.door`). 키가 이름일 때 더 읽기 좋다. 단 키가 **숫자**일 때 `.` 접근을 어떻게 허용·구분할지는 미정 (`Yulist.0` 같은 게 애매 — → UNKNOWN).
 
 **이름**: Yu 는 You 와 발음이 같다 — "너의 자료 형식". (C 가 B 다음이라 C 인 것처럼, 이름의 이야기는 한 줄이면 된다.)
 
@@ -1144,6 +1204,8 @@ expand X 는 "X 를 컴파일 타임에 아는 만큼 실행하고, 모르는 �
 
 다메커니즘 함수 (if, while …) 는 expand 로 정의된다. 그래서 제어구조의 호출 비용이 0 이다.
 
+**인자 함수의 실행 = expand 인라인.** 인자 함수(콜백)를 실행하는 건 일반적인 함수 호출(스택 프레임·점프)이 아니라, **expand 가 그 인자 함수의 내용 부분을 사용처에 그대로 복붙(인라인)** 하는 것이다. 그래서 `if`/`while` 이 넘겨받은 블록을 "부르는" 비용이 0 이다 — 부르는 게 아니라 그 자리에 펼쳐지기 때문이다. (제어구조가 네이티브 속도인 근본 이유.)
+
 대외 설명 첫 줄: expand 는 텍스트가 아니라 의미 단위로 동작한다. C 식 텍스트 매크로가 아니다.
 
 TODO: 전개 한도의 단위 (전개 1회 = 무엇을 세나), 정의-expand 와 호출-expand 의 표기 — func 문법 확정 때.
@@ -1160,7 +1222,7 @@ TODO: 전개 한도의 단위 (전개 1회 = 무엇을 세나), 정의-expand �
 
 원래 kind.A 는 0 이다, kind.B 는 1 이다. 그 대신 타입이 그 kind 다
 
-```Tennin
+```tennin
 kind Keyword (
    VAR; CONST; LET
 );
@@ -1171,7 +1233,7 @@ kind Keyword (
 
 kind 선언문은 위에서 봤겠지만
 
-```Tennin
+```tennin
 kind 종류 이름 (
    종류 이름 1; 종류 이름 2; ...
 );
@@ -1179,7 +1241,7 @@ kind 종류 이름 (
 
 이런 식이다. 예시로
 
-```Tennin
+```tennin
 kind Keyword (
    VAR; CONST; LET
 );
@@ -1189,7 +1251,7 @@ kind Keyword (
 
 또 원래 있는 kind 에 새걸 추가할 수도 있다.
 
-```Tennin
+```tennin
 kind FuncKind (
    DO_RETURN; LOOP; IF; INLINE @... TODO: INLINE 을 EXPAND 로 개명할지 검토 (expand 결정과 통일)
 );
@@ -1197,7 +1259,7 @@ kind FuncKind (
 
 여기서 사용자가 새 값을 추가하려면
 
-```Tennin
+```tennin
 FuncKind.add(새 종류 이름, index);
 ```
 
@@ -1205,7 +1267,7 @@ FuncKind.add(새 종류 이름, index);
 
 예시로
 
-```Tennin
+```tennin
 FuncKind.add(FUNC); @... 지금은 가장 마지막 인덱스가 3 이니까 index 는 자동으로 4
 ```
 
@@ -1221,6 +1283,7 @@ kind 의 규칙:
 - add 는 expand 시점 (컴파일 타임) 에 실행된다. 사용자 소스에서의 추가는 자유다 (예: 나라 운영 게임에서 세금 계산·반란 확률 같은 함수들을 분류하는 `FuncKind.add(COUNTRY_FUNC)`). 프로그램 실행 중 추가는 불가 — break/continue 의 level 규칙이 kind 를 읽기 때문이다.
 - 같은 이름을 add 하면 컴파일 에러다 (1-A #11).
 - 새 kind 에는 기본 규칙이 붙지 않는다 — 그 kind 를 읽는 쪽이 의미를 준다.
+- **FuncKind 전용 소국은 자동 삽입이 아니라 명시 매핑으로 붙인다.** 예를 들어 `FuncKind.REPEAT` 에서 `break` 가 마법처럼 자동으로 생기는 게 아니라, `break = MyBreakFunction` 처럼 **"이 kind 에서 break 는 이 함수다"** 라고 등록한다. (왜: 소국이 어디서 왔는지·어느 함수인지가 코드에 드러난다 — 이름 매직 금지·원칙 3 정신. 어느 kind 가 어떤 소국을 주는지가 명시적이라, 감춰진 주입이 없다.)
 
 ### 네이밍 컨벤션
 

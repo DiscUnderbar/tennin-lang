@@ -19,5 +19,10 @@
 **7/24/2026** Yulist 상속 결정 — 상속 없음, 합성(composition). 전 → 후: `클래스 없음` 섹션의 "상속(extends) — Luau __index 체인 후보, 미정" → "상속 대신 합성 — 결정". 왜: 상속은 구조가 명확하다는 장점이 있지만 어쩔 때 코드를 오히려 더 복잡하게 만든다 — Tennin 목적(구현 복잡도 낮추기)에 맞춰 합성을 택함. 예: Point2D·Point3D 가 reset 을 똑같이 쓰면 reset 을 컴포넌트로 빼서 둘 다에 넣는 식. 포기(정직): 상속의 '구조 한눈에 보임' 이점은 내려놓음(합성은 동작이 어느 컴포넌트에서 왔는지 추적 필요). 버린 것: 상속 흉내(Luau metatable __index 체인 후보). 컴포넌트 포함/위임 문법·이름충돌 해소는 미정.
 
 
+**7/24/2026** 아이디어 메모 일괄 반영 (spec). 추가: (타입매직) condition vs expression 층 구분 — `1+1==2` 를 condition 으로 받으면 `2==2`, expression 으로 받으면 에러(expression=순수 산술 층). (expand) 인자 함수 실행 = expand 인라인(복붙, 호출 아님). (FuncKind) 전용 소국은 자동삽입 아니라 명시 매핑 `break = MyBreakFunction`. (Yulist) `.키` 멤버식 점 접근 추가(숫자 키 구분은 UNKNOWN). (합성) `state` = 같은 컴포넌트 공유 구역(이름충돌·팀 구분). (내장함수) 반복문(while/repeat)·switch·이벤트시스템(emit/when/give — give 값이 emit 반환)·기타 골격 추가, 이벤트↔액터메시징 #10 경계는 TODO. UNKNOWN 에 ⑤ Yulist 숫자 점접근 구분 ⑥ 국 슬롯정의 문법설탕(ROP 유지) ⑦ 이벤트/메시징 경계 파킹. 버린 것: 없음(추가·정정).
+
+**7/24/2026** 이벤트 시스템(emit/when/give) 제거. 전 → 후: 내장함수 `#### 이벤트 시스템` 서브섹션 → 삭제(한 줄 사유만 남김). 왜: 1-D 액터 메시징(send/ask/on/receive)의 요청-응답과 겹쳐 #10(중복 금지) 위반 — 신호·요청-응답은 메시징 하나로 일원화. 버린 것: emit/when/give. UNKNOWN ⑦(이벤트/메시징 경계)도 해소되어 제거.
+
+
 -- *lmp*
 -- *tenn*
