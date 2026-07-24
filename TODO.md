@@ -83,7 +83,7 @@ func 문법을 정확히 어덯게 나라를 만들고 소국을 만들고 그�
 
 1. **would 타입 메커니즘 — 확정.** would[T] 에 `.complete()` 가 생기고 실행하면 T 로 확정(봉인). 왜: 무언가를 단계적으로 세팅해 목표 형태로 만들어 갈 때 "아직 완성 안 됨 / 완성됨" 을 타입으로 드러냄 = 객체를 단계적으로 짓는 생성 원시요소. spec 타입 매직 섹션에 반영됨. (`template` 타입은 제거됨 — 생성 중 미완성 값은 would[T] 로 일원화.)
 2. **이름붙인 Yulist = 타입** — py 의 `user_Pos: Point = Point(1,2,3)` 처럼 선언한 Yulist 이름을 타입 힌트로 쓰게. (타입 표 406줄 TODO "Yulist 를 타입으로 표기" 의 답이 이것.)
-3. **class 제거 — 결정됨 (Luau 모델).** class 없음, Yulist(=table) + Interception(=metatable) 로 대체. 메서드 = Yulist 슬롯의 함수-값, 생성 = create 훅 + would[T].complete(), 타입 = 이름붙인 Yulist. spec `클래스 없음` 섹션에 반영. **남은 미정:** 상속(extends, Luau __index 체인 대응), self 바인딩, Yulist 새 타입 정의 문법(6)·인스턴스 생성 문법(5). → 이것들 확정 후 개념 스케치를 실제 문법으로.
+3. **class 제거 — 결정됨 (Luau 모델).** class 없음, Yulist(=table) + Interception(=metatable) 로 대체. 메서드 = Yulist 슬롯의 함수-값, 생성 = create 훅 + would[T].complete(), 타입 = 이름붙인 Yulist. spec `클래스 없음` 섹션에 반영. **남은 미정:** self 바인딩, Yulist 새 타입 정의 문법(6)·인스턴스 생성 문법(5). → 이것들 확정 후 개념 스케치를 실제 문법으로. (상속은 "없음 — 합성" 으로 결정: 공유 동작을 단위로 빼서 각 Yulist 가 사용. 단위 포함/위임 문법은 미정.)
    - **정리 필요:** spec·문서에 남은 `class`/`new Point`/`extends` 예시와 'comptime' 표현을 "타입도 값 / Yulist / 타입 매직" 관점으로 일괄 갱신 (모듈 섹션의 "다른 파일의 클래스" 등 포함).
 4. **Yulist 선언 시 타입 매직 동작 지정** — 이 Yulist 타입으로 선언된 값을 어떻게 평가할지(condition 이 `i<3` 을 구조로 받듯)를 사용자가 정의. 유저=시스템(#9)의 실현. 메커니즘 미정.
 5. **Yulist 새 인스턴스 생성 문법** 미정 (`new Point(...)` 대체).
