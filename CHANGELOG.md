@@ -24,5 +24,11 @@
 **7/24/2026** 이벤트 시스템(emit/when/give) 제거. 전 → 후: 내장함수 `#### 이벤트 시스템` 서브섹션 → 삭제(한 줄 사유만 남김). 왜: 1-D 액터 메시징(send/ask/on/receive)의 요청-응답과 겹쳐 #10(중복 금지) 위반 — 신호·요청-응답은 메시징 하나로 일원화. 버린 것: emit/when/give. UNKNOWN ⑦(이벤트/메시징 경계)도 해소되어 제거.
 
 
+**7/24/2026** None-Native(인터프리터 모드) 결정 + spec 섹션 신설. 전 → 후: TODO 의 `@none-native` 재검토 후보 → 결정. `using tenn-none-native;` 로 인터프리터 opt-in(native 가 기본, 정체성 반영 — Luau 는 반대로 인터프리터 기본+`--!native`). 왜: 워크로드별 선택(시작 빠름 vs 실행 빠름) — 도메인 근거(반복개발·REPL·DSL 임베드). 안 갈라지는 아키텍처: 프론트(lex→parse→expand)는 공유, 백엔드만 분기(LLVM native / 인터프리터가 post-expand 코어 IR 해석) — Luau 가 바이트코드 하나를 원천으로 두는 규율과 같음. 정직한 비용: 인터프리터는 실행 느림, 백엔드 둘 유지(대신 레퍼런스 인터프리터 = native 검증 오라클). 참고: 초기 평가에서 "expand 와 충돌·결을 거스름"이라 반대했으나 Luau 선례로 철회 — expand 를 공용 프론트에 두면 해소됨. 미정: 코어 IR 표기, none-native 의 FFI·워커·자동양보 정합, 부분 native.
+
+
+**7/24/2026** Interception 문법 확정 (스텁 → 완성). 전 → 후: `interception name {}:(target):( when set {value} )` 스텁 → `interception NAME ( when 상황 {인자}:(내용); … )`. 결정: (1) **target 제거** — 독립 선언, 대상은 부착 시점에 정해짐(재사용·선언/적용 분리). (2) `when 상황` = 메타테이블식 훅, 상황은 고정목록 아님(연산이 emit, when이 받음 — 내부 모델), 다루는 상황만 가로채고 나머지 통과(표현 지향·비용 정직). (3) **부착은 job**(`#이름`) — 기존 job 데코레이터 모델(ref가 = 바꾸듯)과 정합, Yulist 프리셋도 같은 훅 묶음. 값 내는 훅은 return. 버린 것: target 파라미터. 미정(→ UNKNOWN⑦): 상황별 인자 계약, set 키 유무, 중첩 순서. + data.md #11 통찰(FuncKind = 자연어의 품사).
+
+
 -- *lmp*
 -- *tenn*

@@ -354,12 +354,11 @@ anything b = break ;     @... break 뒤에 인자 함수가 없다 → 참조 (�
 | char   | 문자                             |
 | boolean | true / false                   |
 | condition | 조건                           |
-| anyVar    | 동적 타입 변수
+| anyVar    | 동적 타입 변수                  |
 | Yulist   | 그냥 아무런 Yulist               |
-| void   | 아무것도 없는것                    |
 | nothing   | nothing                       |
-| NaN    | 숫자가 아닌데 숫자                 |
-| never  | 값이 진짜 없음                     |
+| NaN    | 숫자가 아닌데 숫자 0 / 0           |
+| never  | 값이 진짜 없음, TS 의 nver         |
 | byte[T]   | 8비트 T 타입                   |
 | short[T]  | 16비트 T 타입                  |
 | middle[T] | 32비트 T 타입                  |
@@ -374,13 +373,13 @@ anything b = break ;     @... break 뒤에 인자 함수가 없다 → 참조 (�
 > 타입 이름은 camelCase(소문자 시작)를 원칙으로 하되, `NaN`은 예외다. Not a Number 는 표준적으로 `NaN`으로 표기하고 그 표기가 훨씬 익숙하기 때문이다. (익숙함이 규칙 일관성보다 이득인 유일한 예외로 둔다.)
 > 자료 구조 관련 타입은 PascalCase 를 쓴다.
 
-뒤에 ? 가 붙으면 nothing, NaN, void 또는 never 일 수도 있다는 것이다.
+뒤에 ? 가 붙으면 nothing, NaN 일 수도 있다는 것이다.
 
 naming 은 특이한 타입인데 "" 로 감싸지 않고 바로 온다. 인자 함수의 naming 들이 이 `(...naming)` 이런 형식으로 온다.
 
 **falsy, truthy** 가 있다. 하지만 조건식에선 falsy 는 모두 똑같게 굴고 조건식에서 truthy 도 똑같이 군다.
 
-nothing, NaN, never 다 falsy 값이다. Yulist 는 안이 비었든 말든 다 truthy 다.\
+nothing, NaN 다 falsy 값이다. Yulist 는 안이 비었든 말든 다 truthy 다.\
 왜냐면 Yulist 로 자기만의 자료구조를 만들때 언제나 truthy 야아 할때가 있을수도 있기 때문이다.\
 만약 비어있나 알려면 .isEmpty 함수를 사용해야 한다. 만약 char 이나 string 에서 이게 '' 나 "" 이런식으로 비어 있는지 알려면\
 그냥 == '' 나 == "" 를 사용해야한다.
@@ -402,8 +401,9 @@ Tennin 에서 이름은 기능을 담당하지 않는다 (이름 매직 금지, 
 | 선언된 타입 | 받는 것 |
 |---|---|
 | (기본) | 평가된 값 — `i < 3` → `true` |
-| condition | 식의 구조 — `i < 3` → first = i, operator = Operator.lessThan, second = 3 |
+| condition | 식의 구조 — `i < 3` → first = i, operator = Operator.lessThan, second = 3, result = true, .get() 은 현재 그 조건의 결과를 알려준다.|
 | naming | 이름 그 자체 — `VAR` → VAR 라는 이름. 같은 이름의 변수가 있어도 이름이 이긴다 |
+| variable[T] | 변수 그 자체로 받음 `.name` 이 변수명이고 (naming 임)`.value` 가 값 |
 | would[T] | 아직 T 형태가 아니지만 더 작업하면 T 가 될 값. `.complete()` 를 실행하면 T 타입으로 확정(봉인)된다 |
 
 **타입도 값이다.** Tennin 에선 타입이 1급 값이다 — `typeof[T]` 는 값이다. 그래서 별도의 comptime 기능(키워드)이 없다: 컴파일타임 타입 처리는 **타입 매직이 한다**. (문서에 남은 'comptime' 표현은 Tennin 의 기능이 아니라 Zig 등 외부 계보를 언급하는 것뿐이다.)
@@ -445,6 +445,8 @@ Yulist[init = ...]
 ```
 
 이전의 `( )` (배열), `[ ]` (연결 리스트), `{ 키: 값 }` (딕셔너리) 세 갈래 표기는 폐기한다 (→ CHANGELOG). 왜냐면 타입 표에 이미 `byte[타입]`, `typeof[타입]` 이 있다 — **대괄호 = 타입 매개변수**라는 축이 이미 있었고, `Yulist[...]` 는 그 축에 올라탄다. 오히려 세 갈래 표기가 그 축에서 벗어난 예외였다.
+
+이 타입 매직은 condition 이나 expression 만 있는게 아니다. 그냥 뭘로 타입 매직을 하면 그걸로 봐뀌게 되는 것이다. 정확히는 타입을 무슨 타입으로 지정하면 그 변수는 그 타입을 받는게 된다.
 
 정직한 비용: 제일 흔한 타입이 길어진다 (`Yulist[...string]` vs 이전의 `(...string)`). 파워 유저 타깃이라 일관성이 이긴다.
 
@@ -540,6 +542,8 @@ OR, AND, NOT : or 은 `or` 을 사용하고 and 는 `and` 를 사용하며 not �
 
 우측 쉬프트는 `rshift`, 좌측 쉬프트는 `lshift` 이다.
 
+0.0d / 0.0d 는 NaN 이고 0.0 / 0.0 도 NaN 이고 0 / 0 은 에러 난다.
+
 ### 연산자 우선순위
 
 높은 것부터:
@@ -569,7 +573,13 @@ OR, AND, NOT : or 은 `or` 을 사용하고 and 는 `and` 를 사용하며 not �
 
 먼저 주석은 보기 쉽게 `@...` 이다 @ 가 강조 느낌을 주고 ... 은 흘리는 느낌을 준다 또 `#...` 그런것 보다 `@` 가 더 진하고 그렇기 때문에 주석 느낌을 많이 준다\
 그리고 // 는 입력하려면 좀 손가락이 애매하게 위치된다 하지만 @ 는 2 아주 편안한 위치다 Shift 도 많이 사용하기 때문에 불편하진 않을것이다.\
-또 . 은 손이 좀 애매해지긴 하지만 그래도 익숙하면 쓰기 많이 편하다. 여러줄 주석은 보관함 느낌을 주기 위해\
+또 . 은 손이 좀 애매해지긴 하지만 그래도 익숙하면 쓰기 많이 편하다. 여러줄 주석은 보관함 느낌을 주기 위해
+
+주석 예시만 보여주자면
+
+```tennin
+@... TODO: 이거 완성하기
+```
 
 ```tennin
 @<<
@@ -765,7 +775,7 @@ switch 뒤와 case 뒤의 값은 **values** 로 받는다 (naming 과 구분). `
 
 **함수의 두 쓰임 (용어).** 같은 인자 함수를 어떻게 쓰느냐로 둘로 부른다. **다른 메커니즘이 아니라 쓰임의 구분일 뿐이다.**
 
-- **쓰리 메커니즘 함수** — 매개변수·내용·반환, 세 슬롯만 쓰는 단순 함수. (func는 반환 슬롯을 항상 쓰므로 void여도 세 슬롯 → 언제나 정확히 셋이라 "쓰리"가 딱 맞는다.) 예: `greet(name)`.
+- **쓰리 메커니즘 함수** — 매개변수·내용·반환, 세 슬롯만 쓰는 단순 함수. (func는 반환 슬롯을 항상 쓰므로 nothing여도 세 슬롯 → 언제나 정확히 셋이라 "쓰리"가 딱 맞는다.) 예: `greet(name)`.
 - **다메커니즘 함수** — 여기에 국·소국·values 등 추가 메커니즘까지 받아 다루는 체계적 함수. 예: `if`, `while`, `switch`, `special`.
 
 (`일반화`/`구체화` 같은 이름은 CS의 제네릭·특수화와 충돌해 쓰지 않는다. 표기는 표준 맞춤법 '메커니즘'으로 통일.)
@@ -789,8 +799,12 @@ func helloWorld ...
 **다메커니즘 func 문법 스케치 (미확정).** 아래는 국·소국·확장 슬롯을 갖는 체계적 함수의 대략적 뼈대다. 각 국의 실제 **내용(코드) 문법**, 제너릭 자리, values 바인딩은 아직 미정이다(→ 미정 사항 / TODO).
 
 
-```ㅅ두ㅜㅑㅜ
+```tennin
+func 함수 이름 {
+   returnType = 
+}:(매개변수1 :: 타입, 매개변수2 :: 타입 ...):(
 
+);
 ```
 
 ```tennin
@@ -1109,6 +1123,22 @@ func helloWorld():(
 
 처음부터 복잡하지 않고 처음에 간단한 선언문 부터 있으면 보기에 여기가 본문이구나가 바로 보이기 때문에 좀 더 읽기 좋다. ~~아님 말고~~
 
+### None-Native
+
+LLVM 으로 네거티브 컴파일을 하지 않는 것이다. 왜 사용하냐면 더 빨리 처음에 실행을 위해 사용한다. 이걸 사용할려면 처음에 using none-native; 를 추가하면 된다.
+
+```tennin
+using tenn;
+using none-native;
+
+#main
+func helloWorld ():(
+   Line.addLine("Hello, World!");
+):();
+```
+
+이러면 native 로 기계어로 컴파일 되지 않고 한줄한줄씩 eval 이 읽으며 실행한다.
+
 ### Yulist
 
 Tennin 의 모든 자료 구조는 **Yulist** 하나로 통일한다. 배열·연결 리스트·딕셔너리는 Yulist 가 아닌 특수한 자료가 아니라, **몇 가지 세팅이 이미 되어 있는 Yulist** 다 (프리셋). 사용자는 같은 재료로 새 자료 구조도 만들 수 있다 (1-A #9 — 유저와 시스템을 구분하지 않는다).
@@ -1210,9 +1240,70 @@ expand X 는 "X 를 컴파일 타임에 아는 만큼 실행하고, 모르는 �
 
 TODO: 전개 한도의 단위 (전개 1회 = 무엇을 세나), 정의-expand 와 호출-expand 의 표기 — func 문법 확정 때.
 
+## None-Native (인터프리터 모드)
+
+기본은 native (LLVM → 기계어) 다. 하지만 `using tenn` 대신 **`using tenn-none-native;`** 를 쓰면 native 기계어로 컴파일하지 않고 **인터프리터**가 한 단위씩 읽으며 실행한다.
+
+```tennin
+using tenn-none-native;
+
+#main
+func helloWorld ():(
+   Line.addLine("Hello, World!");
+):();
+```
+
+**왜 (도메인, 철학 아님):** 워크로드마다 최적점이 다르다 — 어떨 땐 **빨리 시작**하는 게(반복 개발·작은 스크립트·REPL/eval·DSL 임베드) LLVM 최적화+링크를 기다리는 것보다 낫고, 어떨 땐 **빨리 실행**하는 게(오래 도는 무거운 프로그램) 낫다. 그래서 둘을 용도별로 고른다. (선례: Luau 도 native 를 선택으로 두고 `--!native` 로 켠다. Tennin 은 정체성이 "정직한 네이티브 성능"이라 **반대로 native 가 기본, none-native 가 opt-out** 이다.)
+
+**아키텍처 — 안 갈라지는 이유:** 의미론의 원천은 하나다. 프론트엔드(lex → parse → **expand**)까지는 두 모드가 **완전히 공유**하고, 갈라지는 건 마지막 백엔드뿐이다.
+
+```
+lex → parse → expand → 코어 IR ┬─▶ LLVM → native      (실행 빠름, 기본)
+                                └─▶ 인터프리터          (시작 빠름, tenn-none-native)
+```
+
+- **expand 는 두 모드 다 거친다.** 제어구조·타입매직의 의미가 expand 에서 정해지므로, 인터프리터도 expand 를 돌린 뒤 그 **결과(코어 IR)** 를 해석한다. 그래서 native 와 none-native 가 같은 프로그램에서 같은 결과를 낸다 — Luau 가 바이트코드 하나를 원천으로 두어 native 가 갈라지지 않는 것과 같은 규율이다.
+- none-native 가 절약하는 건 **LLVM 최적화 + 링크** 단계다 (expand 는 어차피 돈다). 그 부분이 컴파일의 큰 덩어리라 시작이 실제로 빨라진다.
+
+**정직한 비용 (우회 안 함):** 인터프리터는 실행이 느리다 — 시작 빠름과 실행 빠름을 맞바꾼 것이니, "즉시 시작돼야 하는데 일도 많은" 경우엔 여전히 native 가 낫다. 그리고 백엔드가 둘이라 의미를 맞춰 유지해야 한다. (단 이건 이득이기도 하다 — 레퍼런스 인터프리터가 native 백엔드를 검증하는 **의미 오라클**이 된다: differential testing.)
+
+**미정:** 인터프리터가 해석하는 코어 IR 표기, none-native 에서 달라지는 것(C FFI·워커 승격이 인터프리터에서 어떻게 되나 — 자동 양보도 native 는 컴파일러 삽입이지만 인터프리터는 reduction 카운팅(zevring 원형)이 더 자연스러움, 정합 확인), 핫 함수만 native 로 올리는 부분 native 허용 여부.
+
 ### Interception
 
-//TODO: proxy 느낌의 이거 대신 이거 해주세요 하는 기능 setter 그런거 합친거 참고로 이건 proxy 처럼 다 가져오는게 아니라 딱 설정한 부분만 예시로 set 하면 set 할 때만 = 로 set 할 때만
+Interception 은 Tennin 의 **유일한 훅 메커니즘**(1-A #10)이고, Yulist·class 대체(metatable)의 바닥이다. TS 의 proxy/getter/setter 느낌인데, **딱 선언한 상황만** 가로챈다 (proxy 처럼 전부 잡지 않는다).
+
+**모델:** 값의 연산(생성·`=`·`+`·인덱싱 …)이 상황을 **emit** 하고, interception 의 `when` 이 그 상황을 받아 **대신** 처리한다. 이 emit/when 은 시스템 내부 동작 모델이다 (사용자용 이벤트 문법이 아니다 — 그건 액터 메시징으로 갔다). 자리로 보면 정확히 **Luau 메타테이블**(`__index`/`__add` …)과 같다.
+
+**선언 — target 없이 독립적으로:**
+
+```tennin
+interception Bag (
+   when get {key}:( return ...; );      @... 읽을 때  (bag.key / bag[key])
+   when set {key; value}:( ... );        @... = 로 쓸 때
+   when add {other}:( return ...; );     @... + 연산 때
+   when create {...}:( ... );            @... 생성될 때
+);
+```
+
+- `interception NAME ( ... )` — `interception`(함수 이름) + NAME(naming) + `( 훅들 )`(내용). 원칙 0 그대로다.
+- `when 상황 {받을것}:( 할것 )` — 하나의 훅. `when`(함수 이름) + 상황(naming) + `{인자}:(내용)`(핸들러). 이것도 원칙 0 (case·프로토타입 메서드와 같은 이름표 안쪽 인자 함수).
+- **상황(situation)은 고정 목록이 아니다.** 그 상황을 emit 하는 연산이 무엇을 넘길지 정하고(예: `+` 는 `add` 를 상대 피연산자와 함께 emit), interception 은 **다루고 싶은 상황만** `when` 한다. 안 다룬 상황은 그냥 통과 — **표현 지향·비용 정직**(표현한 것만, 그 비용만).
+- 값을 내놓아야 하는 훅(get/add …)은 `return` 으로 돌려준다.
+
+**부착(attach) — job 으로 낀다:**
+
+```tennin
+#Bag
+var inventory :: Yulist = ( ... );   @... Bag interception 을 이 변수에 낀다
+```
+
+- interception 을 변수·Yulist 에 끼우는 **대표 방식은 job**(`#이름`, 구간엔 `(< 이름 ... >)`). 기존 job 모델과 정합 — job 은 파이썬 데코레이터처럼 그 구간의 연산 동작을 바꾼다(예: `ref` job 이 `=` 를 참조로 바꾸는 것과 같은 결).
+- **Yulist 도 같은 방식이다** — array/dictionary 같은 프리셋은 결국 정해진 interception 훅 묶음이다. 그래서 "자료구조를 고른다 = 그 interception 을 낀다".
+
+**왜 target 을 뺐나:** interception 은 "무엇에 씌울지"를 자기가 몰라도 된다 — 독립 선언으로 두고 대상은 **부착(job) 시점**에 정해진다. 그래야 하나의 interception 을 여러 변수·Yulist 에 재사용할 수 있고, 선언과 적용이 분리된다. (이전 `interception name {}:(target):(...)` 스텁 폐기 → CHANGELOG.)
+
+**미정:** 각 상황이 넘기는 인자 shape 의 계약(어느 연산이 무슨 상황을 무슨 인자로 emit 하나) — 안 정하면 훅 인자가 어긋날 때 에러가 모호해진다(→ UNKNOWN, Deep Module 에러 문제와 연결). `set` 이 항상 `{key; value}` 인지 스칼라용 `{value}` 도 두는지. 여러 interception 을 겹쳐 낄 때 순서.
 
 ### kind
 
