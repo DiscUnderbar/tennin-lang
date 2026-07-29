@@ -29,6 +29,13 @@
 
 **7/24/2026** Interception 문법 확정 (스텁 → 완성). 전 → 후: `interception name {}:(target):( when set {value} )` 스텁 → `interception NAME ( when 상황 {인자}:(내용); … )`. 결정: (1) **target 제거** — 독립 선언, 대상은 부착 시점에 정해짐(재사용·선언/적용 분리). (2) `when 상황` = 메타테이블식 훅, 상황은 고정목록 아님(연산이 emit, when이 받음 — 내부 모델), 다루는 상황만 가로채고 나머지 통과(표현 지향·비용 정직). (3) **부착은 job**(`#이름`) — 기존 job 데코레이터 모델(ref가 = 바꾸듯)과 정합, Yulist 프리셋도 같은 훅 묶음. 값 내는 훅은 return. 버린 것: target 파라미터. 미정(→ UNKNOWN⑦): 상황별 인자 계약, set 키 유무, 중첩 순서. + data.md #11 통찰(FuncKind = 자연어의 품사).
 
+**7/28/2026** 인자함수를 아주 간단히 정리했다. 문법 섹션에 인자함수 개념 전체 정리 섹션에서 볼수 있다.
+
+**7/24/2026** 탈출 모델 level → label 변경. 전 → 후: `return/break/continue` 가 숫자 `level`(몇 국 바깥) → **라벨**(이름으로 목적지 국). 대상에 naming 으로 라벨(`while outer {..}`, `func find result {..}`), 탈출은 **`to` 국**으로 가리킴(`break to outer;`, `return (값) to result;`). `to` 없으면 가장 가까운 대상(기존 기본값 유지). `to` 는 셋이 공유하는 국. 왜: level 은 국 추가·삭제 시 숫자가 어긋나는 실재 단점이 있었음 — 라벨은 리팩터 안전·가독 우위, 원칙 3(명시)도 유지(선례 Java/Rust/Kotlin). 버린 것: 숫자 level·`level = N` 인자. 연동 수정: 국 실행순서 주석, 내장함수 교차참조, FuncKind 규칙("label 이 가리키는 국의 kind 를 읽음").
+
+
+**7/24/2026** 모듈 완성 + 팀 + for 제거. (1) **모듈**: 전 → 후: TODO 스텁 → 확정. id 는 `setId ID;`(naming, 없으면 파일명), 모듈이 내주는 건 **`#main` 이 가리키는 것**(main 이 함수·변수·Yulist 뭐든 되는 이유가 이것), `take 아이디 as 이름` 으로 그 #main 을 가져옴. `#main` 함수의 FuncKind 가 **MANIF(선언문)** 이면 함수 대신 **그 선언문이 반환하는 것**을 내줌. `Module` 은 내장 자료 구조(생성 `module 이름();`), setId 없으면 Module 타입을 #main 으로 두고 그 이름이 id. `#module.모듈이름` job 으로 함수를 모듈에 소속시킴(`Pointer.newPoint()`). `import` 는 Module 안의 한 객체를 가져오는 기능으로 역할 확정. 버린 것: 기존 `#export`/`#module` 잡 아이디어, "import 없으면 전부 가져옴" 규칙. (2) **팀**: 같은 컴포넌트를 공유하는 단위 = 팀, 자료구조 간 관계를 명확히 하려고 도입, 어디서나 공유하는 컴포넌트는 `#public`. 팀 선언 문법은 아직 없음. (3) **for 제거**: while 과 하는 일이 같아 #10 위반 — 순회는 나중에 `forEach` 류 Yulist 순회 함수로. 버린 것: `for` 문. + TODO 에 "소국을 인자함수 맨 위에 명시" 추가, UNKNOWN⑦ 에 직접 emit 허용 여부·훅 return 흐름 추가.
+
 
 -- *lmp*
 -- *tenn*
