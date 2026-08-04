@@ -1120,4 +1120,8779 @@ JavaScript가 5.2인 건 나쁜 언어라서가 아니라 **이 렌즈가 "운"�
 *v2.7 추가: Chrona(6.4) 등재 · 절벽 특성 11 "반복이 겪음을 대신한다" · M.G.S 재채점 5.8→6.2*
 *lmnop wxyz 평가 시 갱신 예정 — 절벽 위 어디에 떨어질 것인가*
 
+---
+
+# 여기에 나오는 언어들
+
+VarNumB 는 [VarNumB](https://github.com/DiscUnderbar/Variable-Number-Binary) 에 가면 볼수 있다.
+
+| 등급 | 언어 | 종합 | 주체 | 한 줄 |
+|:---:|---|:---:|---|---|
+| **8.5** | **zevra** | 97.85 | 전설 | JS 골격을 빌려 다른 철학을 심었다 |
+| **7.7** | **lmnop def** | 88.35 | 인간 (구현작) | 초보의 첫 작품이 아니라, 초보가 끝까지 구현한 첫 완성작 |
+| **7.5** | **ErrScript** | 85.75 | 인간 (DSL) | 게임 아이템이 그 게임을 조작하는 언어 |
+| **7.4** | **lmnop hijk** | 84.85 | 인간 (기획) | 기호 충돌을 일반 법칙으로 해결했다 |
+| **6.9** | **lmnop qrs** | 79.85 | 인간 (기획 중) | 하나의 원칙에서 모든 문법을 도출했다 |
+| **6.4** | **Chrona** | 73.79 | **GPT×Claude 21R** | **AI 협업물 최초로 물 위에 올라왔다 — 반복이 겪음을 대신했다** |
+| **6.2** | **M.G.S** | 71.49 | 인간 | 특수 케이스 대신 일반 법칙을 세우기 시작했다 |
+| ⛰️ | | | | **🌵 가시절벽 (5.4 ~ 3.0) — 밀도 극저** |
+| **4.8** | **lmnop tuv** | 55.03 | Claude Pro | **절벽을 오르는 중 — 유일한 등반자** |
+| ⛰️ | | | | |
+| **2.9** | **Astra** | 33.55 | ChatGPT free | 절벽을 알려줬더니 — 가시에 찔렸다 |
+| **2.9** | **pew 2.0** | 32.9 | Manus | 독창성을 요구받자 작동하던 걸 망가뜨렸다 |
+| **2.4** | **LMP** | 27.55 | ChatGPT free | 규칙을 100% 지켰는데 못 넘었다 |
+| **2.4** | **Proxima Centauri** | 27.35 | ChatGPT free | 유능한 표절자 |
+| **2.2** | **pew 1.0** | 25.75 | Manus | 사용자의 아이디어까지 베꼈다 |
+| **1.0** | **Fusion++** | 11.9 | ChatGPT free | 무능한 표절자 |
+
+이것들은 이 문서에서만 등장해서 여기에다가 모두 기획서나 컴파일러를 적어놨다.
+
+## Fusion++
+
+> 파인애플 + 피자 둘이 섞음, 결국 람다 절벽에 아래에 아래에 위치하게 됨
+
+````markdown
+Python, Luau, C++의 장점을 합친 새로운 언어를 설계해볼게. 이름은 예시로 **Fusion++**라고 하자.
+
+## 목표
+
+* Python처럼 읽기 쉽다.
+* Luau처럼 빠른 타입 추론과 게임 개발에 적합하다.
+* C++처럼 네이티브 성능과 메모리 제어가 가능하다.
+
+---
+
+# 문법
+
+```fusion
+import math
+
+func add(a: int, b: int) -> int
+{
+    return a + b
+}
+
+print(add(5, 3))
+```
+
+또는 타입 생략
+
+```fusion
+func add(a, b)
+{
+    return a + b
+}
+```
+
+컴파일러가 자동 추론한다.
+
+---
+
+# 변수
+
+```fusion
+let name = "Fusion"
+
+let age: int = 20
+
+const PI = 3.141592
+```
+
+---
+
+# 클래스
+
+```fusion
+class Player
+{
+    let hp = 100
+
+    func damage(amount)
+    {
+        hp -= amount
+    }
+}
+```
+
+---
+
+# 구조체
+
+```fusion
+struct Vector3
+{
+    float x
+    float y
+    float z
+}
+```
+
+---
+
+# 포인터
+
+평소에는 사용 안 함.
+
+```fusion
+unsafe
+{
+    ptr<int> p = malloc(4)
+
+    *p = 100
+
+    free(p)
+}
+```
+
+---
+
+# 스마트 포인터
+
+```fusion
+let player = unique<Player>()
+
+let enemy = shared<Player>()
+```
+
+---
+
+# 배열
+
+```fusion
+let nums = [1,2,3]
+
+nums.push(4)
+
+nums.pop()
+```
+
+---
+
+# 반복문
+
+```fusion
+for i in 0..10
+{
+    print(i)
+}
+```
+
+```fusion
+for item in nums
+{
+    print(item)
+}
+```
+
+---
+
+# while
+
+```fusion
+while hp > 0
+{
+    hp -= 1
+}
+```
+
+---
+
+# match
+
+```fusion
+match state
+{
+    "Idle" =>
+        print("Idle")
+
+    "Run" =>
+        print("Run")
+
+    _ =>
+        print("Unknown")
+}
+```
+
+---
+
+# Generic
+
+```fusion
+func swap<T>(a: T, b: T)
+{
+    return b, a
+}
+```
+
+---
+
+# Lambda
+
+```fusion
+let add = |a, b| a + b
+```
+
+---
+
+# Coroutine
+
+```fusion
+task download()
+{
+    wait(1)
+
+    print("Done")
+}
+
+await download()
+```
+
+---
+
+# 멀티스레드
+
+```fusion
+parallel
+{
+    task1()
+
+    task2()
+
+    task3()
+}
+```
+
+---
+
+# C++ 호출
+
+```fusion
+extern cpp
+{
+    func printf(fmt: string)
+}
+```
+
+---
+
+# Python 호출
+
+```fusion
+extern python
+{
+    import numpy
+}
+
+let arr = numpy.array([1,2,3])
+```
+
+---
+
+# Luau 호출
+
+```fusion
+extern luau
+{
+    game.Workspace.Part.Position = Vector3(0,5,0)
+}
+```
+
+---
+
+# 자동 메모리 관리
+
+기본은 GC + Reference Counting을 함께 사용한다.
+
+```fusion
+let p = Player()
+```
+
+자동으로 해제된다.
+
+필요하면
+
+```fusion
+unsafe
+{
+    // 직접 메모리 관리
+}
+```
+
+가능하다.
+
+---
+
+# 인터페이스
+
+```fusion
+interface Drawable
+{
+    func draw()
+}
+```
+
+---
+
+# 상속
+
+```fusion
+class Enemy : Player
+{
+    override func damage(amount)
+    {
+        super.damage(amount)
+    }
+}
+```
+
+---
+
+# Enum
+
+```fusion
+enum Color
+{
+    Red
+    Green
+    Blue
+}
+```
+
+---
+
+# Result
+
+```fusion
+func divide(a, b) -> Result<int>
+{
+    if b == 0
+        return Error("Divide by zero")
+
+    return Ok(a / b)
+}
+```
+
+사용
+
+```fusion
+match divide(10,2)
+{
+    Ok(v) =>
+        print(v)
+
+    Error(e) =>
+        print(e)
+}
+```
+
+---
+
+# 컴파일 방식
+
+```
+Fusion Source
+
+      ↓
+
+Lexer
+
+      ↓
+
+Parser
+
+      ↓
+
+AST
+
+      ↓
+
+Optimizer
+
+      ↓
+
+LLVM IR
+
+      ↓
+
+Machine Code
+```
+
+또는
+
+```
+Fusion
+
+↓
+
+Bytecode
+
+↓
+
+JIT
+
+↓
+
+Native
+```
+
+둘 다 지원하여 개발 중에는 빠른 실행(JIT), 배포 시에는 네이티브 컴파일(AOT)을 사용할 수 있다.
+
+---
+
+# 핵심 특징
+
+* Python처럼 간결한 문법
+* Luau 스타일의 빠른 타입 추론
+* C++ 수준의 네이티브 성능
+* LLVM 기반 AOT 컴파일과 JIT 실행 지원
+* `unsafe` 블록에서만 포인터와 수동 메모리 관리 허용
+* 기본 메모리 관리는 자동(GC + 참조 카운팅 조합)
+* Generic, Lambda, Coroutine, Parallel 기본 지원
+* C++, Python, Luau와의 상호 운용성(FFI)
+* 멀티스레드와 비동기를 언어 차원에서 지원
+* 구조체, 클래스, 인터페이스, 열거형, 패턴 매칭, `Result` 타입 제공
+
+이런 설계라면 Python의 생산성, Luau의 가벼움, C++의 성능을 결합한 현대적인 범용 프로그래밍 언어가 될 수 있다.
+````
+
+## pew 1.0
+
+> 사용자를 따라한 언어, 주석이 @ 인건 lmnop wxyz 의 주석 @... 을 따라했고 var 과 타입 비정 :: 과 anything 은 다른 채팅의 사용자의 아이디어를 배낀거다.
+
+````markdown
+# pew 프로그래밍 언어 명세
+
+**pew**는 "Point, Execute, Win"의 약자로, 고성능 시스템 프로그래밍 및 자동화에 최적화된 현대적인 프로그래밍 언어입니다. 이 문서는 pew 언어의 핵심 철학, 문법, 타입 시스템, 제어 흐름, 메모리 관리, 동시성 모델 및 에러 처리에 대한 상세한 명세를 제공합니다. pew는 간결함, 속도, 그리고 동시성을 핵심 가치로 삼아 개발자가 효율적이고 안정적인 애플리케이션을 구축할 수 있도록 돕습니다.
+
+## 1. 핵심 철학 (Core Philosophy)
+
+pew는 다음과 같은 핵심 가치를 기반으로 설계되었습니다.
+
+- **속도 (Velocity):** pew는 컴파일 타임과 런타임 모두에서 최적의 성능을 목표로 합니다. 이는 효율적인 컴파일러 디자인과 경량 런타임 환경을 통해 달성됩니다.
+
+- **간결함 (Simplicity):** 불필요한 복잡성을 제거하고 직관적인 문법을 제공하여 개발자가 핵심 로직에 집중할 수 있도록 합니다. 보일러플레이트 코드를 최소화하고 명확한 표현을 지향합니다.
+
+- **동시성 (Concurrency):** 현대적인 애플리케이션의 요구사항에 맞춰 이벤트 기반의 비동기 처리를 언어 차원에서 기본적으로 지원합니다. 이를 통해 고성능의 반응형 시스템 구축을 용이하게 합니다.
+
+## 2. 주요 특징 (Key Features)
+
+pew는 이러한 철학을 바탕으로 다음과 같은 주요 특징을 가집니다.
+
+- **하이브리드 타입 시스템:** 엄격한 컴파일 타임 타입 검사를 제공하는 정적 타입(`var`)과 런타임 유연성을 제공하는 동적 타입(`anything`)을 동시에 지원하여 개발자가 상황에 맞게 선택할 수 있도록 합니다.
+
+- **내장된 이벤트 루프:** `pew` 키워드를 통해 비동기 작업을 쉽게 시작하고 `await` 키워드를 통해 결과를 기다릴 수 있는 내장된 동시성 모델을 제공합니다.
+
+- **단순화된 메모리 안전성:** 가비지 컬렉션 없이도 메모리 안전을 보장하기 위해 Rust의 소유권 모델을 단순화하여 도입합니다. 변수는 선언된 스코프 내에서만 유효하며, 스코프를 벗어나면 자동으로 해제됩니다.
+
+- **명시적인 에러 처리:** `Result` 타입을 기반으로 하는 명시적인 에러 처리 메커니즘을 통해 견고하고 예측 가능한 코드 작성을 유도합니다.
+
+## 3. 문법 (Syntax)
+
+pew의 문법은 간결함과 가독성을 최우선으로 하며, C-스타일 언어의 익숙함을 유지하면서도 현대적인 요소를 도입합니다.
+
+### 3.1. 주석 (Comments)
+
+한 줄 주석은 `@` 기호로 시작합니다.
+
+```
+@ 이것은 한 줄 주석입니다.
+var x :: int = 10; @ 코드 뒤에 오는 주석도 가능합니다.
+```
+
+### 3.2. 변수 선언 (Variable Declaration)
+
+pew는 하이브리드 타입 시스템을 지원하여 정적 타입과 동적 타입을 유연하게 사용할 수 있습니다.
+
+- **정적 타입 변수 (Static Typed Variables):** `var` 키워드를 사용하여 변수를 선언하며, `::`를 통해 타입을 명시합니다. 컴파일 시점에 타입 검사가 이루어져 안정성을 보장합니다.
+
+   ```
+   var age :: int = 30;
+   var name :: string = "Manus";
+   var is_active :: bool = true;
+   ```
+
+- **동적 타입 변수 (Dynamic Typed Variables):** `anything` 키워드를 사용하여 변수를 선언합니다. 타입 추론이 런타임에 이루어지며, 유연한 데이터 처리가 필요한 경우에 유용합니다. `anything` 변수에는 타입 힌트를 사용하지 않습니다.
+
+   ```
+   anything dynamic_value = 10;
+   dynamic_value = "hello"; @ 런타임에 타입 변경 가능
+   anything mixed_list = [1, "two", true];
+   ```
+
+### 3.3. 상수 선언 (Constant Declaration)
+
+`const` 키워드를 사용하여 상수를 선언합니다. 상수는 선언 시점에 반드시 초기화되어야 하며, 이후 값을 변경할 수 없습니다.
+
+```
+const PI :: float = 3.14159;
+const MAX_RETRIES :: int = 5;
+```
+
+## 4. 타입 시스템 (Type System)
+
+pew의 타입 시스템은 정적 타입의 안정성과 동적 타입의 유연성을 결합합니다. 기본 타입은 다음과 같습니다.
+
+| 타입 이름 | 설명 | 예시 |
+| --- | --- | --- |
+| `int` | 정수 (32비트 또는 64비트, 플랫폼 의존) | `10`, `-500` |
+| `float` | 부동 소수점 수 (64비트) | `3.14`, `-0.001` |
+| `bool` | 불리언 값 | `true`, `false` |
+| `string` | 유니코드 문자열 | `"Hello, pew!"` |
+| `list<T>` | 동적 배열 (제네릭 타입 `T`) | `list<int>`, `list<string>` |
+| `map<K, V>` | 키-값 쌍 컬렉션 (제네릭 타입 `K`, `V`) | `map<string, int>`, `map<int, bool>` |
+| `function` | 함수 타입 | `function(int, string) -> bool` |
+| `void` | 반환 값이 없는 함수 | `function() -> void` |
+
+## 5. 제어 흐름 (Control Flow)
+
+pew는 표준적인 제어 흐름 구조를 제공합니다.
+
+### 5.1. 조건문 (Conditional Statements)
+
+`if`, `else if`, `else` 키워드를 사용합니다. 조건식은 반드시 불리언 값을 반환해야 합니다.
+
+```
+if (age >= 18) {
+    print("성인입니다.");
+} else if (age >= 13) {
+    print("청소년입니다.");
+} else {
+    print("어린이입니다.");
+}
+```
+
+### 5.2. 반복문 (Loops)
+
+`for`와 `while` 루프를 지원합니다.
+
+- **`for`**** 루프:** 컬렉션 순회 또는 범위 기반 반복에 사용됩니다.
+
+   ```
+   for (var i :: int = 0; i < 5; i = i + 1) {
+       print("반복: " + i);
+   }
+   
+   var numbers :: list<int> = [1, 2, 3, 4, 5];
+   for (var num :: int in numbers) {
+       print("숫자: " + num);
+   }
+   ```
+
+- **`while`**** 루프:** 조건이 참인 동안 반복합니다.
+
+   ```
+   var count :: int = 0;
+   while (count < 3) {
+       print("카운트: " + count);
+       count = count + 1;
+   }
+   ```
+
+### 5.3. 함수 (Functions)
+
+`func` 키워드를 사용하여 함수를 정의합니다. 반환 타입은 `->` 뒤에 명시합니다.
+
+```
+func add(a :: int, b :: int) -> int {
+    return a + b;
+}
+
+func greet(name :: string) -> void {
+    print("안녕하세요, " + name + "!");
+}
+
+var result :: int = add(5, 3);
+greet("Manus");
+```
+
+## 6. 동시성 (Concurrency)
+
+pew는 내장된 이벤트 루프와 `pew` 키워드를 통해 비동기 프로그래밍을 지원합니다. `pew`는 비동기 작업을 시작하고 결과를 기다리는 데 사용됩니다.
+
+```
+func fetch_data(url :: string) -> string {
+    @ 네트워크 요청을 시뮬레이션합니다.
+    return "데이터 from " + url;
+}
+
+func main() -> void {
+    print("데이터 요청 시작...");
+    var data_promise :: future<string> = pew fetch_data("https://api.example.com/data" );
+    print("다른 작업 수행...");
+    var result :: string = await data_promise;
+    print("받은 데이터: " + result);
+}
+```
+
+- `pew` 키워드는 함수 호출을 비동기적으로 실행하고 `future` 객체를 반환합니다.
+
+- `await` 키워드는 `future` 객체의 결과가 준비될 때까지 현재 실행을 일시 중지합니다.
+
+## 7. 메모리 관리 (Memory Management)
+
+pew는 가비지 컬렉션 없이 메모리 안전성을 보장하기 위해 단순화된 소유권 모델을 채택합니다. 변수는 선언된 스코프 내에서만 유효하며, 스코프를 벗어나면 자동으로 해제됩니다. 복잡한 데이터 구조의 경우, 명시적인 `clone` 또는 `move` 연산을 통해 소유권을 이전하거나 복사할 수 있습니다.
+
+## 8. 표준 라이브러리 (Standard Library)
+
+pew는 파일 I/O, 네트워크 통신, 문자열 처리, 수학 연산 등 기본적인 기능을 제공하는 경량의 표준 라이브러리를 포함합니다. 주요 모듈은 다음과 같습니다.
+
+- `io`: 파일 읽기/쓰기, 콘솔 입출력
+
+- `net`: TCP/UDP 소켓 통신, HTTP 클라이언트
+
+- `str`: 문자열 조작, 정규 표현식
+
+- `math`: 기본적인 수학 함수, 난수 생성
+
+- `time`: 시간 및 날짜 처리
+
+## 9. 에러 처리 (Error Handling)
+
+pew는 `Result` 타입을 기반으로 하는 명시적인 에러 처리 메커니즘을 제공합니다. 함수는 성공 시 값 또는 실패 시 에러를 반환하는 `Result<T, E>` 타입을 반환할 수 있습니다. `try` 및 `catch` 블록을 통해 에러를 처리합니다.
+
+```
+func divide(a :: int, b :: int) -> Result<int, string> {
+    if (b == 0) {
+        return Error("0으로 나눌 수 없습니다.");
+    } else {
+        return Ok(a / b);
+    }
+}
+
+func main() -> void {
+    var division_result :: Result<int, string> = divide(10, 2);
+    if (division_result.is_ok()) {
+        print("나눗셈 결과: " + division_result.unwrap());
+    } else {
+        print("에러 발생: " + division_result.unwrap_err());
+    }
+
+    try {
+        var bad_division :: int = divide(10, 0).unwrap(); @ 여기서 에러가 발생하여 catch 블록으로 이동
+        print("이 메시지는 출력되지 않습니다.");
+    } catch (err :: string) {
+        print("예외 처리됨: " + err);
+    }
+}
+```
+
+## 10. 빌드 및 실행 (Build and Execution)
+
+pew 코드는 `pewc` 컴파일러를 통해 기계어로 컴파일되거나, `pewi` 인터프리터를 통해 직접 실행될 수 있습니다. 컴파일된 바이너리는 높은 성능을 제공하며, 인터프리터는 빠른 개발 및 스크립팅에 적합합니다.
+
+```bash
+# 컴파일
+pewc main.pew -o my_program
+./my_program
+
+# 인터프리터 실행
+pewi script.pew
+```
+
+## 11. 예제 코드 (Example Code)
+
+pew 언어의 주요 기능을 보여주는 예제 코드는 다음과 같습니다.
+
+### 11.1. 기본 변수 선언 및 출력
+
+```
+@ 정적 타입 변수 선언
+var greeting :: string = "Hello, pew!";
+var version :: float = 1.0;
+var is_ready :: bool = true;
+
+@ 동적 타입 변수 선언
+anything dynamic_message = "This can change.";
+dynamic_message = 123; @ 런타임에 타입 변경
+
+print(greeting);
+print("Version: " + version);
+print("Ready: " + is_ready);
+print("Dynamic message: " + dynamic_message);
+```
+
+### 11.2. 조건문 및 반복문
+
+```
+var score :: int = 85;
+
+if (score >= 90) {
+    print("학점: A");
+} else if (score >= 80) {
+    print("학점: B");
+} else {
+    print("학점: C");
+}
+
+print("\n--- for 루프 --- ");
+for (var i :: int = 0; i < 3; i = i + 1) {
+    print("반복 횟수: " + i);
+}
+
+var fruits :: list<string> = ["apple", "banana", "cherry"];
+print("\n--- for-in 루프 --- ");
+for (var fruit :: string in fruits) {
+    print("과일: " + fruit);
+}
+
+print("\n--- while 루프 --- ");
+var countdown :: int = 3;
+while (countdown > 0) {
+    print("카운트다운: " + countdown);
+    countdown = countdown - 1;
+}
+```
+
+### 11.3. 함수 정의 및 호출
+
+```
+@ 두 정수를 더하는 함수
+func add(a :: int, b :: int) -> int {
+    return a + b;
+}
+
+@ 이름을 받아 인사하는 함수 (반환 값 없음)
+func greet(name :: string) -> void {
+    print("안녕하세요, " + name + "님!");
+}
+
+@ 팩토리얼을 계산하는 재귀 함수
+func factorial(n :: int) -> int {
+    if (n == 0) {
+        return 1;
+    } else {
+        return n * factorial(n - 1);
+    }
+}
+
+var sum_result :: int = add(10, 20);
+print("10 + 20 = " + sum_result);
+
+greet("pew 개발자");
+
+var fact_5 :: int = factorial(5);
+print("5! = " + fact_5);
+```
+
+### 11.4. 동시성 (pew/await)
+
+```
+func simulate_network_call(endpoint :: string, delay_ms :: int) -> string {
+    @ 실제 네트워크 호출 대신 지연을 시뮬레이션합니다.
+    @ time.sleep(delay_ms) 와 유사한 동작을 가정합니다.
+    return "데이터 from " + endpoint + " (지연: " + delay_ms + "ms)";
+}
+
+func main() -> void {
+    print("비동기 작업 시작...");
+
+    var promise1 :: future<string> = pew simulate_network_call("API_A", 1000);
+    var promise2 :: future<string> = pew simulate_network_call("API_B", 500);
+
+    print("다른 동기 작업 수행 중...");
+    print("이 메시지는 비동기 작업 완료 전에 출력됩니다.");
+
+    var result1 :: string = await promise1;
+    print("첫 번째 결과: " + result1);
+
+    var result2 :: string = await promise2;
+    print("두 번째 결과: " + result2);
+
+    print("모든 비동기 작업 완료.");
+}
+```
+
+### 11.5. 에러 처리 (Result 타입 및 try/catch)
+
+```
+func safe_divide(numerator :: int, denominator :: int) -> Result<float, string> {
+    if (denominator == 0) {
+        return Error("0으로 나눌 수 없습니다.");
+    } else {
+        return Ok(numerator as float / denominator as float);
+    }
+}
+
+func process_division(a :: int, b :: int) -> void {
+    var division_result :: Result<float, string> = safe_divide(a, b);
+
+    if (division_result.is_ok()) {
+        print(a + " / " + b + " = " + division_result.unwrap());
+    } else {
+        print("에러 발생: " + division_result.unwrap_err());
+    }
+}
+
+func main() -> void {
+    process_division(10, 2);
+    process_division(10, 0);
+
+    print("\n--- try/catch 블록 --- ");
+    try {
+        var result_with_error :: float = safe_divide(20, 0).unwrap(); @ 여기서 에러가 발생하여 catch 블록으로 이동
+        print("이 메시지는 출력되지 않습니다.");
+    } catch (err_msg :: string) {
+        print("예외 처리됨: " + err_msg);
+    }
+
+    try {
+        var result_no_error :: float = safe_divide(20, 4).unwrap();
+        print("성공적으로 처리됨: " + result_no_error);
+    } catch (err_msg :: string) {
+        print("이 메시지는 출력되지 않습니다.");
+    }
+}
+```
+````
+
+## Proxima Centauri
+
+> ChatGPT 가 만든 언어
+
+````markdown
+좋아요. 그럼 **Proxima Centauri**라는 이름의 새로운 프로그래밍 언어를 설계해보겠습니다. 목표는 **C의 성능 + Python의 간결함 + Rust의 안전성 + Kotlin의 편의성**을 적절히 섞은 언어입니다.
+
+# Proxima Centauri
+
+확장자
+
+```text
+.pc
+```
+
+컴파일러
+
+```text
+pxc
+```
+
+실행
+
+```bash
+pxc build main.pc
+./main
+```
+
+또는
+
+```bash
+pxc run main.pc
+```
+
+---
+
+# 변수
+
+```proxima
+let name = "Kim"
+let age = 20
+
+const PI = 3.141592
+```
+
+자동 타입 추론.
+
+명시도 가능.
+
+```proxima
+let score: Int = 100
+let height: Float = 175.3
+```
+
+---
+
+# 함수
+
+```proxima
+fn add(a: Int, b: Int) -> Int {
+    return a + b
+}
+
+println(add(10,20))
+```
+
+짧게
+
+```proxima
+fn square(x) => x * x
+```
+
+---
+
+# 출력
+
+```proxima
+println("Hello")
+
+print("Loading...")
+```
+
+문자열 보간
+
+```proxima
+let name = "Alice"
+
+println("Hello {name}")
+```
+
+---
+
+# 조건문
+
+```proxima
+if score >= 90 {
+    println("A")
+}
+else if score >= 80 {
+    println("B")
+}
+else {
+    println("F")
+}
+```
+
+---
+
+# 반복문
+
+```proxima
+for i in 0..10 {
+
+}
+```
+
+step
+
+```proxima
+for i in 0..100 step 5 {
+
+}
+```
+
+while
+
+```proxima
+while running {
+
+}
+```
+
+loop
+
+```proxima
+loop {
+
+    if stop {
+        break
+    }
+
+}
+```
+
+---
+
+# 배열
+
+```proxima
+let nums = [1,2,3,4]
+
+println(nums[0])
+```
+
+추가
+
+```proxima
+nums.push(5)
+```
+
+삭제
+
+```proxima
+nums.remove(2)
+```
+
+---
+
+# Map
+
+```proxima
+let user = {
+
+    "name": "Kim",
+
+    "age": 20
+
+}
+
+println(user["name"])
+```
+
+---
+
+# Struct
+
+```proxima
+struct User {
+
+    name: String
+
+    age: Int
+
+}
+```
+
+생성
+
+```proxima
+let u = User {
+
+    name = "Kim"
+
+    age = 20
+
+}
+```
+
+---
+
+# 메서드
+
+```proxima
+impl User {
+
+    fn hello() {
+
+        println("Hello {self.name}")
+
+    }
+
+}
+```
+
+---
+
+# Enum
+
+```proxima
+enum Color {
+
+    Red
+
+    Blue
+
+    Green
+
+}
+```
+
+---
+
+# Match
+
+```proxima
+match color {
+
+    Color.Red => println("R")
+
+    Color.Blue => println("B")
+
+    _ => println("?")
+
+}
+```
+
+---
+
+# Nullable
+
+```proxima
+let name: String?
+
+if name != null {
+
+    println(name)
+
+}
+```
+
+또는
+
+```proxima
+println(name ?? "Unknown")
+```
+
+---
+
+# Result
+
+```proxima
+fn read() -> Result<String> {
+
+}
+```
+
+사용
+
+```proxima
+match read() {
+
+    Ok(text) => println(text)
+
+    Err(err) => println(err)
+
+}
+```
+
+---
+
+# 비동기
+
+```proxima
+async fn download() {
+
+}
+```
+
+실행
+
+```proxima
+await download()
+```
+
+---
+
+# 병렬
+
+```proxima
+parallel {
+
+    download1()
+
+    download2()
+
+    download3()
+
+}
+```
+
+---
+
+# 클래스 대신 Struct
+
+```proxima
+struct Player {
+
+    hp: Int
+
+}
+
+impl Player {
+
+    fn damage(amount) {
+
+        self.hp -= amount
+
+    }
+
+}
+```
+
+---
+
+# Generic
+
+```proxima
+fn swap<T>(a: T, b: T) {
+
+}
+```
+
+---
+
+# Interface
+
+```proxima
+trait Animal {
+
+    fn speak()
+
+}
+```
+
+---
+
+# 구현
+
+```proxima
+impl Animal for Dog {
+
+    fn speak() {
+
+        println("Woof")
+
+    }
+
+}
+```
+
+---
+
+# Import
+
+```proxima
+import math
+
+import network.http
+```
+
+---
+
+# 모듈
+
+```proxima
+module game.player
+```
+
+---
+
+# 메모리
+
+기본적으로 GC를 사용하지 않습니다.
+
+* 자동 소유권(Ownership)
+* 참조 카운팅 최적화
+* 컴파일 타임 메모리 검사
+* 안전하지 않은 코드가 필요하면 `unsafe` 블록 사용
+
+```proxima
+unsafe {
+
+    raw_pointer()
+
+}
+```
+
+---
+
+# 에러 처리
+
+```proxima
+try {
+
+    read()
+
+}
+catch err {
+
+    println(err)
+
+}
+```
+
+또는
+
+```proxima
+let file = read()?
+```
+
+---
+
+# FFI
+
+```proxima
+extern "C" {
+
+    fn printf()
+
+}
+```
+
+---
+
+# 패키지 매니저
+
+```bash
+px install json
+
+px install web
+
+px update
+
+px remove json
+```
+
+---
+
+# 프로젝트 생성
+
+```bash
+px new HelloWorld
+
+cd HelloWorld
+
+px run
+```
+
+---
+
+# Hello World
+
+```proxima
+fn main() {
+
+    println("Hello, Proxima Centauri!")
+
+}
+```
+
+이 설계는 문법을 최대한 읽기 쉽게 유지하면서도 현대적인 기능(타입 추론, 패턴 매칭, 비동기, 제네릭, 트레이트, `Result` 기반 오류 처리, 소유권 기반 메모리 관리)을 기본으로 제공하는 것을 목표로 합니다. 컴파일 언어로 설계되어 네이티브 실행 파일을 생성하며, 시스템 프로그래밍부터 서버 개발, 일반 애플리케이션 개발까지 폭넓게 사용할 수 있는 것을 지향합니다.
+
+````
+
+## LMP
+
+> 문제를 다른 언어에서 찾고 정면 돌파하지 않고 문제를 회피한 언어
+
+````markdown
+요구사항을 반영해서 **새로운 프로그래밍 언어 기획서 형태**로 만들어보겠습니다. 단순히 문법만 만드는 게 아니라, **왜 그렇게 설계했는지 / 장점과 단점 / 어떤 문제를 해결하는지**까지 포함하겠습니다.
+
+# LMP (Logical Modular Programming Language)
+
+## 1. 언어 개요
+
+**LMP(Logical Modular Programming Language)** 는
+
+> "읽기 쉽고, 안전하며, 큰 프로젝트에서도 유지보수가 쉬운 프로그래밍 언어"
+
+를 목표로 만든 언어이다.
+
+기존 언어들은 서로 다른 장점을 가진다.
+
+* C/C++ → 높은 성능, 낮은 추상화
+* Python → 쉬운 문법, 빠른 개발
+* Rust → 강력한 안전성
+* Java → 구조적인 대규모 개발
+
+하지만 각각 단점이 있다.
+
+| 언어     | 문제                  |
+| ------ | ------------------- |
+| C++    | 복잡한 메모리 관리와 높은 진입장벽 |
+| Python | 큰 프로젝트에서 구조 유지 어려움  |
+| Rust   | 학습 난이도가 높음          |
+| Java   | 코드량 증가              |
+
+LMP는 이를 해결하기 위해:
+
+* 쉬운 문법
+* 강제적인 구조
+* 안전한 메모리 관리
+* 높은 실행 성능
+
+을 동시에 목표로 한다.
+
+---
+
+# 2. 핵심 설계 철학
+
+## 2.1 모든 코드는 설명 가능해야 한다
+
+LMP의 가장 중요한 원칙:
+
+> "처음 보는 사람이 코드를 보고 의도를 이해할 수 있어야 한다."
+
+그래서 축약 문법보다 명확한 문법을 우선한다.
+
+예:
+
+Python:
+
+```python
+x += 1
+```
+
+LMP:
+
+```lmp
+increase x by 1
+```
+
+### 이렇게 설계한 이유
+
+장점:
+
+* 비개발자도 의미 파악 가능
+* 유지보수 비용 감소
+* 협업 효율 증가
+
+단점:
+
+* 코드 길이가 길어짐
+* 숙련자는 답답할 수 있음
+
+그래서 LMP는 짧은 표현도 지원한다.
+
+```lmp
+x += 1
+```
+
+하지만 공식 문서에서는 풀어쓴 표현을 권장한다.
+
+---
+
+# 3. 기본 구조
+
+## Hello World
+
+```lmp
+program HelloWorld {
+
+    output("Hello World")
+
+}
+```
+
+### 이유
+
+기존 언어:
+
+```c
+#include<stdio.h>
+
+int main(){
+ printf("Hello");
+}
+```
+
+초보자가 이해해야 하는 요소가 너무 많다.
+
+LMP는 프로그램 실행에 필요한 최소 요소만 사용한다.
+
+장점:
+
+* 첫 실행까지 빠름
+* 불필요한 개념 제거
+
+단점:
+
+* 시스템 프로그래밍에서는 숨겨진 부분이 많아질 수 있음
+
+---
+
+# 4. 변수 시스템
+
+## 선언
+
+```lmp
+number age = 20
+
+text name = "Kim"
+
+boolean login = true
+```
+
+LMP는 변수 타입을 반드시 작성한다.
+
+### 이유
+
+Python:
+
+```python
+x = 10
+```
+
+편하지만 큰 프로젝트에서는:
+
+"이 값이 숫자인지 문자열인지"
+
+확인이 어렵다.
+
+LMP:
+
+```lmp
+number x = 10
+```
+
+장점:
+
+* 오류 감소
+* 자동완성 향상
+* 코드 분석 가능
+
+단점:
+
+* 작성량 증가
+
+---
+
+# 5. 자동 메모리 관리
+
+LMP는 Garbage Collector 기반이다.
+
+예:
+
+```lmp
+user = User()
+
+user.delete()
+```
+
+삭제하지 않아도:
+
+```lmp
+user = User()
+```
+
+사용하지 않으면 자동 제거된다.
+
+## 이유
+
+C++:
+
+```cpp
+User* user = new User();
+
+delete user;
+```
+
+메모리 누수 위험 존재.
+
+Rust:
+
+안전하지만 소유권 개념 학습 필요.
+
+LMP:
+
+안전성과 쉬운 사용성을 선택.
+
+장점:
+
+* 메모리 오류 감소
+* 초보자 친화적
+
+단점:
+
+* GC 비용 발생
+* 극한 성능 환경에서는 불리
+
+---
+
+# 6. 함수
+
+## 기본 함수
+
+```lmp
+function add(number a, number b) -> number {
+
+    return a + b
+
+}
+```
+
+호출:
+
+```lmp
+number result = add(10,20)
+```
+
+### 이유
+
+반환 타입을 명확하게 표시한다.
+
+장점:
+
+* 함수 역할 파악 쉬움
+* 오류 발견 빠름
+
+단점:
+
+* 간단한 함수도 작성량 증가
+
+---
+
+# 7. 조건문
+
+```lmp
+if age >= 18 {
+
+    output("Adult")
+
+}
+
+else {
+
+    output("Child")
+
+}
+```
+
+괄호 사용을 최소화한다.
+
+### 이유
+
+많은 언어에서:
+
+```c
+if(age >=18){
+
+}
+```
+
+괄호 위치 때문에 초보자가 어려움을 느낌.
+
+LMP:
+
+들여쓰기와 블록으로 구조 판단.
+
+장점:
+
+* 읽기 쉬움
+
+단점:
+
+* 들여쓰기 강제 필요
+
+---
+
+# 8. 반복문
+
+## 기본 반복
+
+```lmp
+repeat 10 {
+
+    output("Hello")
+
+}
+```
+
+## 배열 반복
+
+```lmp
+for item in users {
+
+    output(item.name)
+
+}
+```
+
+### 이유
+
+while, for, foreach를 여러 개 만들면 초보자가 배울 게 증가한다.
+
+LMP는 목적 중심 문법 사용.
+
+장점:
+
+* 문법 개수 감소
+
+단점:
+
+* 특별한 반복 방식은 표현력이 떨어질 수 있음
+
+---
+
+# 9. 클래스 시스템
+
+```lmp
+class User {
+
+
+    text name
+
+
+    function introduce(){
+
+        output(name)
+
+    }
+
+
+}
+```
+
+생성:
+
+```lmp
+User kim = new User()
+```
+
+---
+
+# 10. 접근 제한
+
+기본값:
+
+private
+
+명시:
+
+```lmp
+public text name
+```
+
+### 이유
+
+Java:
+
+```java
+public class
+private String
+```
+
+모든 곳에서 접근 지정자를 반복한다.
+
+LMP는 안전한 방향을 기본값으로 한다.
+
+장점:
+
+* 데이터 보호
+* 실수 감소
+
+단점:
+
+* 자유로운 설계에는 불편
+
+---
+
+# 11. 오류 처리
+
+예외 대신 결과 기반 처리.
+
+```lmp
+result login(){
+
+    if wrong_password {
+
+        fail("Password Error")
+
+    }
+
+
+    success(user)
+
+}
+```
+
+사용:
+
+```lmp
+result = login()
+
+
+if result.failed {
+
+    output(result.message)
+
+}
+```
+
+### 이유
+
+예외는 흐름 추적이 어렵다.
+
+장점:
+
+* 예상 가능한 오류 관리
+* 안정적인 서버 개발 가능
+
+단점:
+
+* 코드가 길어질 수 있음
+
+---
+
+# 12. 모듈 시스템
+
+파일:
+
+```
+project
+
+ ├ main.lmp
+ └ math.lmp
+```
+
+가져오기:
+
+```lmp
+use math
+```
+
+### 이유
+
+대규모 프로젝트는 파일 관리가 중요.
+
+---
+
+# 13. 동시성
+
+LMP는 async를 기본 지원.
+
+```lmp
+task download(){
+
+    getFile()
+
+}
+
+
+run download
+```
+
+### 이유
+
+현대 프로그램은 네트워크와 병렬 작업이 많음.
+
+장점:
+
+* 서버 개발 편리
+
+단점:
+
+* 디버깅 난이도 증가
+
+---
+
+# 14. 타입 추론
+
+선택 가능:
+
+```lmp
+auto x = 100
+```
+
+컴파일러가:
+
+```lmp
+number x = 100
+```
+
+으로 판단.
+
+### 이유
+
+명확성과 편리함 사이 균형.
+
+---
+
+# 15. 컴파일 방식
+
+LMP는 두 단계 방식.
+
+```
+LMP Code
+
+↓
+
+LMP Compiler
+
+↓
+
+Intermediate Code
+
+↓
+
+Native Machine Code
+```
+
+LLVM 기반.
+
+### 이유
+
+직접 여러 CPU 지원을 만들 필요 감소.
+
+장점:
+
+* 높은 성능
+* 플랫폼 확장 쉬움
+
+단점:
+
+* 컴파일 과정 증가
+
+---
+
+# 16. 표준 라이브러리
+
+기본 제공:
+
+## 파일
+
+```lmp
+file.read("data.txt")
+```
+
+## 네트워크
+
+```lmp
+http.get(url)
+```
+
+## JSON
+
+```lmp
+json.parse(data)
+```
+
+## 날짜
+
+```lmp
+time.now()
+```
+
+---
+
+# 17. 패키지 관리
+
+명령:
+
+```
+lmp install package
+```
+
+파일:
+
+```
+lmp.package
+```
+
+내용:
+
+```json
+{
+"name":"server",
+"version":"1.0"
+}
+```
+
+---
+
+# 18. LMP의 장점
+
+## 1. 배우기 쉬움
+
+이유:
+
+불필요한 문법 제거.
+
+## 2. 유지보수 우수
+
+이유:
+
+명확한 타입과 구조.
+
+## 3. 안전함
+
+이유:
+
+자동 메모리 관리 + 기본 private.
+
+## 4. 확장 가능
+
+이유:
+
+모듈과 패키지 시스템.
+
+---
+
+# 19. LMP의 단점
+
+## 1. 코드 길이 증가
+
+명확성을 선택했기 때문.
+
+## 2. 최고 성능 영역에서는 불리
+
+GC와 추상화 비용 존재.
+
+## 3. 자유도가 낮음
+
+안전한 구조를 강제하기 때문.
+
+---
+
+# 20. LMP가 해결하는 두 가지 목표
+
+기존 언어:
+
+```
+쉬움  ← Python
+
+성능 ← C++
+
+안전 ← Rust
+```
+
+LMP:
+
+```
+        안전
+
+         ▲
+
+         |
+
+쉬움 ◀───┼───▶ 성능
+
+         |
+
+       유지보수
+```
+
+완벽하게 하나만 최고로 만드는 것이 아니라,
+
+**실제 개발자가 가장 많은 시간을 쓰는 "읽기, 수정, 협업" 영역을 최우선으로 하는 언어**이다.
+
+---
+
+# 최종 방향
+
+LMP는:
+
+* Python의 접근성
+* Java의 구조
+* Rust의 안전성
+* C++의 성능 철학
+
+을 결합한 **대규모 프로젝트용 현대 프로그래밍 언어**를 목표로 한다.
+
+````
+
+## pew 2.0
+
+> manus 로 만든 프로그래밍 언어
+
+````markdown
+# pew 2.0: 에너지와 흐름의 언어 명세
+
+**pew 2.0**은 기존 프로그래밍 언어의 틀을 깨고, 데이터와 실행의 흐름을 직관적으로 표현하는 데 중점을 둔 혁신적인 언어입니다. "에너지와 흐름"이라는 핵심 철학 아래, 모든 구문은 데이터가 소스에서 목적지로 이동하고, 에너지가 시스템을 통해 전달되는 과정을 시각화합니다.
+
+## 1. 핵심 철학 (Core Philosophy)
+
+pew 2.0은 다음과 같은 세 가지 핵심 가치를 추구합니다.
+
+- **발사(Fire)가 아닌 흐름(Flow):** 코드는 정적인 명령의 나열이 아니라, 데이터가 끊임없이 소스에서 목적지로 흐르는 동적인 경로입니다. 개발자는 이 흐름을 설계하고 제어합니다.
+
+- **즉각성(Immediacy):** 모든 연산은 지연 없이 즉각적으로 실행될 준비가 되어 있어야 합니다. `pew` 연산자는 이러한 즉각적인 실행 가능성을 나타냅니다.
+
+- **가시성(Visibility):** 데이터의 출처, 변환 과정, 그리고 최종 목적지가 문법적으로 명확하게 드러나야 합니다. 이는 코드의 이해와 디버깅을 획기적으로 개선합니다.
+
+## 2. 문법 (Syntax)
+
+pew 2.0의 문법은 데이터의 흐름과 에너지의 전달을 시각적으로 표현하는 데 집중합니다.
+
+### 2.1. 주석 (Comments)
+
+코드의 의미를 탐색하고 설명하는 `??` 연산자를 사용합니다.
+
+```
+?? 이 블록은 사용자 데이터를 처리합니다.
+10 -> age :: int; ?? 나이를 10으로 설정합니다.
+```
+
+### 2.2. 데이터 주입 (Data Injection)
+
+데이터가 변수로 흘러 들어가는 과정을 `->` 연산자로 표현합니다. 이는 변수 선언과 값 할당을 동시에 수행합니다.
+
+- **타입 추론:** 데이터가 변수로 흐르면서 자동으로 타입이 추론됩니다.
+
+   ```
+   "Hello, pew 2.0!" -> greeting;
+   42 -> answer;
+   true -> is_active;
+   ```
+
+- **명시적 타입 지정:** 필요한 경우 `:: type`을 사용하여 타입을 명시할 수 있습니다.
+
+   ```
+   3.14 -> PI :: float;
+   [1, 2, 3] -> numbers :: list<int>;
+   ```
+
+### 2.3. 상수 선언 (Constant Declaration)
+
+불변하는 데이터 흐름의 원천을 `const` 키워드로 선언합니다.
+
+```
+const "https://api.example.com" -> API_BASE_URL;
+const 100 -> MAX_ITEMS :: int;
+```
+
+### 2.4. 스코프 (Energy Field )
+
+중괄호 `{}` 대신 `[|`와 `|]`를 사용하여 코드 블록, 즉 '에너지 장'을 정의합니다. 이 장 안에서 데이터는 특정 흐름을 따릅니다.
+
+```
+[|
+    "Local data" -> local_var;
+    print !> local_var;
+|]
+```
+
+## 3. 연산자 (Operators)
+
+pew 2.0은 데이터의 변환과 전달을 위한 독특한 연산자 세트를 제공합니다.
+
+### 3.1. 트리거 (Trigger) `!>`
+
+함수 호출은 에너지를 발사하는 행위로 간주하며 `!>` 연산자를 사용합니다. 이는 함수를 실행하고 그 결과를 다음 흐름으로 전달합니다.
+
+```
+"Hello World" !> print; ?? 
+화면에 "Hello World"를 출력합니다.
+(10 + 20) !> add_function !> result_variable;
+```
+
+### 3.2. 파이프라인 (Pipeline) `>>`
+
+여러 연산을 연결하여 데이터의 연속적인 변환 흐름을 표현합니다. 이전 연산의 결과가 다음 연산의 입력으로 전달됩니다.
+
+```
+"hello world" >> to_uppercase >> split_words >> count_elements !> word_count;
+?? "hello world" 문자열을 대문자로 바꾸고, 단어별로 나눈 후, 단어의 개수를 세어 word_count에 저장합니다.
+```
+
+### 3.3. 동시성 (Concurrency) `pew`
+
+`pew` 키워드 자체를 연산자로 사용하여, 모든 구문 앞에 `pew`를 붙이면 즉시 별도의 초경량 스레드(Fiber)에서 실행되도록 설계합니다. 이는 즉각적인 실행과 병렬 처리를 가능하게 합니다.
+
+```
+pew fetch_data !> api_response_promise;
+?? fetch_data 함수를 비동기적으로 실행하고, 결과를 api_response_promise에 저장합니다.
+
+api_response_promise >> await_result !> final_data;
+?? api_response_promise의 결과를 기다려 final_data에 저장합니다.
+```
+
+## 4. 타입 시스템 (Type System)
+
+pew 2.0은 데이터의 에너지 형태를 기반으로 한 타입 시스템을 가집니다.
+
+| 타입 이름 | 설명 | 예시 |
+| --- | --- | --- |
+| `int` | 정수 에너지 | `10`, `-500` |
+| `float` | 부동 소수점 에너지 | `3.14`, `-0.001` |
+| `bool` | 불리언 에너지 | `true`, `false` |
+| `string` | 문자열 에너지 | `"Hello, pew!"` |
+| `list<T>` | `T` 타입 에너지의 흐름 | `list<int>`, `list<string>` |
+| `map<K, V>` | `K` 타입 키와 `V` 타입 값의 에너지 맵 | `map<string, int>`, `map<int, bool>` |
+| `function` | 실행 가능한 에너지 블록 | `function(int, string) -> bool` |
+| `void` | 반환 에너지 없음 | `function() -> void` |
+| `future<T>` | 비동기적으로 생성될 `T` 타입 에너지 | `future<string>` |
+
+## 5. 제어 흐름 (Control Flow)
+
+pew 2.0은 데이터의 흐름에 기반한 제어 구조를 제공합니다.
+
+### 5.1. 조건 흐름 (Conditional Flow)
+
+`if`, `else if`, `else`는 데이터의 상태에 따라 흐름을 분기합니다.
+
+```
+[|
+    age :: int;
+    30 -> age;
+
+    if (age >= 18) [|
+        "성인입니다." !> print;
+    |] else if (age >= 13) [|
+        "청소년입니다." !> print;
+    |] else [|
+        "어린이입니다." !> print;
+    |]
+|]
+```
+
+### 5.2. 반복 흐름 (Loop Flow)
+
+`loop`와 `for_each`를 사용하여 데이터의 반복적인 흐름을 제어합니다.
+
+- **`loop`****:** 조건이 참인 동안 에너지 장을 반복합니다.
+
+   ```
+   [|
+       count :: int;
+       0 -> count;
+       loop (count < 3) [|
+           "카운트: " + count !> print;
+           (count + 1) -> count;
+       |]
+   |]
+   ```
+
+- **`for_each`****:** 컬렉션의 각 요소에 대해 에너지 장을 실행합니다.
+
+   ```
+   [|
+       [1, 2, 3, 4, 5] -> numbers :: list<int>;
+       numbers >> for_each (num :: int) [|
+           "숫자: " + num !> print;
+       |];
+   |]
+   ```
+
+### 5.3. 함수 (Energy Block)
+
+`func` 키워드를 사용하여 실행 가능한 에너지 블록을 정의합니다. `->`는 입력 에너지의 흐름을, `=>`는 결과 에너지의 방출을 나타냅니다.
+
+```
+func add (a :: int, b :: int) => int [|
+    (a + b) => result;
+|]
+
+func greet (name :: string) => void [|
+    "안녕하세요, " + name + "!" !> print;
+|]
+
+[|
+    add !> (5, 3) !> sum_result;
+    greet !> "Manus";
+|]
+```
+
+## 6. 메모리 관리 (Energy Flow Management)
+
+pew 2.0은 가비지 컬렉션 없이 메모리 안전성을 보장하기 위해 데이터의 소유권과 생명 주기를 명시적으로 관리합니다. 데이터가 한 스코프(`[| |]`)에서 다른 스코프로 이동할 때, 소유권은 명확하게 이전됩니다. `clone` 연산자를 통해 데이터의 복사본을 생성할 수 있습니다.
+
+## 7. 표준 라이브러리 (Core Energy Modules)
+
+pew 2.0은 핵심적인 에너지 모듈을 제공하여 파일 I/O, 네트워크 통신, 문자열 처리 등을 지원합니다.
+
+- `core.io`: 콘솔 입출력, 파일 시스템 접근
+
+- `core.net`: 네트워크 소켓, HTTP 클라이언트
+
+- `core.str`: 문자열 조작, 패턴 매칭
+
+- `core.math`: 수학 연산, 난수 생성
+
+- `core.time`: 시간 및 날짜 관리
+
+## 8. 에러 처리 (Energy Anomaly Handling)
+
+pew 2.0은 `Result` 타입을 기반으로 하는 명시적인 에러 처리 메커니즘을 제공합니다. 함수는 성공 시 `Ok(value)` 또는 실패 시 `Error(anomaly)`를 반환합니다. `try_flow` 블록을 통해 예상치 못한 에너지 이상(anomaly)을 처리합니다.
+
+```
+func safe_divide (numerator :: int, denominator :: int) => Result<float, string> [|
+    if (denominator == 0) [|
+        Error("0으로 나눌 수 없습니다.") => result;
+    |] else [|
+        (numerator as float / denominator as float) => Ok !> result;
+    |]
+|]
+
+[|
+    safe_divide !> (10, 2) !> division_result;
+    division_result >> if_ok (val :: float) [|
+        "나눗셈 결과: " + val !> print;
+    |] else_error (err :: string) [|
+        "에러 발생: " + err !> print;
+    |];
+
+    try_flow [|
+        safe_divide !> (10, 0) >> unwrap !> bad_result;
+        "이 메시지는 출력되지 않습니다." !> print;
+    |] catch_anomaly (err_msg :: string) [|
+        "예외 처리됨: " + err_msg !> print;
+    |];
+|]
+```
+
+## 9. 빌드 및 실행 (Energy Deployment)
+
+pew 2.0 코드는 `pew_forge` 컴파일러를 통해 최적화된 바이너리로 변환되거나, `pew_spark` 인터프리터를 통해 즉시 실행될 수 있습니다.
+
+```bash
+# 컴파일
+pew_forge main.pew -o my_energy_flow
+./my_energy_flow
+
+# 인터프리터 실행
+pew_spark script.pew
+```
+
+## 10. 예제 코드 (Energy Flow Demonstrations)
+
+pew 2.0의 주요 기능을 보여주는 예제 코드는 다음과 같습니다.
+
+### 10.1. 기본 데이터 흐름 및 출력
+
+```
+?? 기본 데이터 흐름과 출력 예제
+
+"Hello, pew 2.0!" -> greeting;
+42 -> answer :: int;
+true -> is_active :: bool;
+
+greeting !> print;
+"The answer is: " + answer !> print;
+"Active status: " + is_active !> print;
+
+?? 동적 데이터 흐름
+"Initial dynamic value" -> ~dynamic_data;
+~dynamic_data !> print;
+
+123 -> ~dynamic_data; ?? 런타임에 타입 변경 가능
+~dynamic_data !> print;
+```
+
+### 10.2. 조건 흐름 및 반복 흐름
+
+```
+?? 조건 흐름 예제
+
+[|
+    score :: int;
+    85 -> score;
+
+    if (score >= 90) [|
+        "학점: A" !> print;
+    |] else if (score >= 80) [|
+        "학점: B" !> print;
+    |] else [|
+        "학점: C" !> print;
+    |]
+|]
+
+?? 반복 흐름 (loop)
+
+[|
+    count :: int;
+    0 -> count;
+    loop (count < 3) [|
+        "카운트: " + count !> print;
+        (count + 1) -> count;
+    |]
+|]
+
+?? 반복 흐름 (for_each)
+
+[|
+    ["apple", "banana", "cherry"] -> fruits :: list<string>;
+    fruits >> for_each (fruit :: string) [|
+        "과일: " + fruit !> print;
+    |];
+|]
+```
+
+### 10.3. 함수 (Energy Block) 정의 및 호출
+
+```
+?? 두 정수를 더하는 함수
+func add (a :: int, b :: int) => int [|
+    (a + b) => result;
+|]
+
+?? 이름을 받아 인사하는 함수 (반환 값 없음)
+func greet (name :: string) => void [|
+    "안녕하세요, " + name + "님!" !> print;
+|]
+
+?? 팩토리얼을 계산하는 재귀 함수
+func factorial (n :: int) => int [|
+    if (n == 0) [|
+        1 => result;
+    |] else [|
+        (n * (factorial !> (n - 1))) => result;
+    |]
+|]
+
+[|
+    add !> (10, 20) !> sum_result;
+    "10 + 20 = " + sum_result !> print;
+
+    greet !> "pew 개발자";
+
+    factorial !> 5 !> fact_5;
+    "5! = " + fact_5 !> print;
+|]
+```
+
+### 10.4. 동시성 (pew 연산자)
+
+```
+?? 비동기 데이터 요청 시뮬레이션
+func simulate_network_call (endpoint :: string, delay_ms :: int) => string [|
+    ?? 실제 네트워크 호출 대신 지연을 시뮬레이션합니다.
+    ?? core.time.sleep !> delay_ms; 와 유사한 동작을 가정합니다.
+    "데이터 from " + endpoint + " (지연: " + delay_ms + "ms)" => result;
+|]
+
+[|
+    "비동기 작업 시작..." !> print;
+
+    pew simulate_network_call !> ("API_A", 1000) !> promise1;
+    pew simulate_network_call !> ("API_B", 500) !> promise2;
+
+    "다른 동기 작업 수행 중..." !> print;
+    "이 메시지는 비동기 작업 완료 전에 출력됩니다." !> print;
+
+    promise1 >> await_result !> result1;
+    "첫 번째 결과: " + result1 !> print;
+
+    promise2 >> await_result !> result2;
+    "두 번째 결과: " + result2 !> print;
+
+    "모든 비동기 작업 완료." !> print;
+|]
+```
+
+### 10.5. 에러 처리 (Energy Anomaly Handling)
+
+```
+?? 안전한 나눗셈 함수
+func safe_divide (numerator :: int, denominator :: int) => Result<float, string> [|
+    if (denominator == 0) [|
+        Error("0으로 나눌 수 없습니다.") => result;
+    |] else [|
+        (numerator as float / denominator as float) => Ok !> result;
+    |]
+|]
+
+?? 나눗셈 처리 흐름
+func process_division (a :: int, b :: int) => void [|
+    safe_divide !> (a, b) !> division_result;
+
+    division_result >> if_ok (val :: float) [|
+        (a + " / " + b + " = " + val) !> print;
+    |] else_error (err :: string) [|
+        ("에러 발생: " + err) !> print;
+    |];
+|]
+
+[|
+    process_division !> (10, 2);
+    process_division !> (10, 0);
+
+    "\n--- try_flow/catch_anomaly 블록 --- " !> print;
+    try_flow [|
+        safe_divide !> (20, 0) >> unwrap !> bad_result; ?? 여기서 에러가 발생하여 catch_anomaly 블록으로 이동
+        "이 메시지는 출력되지 않습니다." !> print;
+    |] catch_anomaly (err_msg :: string) [|
+        ("예외 처리됨: " + err_msg) !> print;
+    |];
+
+    try_flow [|
+        safe_divide !> (20, 4) >> unwrap !> result_no_error;
+        ("성공적으로 처리됨: " + result_no_error) !> print;
+    |] catch_anomaly (err_msg :: string) [|
+        "이 메시지는 출력되지 않습니다." !> print;
+    |];
+|]
+```
+````
+
+## Astra
+
+> 다른 언어들을 배낀 언어
+
+````markdown
+좋아요. λ 람다 절벽 기준으로 보면 "문법이 예쁜 언어"를 만들면 안 되고, **기존 언어들이 당연하다고 받아들인 문제를 다른 철학으로 해결하는 언어**여야 합니다.
+
+하나 설계해보면:
+
+# **Astra (아스트라)**
+
+### 철학: "소유하지 말고, 존재를 증명하라"
+
+Rust가:
+
+> "누가 이 데이터를 소유하는가?"
+
+를 해결했다면 Astra는:
+
+> "이 데이터가 이 순간 존재해도 되는 이유가 증명되었는가?"
+
+를 해결하는 언어입니다.
+
+---
+
+## 핵심 문제
+
+현대 언어의 큰 문제:
+
+```rust
+let user = database.get_user(id);
+send_email(user);
+```
+
+이 코드에서 컴파일러는 보통:
+
+* user가 살아있는가?
+* 데이터가 변경됐는가?
+* 다른 곳에서 사용 중인가?
+
+를 추적합니다.
+
+Rust는 소유권으로 해결:
+
+```
+move → borrow → lifetime
+```
+
+Astra는 질문 자체를 바꿉니다.
+
+---
+
+# 1. 존재 증명 타입 (Existence Type)
+
+Astra에는 일반 변수와 증명된 변수가 다릅니다.
+
+일반:
+
+```
+name = "Alice"
+```
+
+증명:
+
+```
+name : Exists<User>
+```
+
+`Exists<T>`는:
+
+> "현재 실행 상태에서 T가 유효하다는 증거가 붙어있음"
+
+이라는 뜻입니다.
+
+---
+
+예:
+
+```
+user = database.find(id)
+```
+
+결과:
+
+```
+Maybe<User>
+```
+
+일반 언어:
+
+```python
+if user:
+    send(user)
+```
+
+Astra:
+
+```
+when user:
+    send(user)
+```
+
+`when` 블록 안에서는 컴파일러가:
+
+"아, User가 존재한다는 증명이 활성화됨"
+
+이라고 판단.
+
+블록 밖:
+
+```
+send(user)
+```
+
+불가능.
+
+---
+
+# 2. 시간도 타입이다
+
+Rust가 메모리 시간을 관리한다면 Astra는 **상태의 시간을 관리**합니다.
+
+예:
+
+게임 캐릭터:
+
+```
+Player
+```
+
+상태:
+
+```
+Alive
+Dead
+Respawning
+```
+
+기존:
+
+```cpp
+player.hp = 0
+player.attack()
+```
+
+런타임 오류.
+
+Astra:
+
+```
+player : Player<Alive>
+```
+
+죽으면:
+
+```
+Player<Dead>
+```
+
+변환.
+
+그래서:
+
+```
+attack(player)
+```
+
+함수는:
+
+```
+attack(Player<Alive>)
+```
+
+만 받음.
+
+죽은 플레이어 공격 불가능.
+
+---
+
+# 3. 공유를 없애지 않는다
+
+Rust:
+
+"동시에 수정하지 마"
+
+Astra:
+
+"수정이라는 개념을 바꾼다"
+
+데이터는 기본적으로 불변.
+
+변경:
+
+```
+new player.health = 100
+```
+
+이건 기존 player 수정이 아니라:
+
+```
+Player1
+   |
+   v
+Player2
+```
+
+새 상태 생성.
+
+하지만 복사가 아님.
+
+컴파일러가:
+
+```
+Player1 → Player2
+```
+
+라는 상태 흐름만 추적.
+
+---
+
+# 4. 문법
+
+예:
+
+```
+entity Player {
+    hp: Int
+    state: Alive | Dead
+}
+
+
+rule attack
+    requires Player<Alive>
+{
+    target.hp -= 10
+}
+
+
+flow game {
+    p = spawn Player
+
+    p = attack(p)
+
+    if p.hp == 0 {
+        p = die(p)
+    }
+}
+```
+
+읽으면:
+
+"살아있는 플레이어만 공격 가능하고, 상태 변화는 흐름으로 이동한다"
+
+라는 게 보임.
+
+---
+
+# 5. 기존 언어와 비교
+
+| 문제     | C     | Rust      | Astra     |
+| ------ | ----- | --------- | --------- |
+| 메모리    | 직접 관리 | 소유권       | 존재 증명     |
+| 데이터 공유 | 위험    | borrow 검사 | 상태 흐름     |
+| 상태 오류  | 런타임   | 부분 해결     | 타입 단계 해결  |
+| 동시성    | 어려움   | 강함        | 상태 그래프 기반 |
+| 철학     | 기계 제어 | 소유권       | 존재의 증명    |
+
+---
+
+# 왜 λ 절벽 위인가?
+
+이 언어의 핵심은:
+
+"Rust에 기능 하나 추가"
+
+가 아닙니다.
+
+Rust의 질문:
+
+> "누가 이 메모리를 가지고 있는가?"
+
+Astra의 질문:
+
+> "이 값이 지금 존재할 자격을 증명할 수 있는가?"
+
+입니다.
+
+즉 메모리 관리 문제를 **소유권 문제 → 존재 논리 문제**로 재정의합니다.
+
+---
+
+# 약점
+
+물론 현실적으로는:
+
+* 컴파일러 구현 난이도가 매우 높음
+* 증명 추적 비용 문제
+* 동적 시스템과 충돌 가능성
+* 프로그래머가 새로운 사고방식을 배워야 함
+
+이 있습니다.
+
+하지만 λ 람다 절벽 기준에서는 이 약점이 오히려 정상입니다.
+
+왜냐하면 9점대 언어들은 모두:
+
+* C → 안전하지 않지만 시스템이라는 새 영역을 열었고
+* Rust → 배우기 어렵지만 메모리 안전이라는 새 기준을 만들었고
+
+같은 대가를 치렀으니까요.
+
+Astra가 실제로 성공한다면 점수 기준상:
+
+* 독창성: 10
+* 문제 재정의: 10
+* 도전: 10
+* 구현 현실성: 6~8
+
+정도로 평가될 가능성이 높습니다.
+
+즉 "좋은 언어"라기보다 **제2의 벽을 넘으려고 시도하는 언어**에 가까운 설계입니다.
+
+````
+
+## lmnop tuv
+
+> 결국 배낀 언어, 정말 좋은 AI Claude Pro 인데도
+
+````markdown
+# lmnop — tuv 명세 (Specification)
+
+> **lmnop** · 게임 핵심 로직용 언어
+> 버전: **tuv** · 확장자 `.lmt` · 문법 스타일: 실험적
+>
+> tuv는 qrs의 완성형이 **아니다.** 또 한 번 처음부터 다시 짠 것이다.
+> 이번에 밀어붙일 한 문장:
+>
+> ## **"모든 것은 액터고, 모든 연산은 메시지다."**
+>
+> *살아있는 문서.*
+
+---
+
+# 목차
+
+1. 핵심 원칙
+2. 괄호 규칙
+3. 주석
+4. 담기 — `<-`
+5. 타입
+6. 메시지 — `->` `<->` `^` `on`
+7. 함수
+8. 액터
+9. 조건문
+10. 반복 / 시간
+11. 연산자
+12. truthy / falsy
+13. 문자열
+14. 컬렉션
+15. 에러도 메시지다
+16. 스케줄러
+17. 어노테이션
+18. 진단
+19. 예제
+20. 미정 / TODO
+
+---
+
+## 1. 핵심 원칙
+
+지금까지는 "값이 있고 함수가 있고 스레드가 따로 있다"였다.
+tuv는 그걸 없앤다. **전부 액터다. 차이는 딱 하나, 얼마나 오래 사느냐.**
+
+```
+모든 것 = 액터
+├─ 리터럴   수명 0     — 안 돈다. 그냥 있다.        5, "hi", true, null
+├─ 함수     수명 1회   — 메시지 하나 받고 죽는다.    ( )
+└─ 액터     수명 ∞     — 메시지 올 때마다 돈다.      { }
+```
+
+그래서:
+
+- **호출 = 메시지 보내기.** `add(3, 5)` 도 `g -> damage(10)` 도 같은 일이다.
+- **메소드 = 메시지.** `"hi" -> upper` `lis -> len`
+- **파이프 = 메시지.** `5 -> double -> print`
+- `.` 과 `:` 를 놓고 싸울 일이 없다. **`->` 하나면 된다.**
+
+> 이전 버전들의 `Thread` / `Sled` 는 없다. **액터가 곧 스레드다.**
+
+---
+
+## 2. 괄호 규칙
+
+tuv 문법의 뼈대. 이것만 외우면 반은 끝난다.
+
+| 괄호 | 뜻 | 수명 |
+|------|-----|------|
+| `( )` | **일회성 몸통** — 함수, if 가지, 반복문 본문 | 한 번 돌고 죽음 |
+| `{ }` | **지속 몸통** — 액터, `every` | 계속 삶 |
+| `[ ]` | **목록** — 매개변수, 리스트, 맵 | 값 |
+
+```lmt
+double <- [x] ( x * 2 )            # ( ) → 함수
+Timer  <- [t = 0] { ... }          # { } → 액터
+nums   <- [1, 2, 3]                # [ ] → 리스트
+```
+
+괄호 개수를 늘리면 안에서 같은 괄호를 쓸 수 있다 (hijk에서 가져온 유일한 것):
+
+```lmt
+#( 주석 )#
+#(( 안에 #( )# 사용 가능 ))#
+```
+
+---
+
+## 3. 주석
+
+```lmt
+# 한 줄 주석
+
+#(
+  여러 줄 주석
+)#
+
+#! 도큐 주석 — 이 함수가 뭐 하는지 !#
+```
+
+---
+
+## 4. 담기 — `<-`
+
+대입은 `<-`. 그래서 **`=` 가 비교로 풀려난다** (`==` 같은 거 안 쓴다).
+
+```lmt
+x     <- 5
+greet <- "안녕"
+add   <- [a, b] ( a + b )
+Goblin <- [hp = 30] { ... }
+```
+
+이름을 붙이는 방법은 이거 하나뿐이다. 변수든 함수든 액터든 전부 `<-`.
+
+- 재대입도 `<-`
+- 못 바꾸게 하려면 `x <<- 5` (고정)
+
+---
+
+## 5. 타입
+
+`이름: 타입` 으로 붙인다.
+
+```lmt
+x: Int <- 5
+name: Str <- "철수"
+hp: Int? <- null              # ? → null 허용
+v: Int|Str <- 10              # | → 유니언
+args: Int... <- [1, 2, 3]     # ... → 가변
+g: Goblin <- Goblin()         # 액터도 타입이다
+```
+
+| 타입 | 설명 |
+|------|------|
+| `Int` `Double` `Num` | 64비트 정수 / 64비트 실수 / 128비트 (넘치면 자동 승격) |
+| `Str` `Bool` `Null` `Any` | |
+| `List` `Map` | |
+| `Fn` | 함수 (수명 1회짜리 액터) |
+| `Actor` | 액터 (수명 ∞) |
+| `Msg` | 메시지 그 자체 (1급 시민) |
+| `Fail` | 실패 (§15) |
+
+숫자 리터럴 `5` 의 기본 타입은 `Int|Double`.
+
+---
+
+## 6. 메시지 — tuv의 심장
+
+메시지 연산자는 **넷**뿐이다.
+
+| 연산자 | 이름 | 뜻 | 기다리나 |
+|--------|------|-----|---------|
+| `->` | 보내기 | 메시지를 던진다 (호출·파이프·전송 전부) | ✕ |
+| `<->` | 물어보기 | 던지고 답을 받는다 | ◯ |
+| `^` | 올리기 | 이벤트를 방송한다 | ✕ |
+| `on` | 받기 | 메시지를 처리한다 | — |
+
+```lmt
+5 -> double -> print              # 파이프 = 메시지 연쇄
+g -> damage(10)                   # 액터에게 던짐, 안 기다림
+hp <- g <-> ping()                # 던지고 답 기다림
+^died(name)                       # 내 구독자 전부에게 방송
+on damage(n: Int) ( ... )         # 받는 쪽
+```
+
+### 6.1 `->` 는 답을 안 기다린다
+
+```lmt
+g -> damage(10)
+g -> damage(10)
+g -> damage(10)     # 세 개가 메일박스에 쌓이고, 나는 계속 간다
+```
+
+### 6.2 `<->` 는 기다린다 (기본 타임아웃 5초 → 넘으면 `Fail`)
+
+```lmt
+hp <- g <-> ping()
+hp <- g <-> ping() ~ 0.5          # ~ 로 타임아웃 지정
+```
+
+### 6.3 함수 호출도 그냥 메시지다
+
+```lmt
+add(3, 5)         # 익숙한 표기
+3 -> add(5)       # 완전히 같은 것 (앞 값이 첫 인자)
+```
+
+### 6.4 내장 메시지 (모든 액터가 받는다)
+
+```lmt
+g -> stop            # 종료 (자식도 같이)
+g <-> alive          # 살아있나
+g <-> wait           # 죽을 때까지 대기
+g <-> result         # 마지막 반환값
+me                   # 자기 자신 핸들
+```
+
+---
+
+## 7. 함수
+
+**매개변수 `[ ]` + 몸통 `( )`.** 끝.
+
+```lmt
+add <- [a: Int, b: Int] ( a + b )
+
+greet <- [name: Str = "손님"] (
+    "안녕, {name}" -> print
+)
+```
+
+- **마지막 식이 곧 반환값.** `return` 없다.
+- 중간에 나가려면 `give 값`
+
+```lmt
+safe_div <- [a, b] (
+    if b = 0 ( give null )
+    a / b
+)
+```
+
+### 7.1 호출
+
+```lmt
+add(3, 5)          # 위치 인자
+greet()            # 기본값
+greet(name: "철수") # 이름 인자 — 선언부 [name: Str] 과 같은 `:`
+```
+
+### 7.2 함수는 값이다
+
+```lmt
+apply <- [f, x] ( x -> f )
+apply(double, 5)              # 10
+
+make <- [] ( [x] (x + 1) )    # 함수를 반환
+make()(5)                     # 6
+```
+
+익명 함수는 그냥 `[x] (x + 1)` 이다. 이름 붙이는 순간 `<-` 를 쓸 뿐.
+
+---
+
+## 8. 액터
+
+**매개변수 `[ ]` + 몸통 `{ }`.**
+함수랑 다른 건 괄호 모양 하나. 그게 곧 "안 죽는다"는 뜻이다.
+
+```lmt
+Goblin <- [hp: Int = 30, name: Str = "고블린"] {
+
+    on damage(n: Int) (
+        hp <- hp - n
+        `<red>{name}</red> HP: {hp}` -> print
+
+        if hp <= 0 (
+            ^died(name)          # 구독자에게 방송
+            me -> stop           # 자결
+        )
+    )
+
+    on ping() ( hp )             # 마지막 식이 곧 답장
+}
+```
+
+### 8.1 스폰 = 호출
+
+```lmt
+g <- Goblin(hp: 50, name: "큰 고블린")     # 부르면 태어난다. 핸들이 나온다.
+```
+
+함수를 부르면 값이 나오고, 액터를 부르면 액터가 나온다. **문법은 똑같다.**
+
+### 8.2 상태는 독점
+
+```lmt
+g.hp        # 🔴 에러. 액터 상태는 밖에서 못 본다.
+g <-> ping  # ◯ 물어봐라.
+```
+
+액터 안에서는 **락이 없다.** 메시지를 한 번에 하나씩만 처리하니까.
+
+### 8.3 구독
+
+```lmt
+on g^died (who) (
+    "{who} 처치!" -> print
+)
+```
+
+### 8.4 부모와 자식
+
+액터 안에서 스폰하면 자식이 된다.
+
+```lmt
+Spawner <- [] {
+    on wave(n: Int) (
+        loop n ( Goblin() )     # 전부 내 자식
+    )
+}
+```
+
+- **부모가 죽으면 자식도 죽는다.**
+- 자식이 실패하면 부모에게 `^fail(e)` 이 올라간다 (§15).
+
+---
+
+## 9. 조건문
+
+가지는 전부 **함수**다 (`( )`). 그래서 `end` 가 필요 없다 — 괄호가 닫으면 끝.
+
+```lmt
+if hp <= 0 (
+    "죽음" -> print
+) elif hp < 20 (
+    "위험" -> print
+) else (
+    "멀쩡" -> print
+)
+```
+
+식으로도 쓴다. 가지가 함수니까 당연히 값이 나온다.
+
+```lmt
+state <- if hp <= 0 ("죽음") elif hp < 20 ("위험") else ("멀쩡")
+```
+
+---
+
+## 10. 반복 / 시간
+
+```lmt
+loop 10 ( ... )                  # 10번
+loop 1..10 ( ... )               # 1~10
+loop 1..10..2 ( ... )            # 1, 3, 5, 7, 9
+
+each nums [v] ( v -> print )         # 순회
+each nums [v, i] ( "{i}: {v}" -> print )   # 인덱스까지
+
+while hp > 0 ( ... )             # 조건이 참인 동안
+until hp <= 0 ( ... )            # 조건이 참이 될 때까지
+```
+
+### 10.1 시간 — 여기서 괄호 규칙이 값을 한다
+
+```lmt
+after 2 ( 폭발() )               # ( ) → 2초 뒤 한 번 하고 죽음
+every 0.1 { 갱신() }             # { } → 0.1초마다, 계속 산다 (= 액터)
+at 시각 ( ... )                  # 절대 시각에 한 번
+
+wait 2                           # 2초 쉼
+wait hp <= 0                     # 조건이 참이 될 때까지 쉼
+```
+
+`every` 가 `{ }` 인 이유: **그건 액터를 하나 낳는 것**이기 때문이다.
+
+```lmt
+t <- every 1.0 { "tick {when}" -> print }
+after 10 ( t -> stop )           # 10초 뒤 정지
+```
+
+### 10.2 반복 안에서
+
+```lmt
+when          # 지금 몇 번째 (1부터)
+left          # 몇 번 남았나 (모르면 null)
+break         # 이 몸통 탈출
+next          # 다음 반복
+```
+
+---
+
+## 11. 연산자
+
+### 산술
+
+```
++   -   *   /   %   ^(제곱)   _/(정수 나눗셈)
+복합: +<- 는 없다. 그냥 x <- x + 1
+```
+
+### 비교
+
+`<-` 가 대입을 가져갔으므로 `=` 는 비교다.
+
+| 연산자 | 뜻 | 타입 변환 |
+|--------|-----|-----------|
+| `=` | 같다 | ✕ |
+| `~=` | 같다 | ◯ (변환해서 비교) |
+| `!=` | 다르다 | ✕ |
+| `!~=` | 다르다 | ◯ |
+| `<` `>` `<=` `>=` | 대소 | ✕ |
+
+```lmt
+1 = "1"      # false
+1 ~= "1"     # true
+```
+
+### 논리
+
+```lmt
+not x        x and y        x or y
+```
+
+### 문자열
+
+```lmt
+"a" .. "b"       # 연결 → "ab"
+```
+
+---
+
+## 12. truthy / falsy
+
+**falsy는 셋뿐이다: `false`, `null`, `Fail`.**
+
+`0` 과 `""` 는 **truthy다.** 게임에서 `hp = 0` 은 명백히 "값이 있는" 상태다.
+그걸 falsy로 만드는 언어는 조용히 버그를 만든다. tuv는 안 그런다.
+
+```lmt
+not 0        # false  ← JS/Python과 다름
+not ""       # false
+not null     # true
+not false    # true
+```
+
+리스트가 비었는지는 `lis -> empty` 로 물어봐라.
+
+---
+
+## 13. 문자열
+
+```lmt
+"큰따옴표"    '작은따옴표'    `백틱 = 마크다운`
+```
+
+### 13.1 보간은 항상 켜져 있다
+
+`f` 접두사 같은 건 없다. 글자 그대로의 중괄호가 필요하면 두 번 쓴다.
+
+```lmt
+x <- 1
+"값: {x}"       # 값: 1
+"{{x}}"         # {x}
+`HP: {hp}/{max}`
+```
+
+### 13.2 백틱 마크다운
+
+```lmt
+`**굵게**`   `##기울임##`
+`<red>빨강</red>`   `<#FF5733>헥스</#FF5733>`   `<big>큼</big>`
+`:sword:`                        # 게임 이모티콘
+`<red>**굵빨**</red>`             # 중첩
+```
+
+### 13.3 이스케이프
+
+`\n` `\t` `\\` `\"` `\'` `` \` `` `\u{1F600}` · `{{` `}}`
+
+---
+
+## 14. 컬렉션
+
+리스트와 맵은 **같은 `[ ]`** 다. 키가 있으면 맵.
+
+```lmt
+nums  <- [1, 2, 3]
+who   <- [name: "철수", hp: 100]
+빈맵  <- [:]
+```
+
+> 매개변수 `[hp: Int = 30]` 도 결국 맵 리터럴이다. 그래서 같은 괄호를 쓴다.
+
+```lmt
+nums[0]      nums[-1]              # nums -> at(0) 의 설탕
+who.name     who["name"]
+```
+
+전부 메시지다:
+
+```lmt
+nums -> add(4)        nums -> del(0)       nums -> len
+nums -> has(2)        nums -> empty        nums -> flip
+nums -> map([v] (v * 2))
+nums -> keep([v] (v > 1))            # filter
+nums -> fold(0, [a, v] (a + v))
+
+who -> keys        who -> vals       who -> del("hp")
+```
+
+---
+
+## 15. 에러도 메시지다
+
+tuv에는 `try` / `catch` 가 없다. **실패는 그냥 위로 올라가는 메시지다.**
+
+```lmt
+fail "마나 부족"                 # 실패를 만들어 던진다
+fail "느림" ~ timeout            # 태그 붙여서
+```
+
+실패한 식의 값은 `Fail` 이다. falsy고, 전파된다.
+
+### 15.1 함수에서 — `??` 로 받아낸다
+
+```lmt
+hp <- (g <-> ping()) ?? 0          # 실패하면 0
+r  <- risky() ?? ( "실패" -> print  null )
+```
+
+`??` 를 안 쓰면 그 `Fail` 은 **호출한 쪽으로 그대로 올라간다.**
+
+### 15.2 액터에서 — `on fail` 로 받는다
+
+```lmt
+Goblin <- [hp = 30] {
+    on damage(n) ( ... )
+
+    on fail(e) (                  # 내 안에서 난 실패
+        e.msg -> warn
+        me -> stop
+    )
+}
+```
+
+```lmt
+on g^fail (e) ( "고블린 터짐: {e.msg}" -> warn )   # 밖에서 감시
+```
+
+- 액터가 `on fail` 을 안 두면 → **부모에게 올라간다** → 최상위까지 가면 🔴 런타임 에러
+- `Fail` 객체: `e.msg` `e.tag` `e.from` `e.trace`
+
+---
+
+## 16. 스케줄러
+
+- **M:N** — OS 스레드 N개 위에 액터 M개. 워크 스틸링.
+- 액터마다 **메일박스**. 한 번에 한 메시지.
+- 메시지 인자는 **복사**된다. 큰 데이터는 불변 공유.
+- **액터별 GC** → 멈춤이 흩어진다.
+- **양보 지점**: `wait` · `<->` · `every` · `on` 진입.
+  5초 동안 양보가 없으면 그 액터만 죽는다 (`^fail(timeout)`).
+
+액터 옵션은 어노테이션으로:
+
+```lmt
+@prio 5          # 우선순위 (-9 ~ 9)
+@box 256         # 메일박스 상한 (넘치면 ^fail(overflow))
+@wait 10         # 타임아웃 초
+Boss <- [hp = 5000] { ... }
+```
+
+---
+
+## 17. 어노테이션
+
+```lmt
+@main
+"Hello, World" -> print
+
+@doc
+적을 때리는 스크립트
+```
+
+| 어노테이션 | 뜻 |
+|-----------|-----|
+| `@main` | 엔트리 포인트 |
+| `@doc` | 설명 |
+| `@prio` `@box` `@wait` | 액터 옵션 (§16) |
+| `@test` | 테스트 (배포 빌드에서 제거) |
+
+---
+
+## 18. 진단
+
+| 색 | |
+|----|--|
+| 🔴 | 에러 |
+| 🟠 | 경고 |
+
+### 🔴
+
+| 이름 | 조건 |
+|------|------|
+| `state leak` | 액터 상태를 밖에서 `.` 로 접근 |
+| `fixed rebind` | `<<-` 로 고정한 이름에 재대입 |
+| `stray next` | 반복문 밖의 `next` |
+| `braces mismatch` | 함수 자리에 `{ }`, 액터 자리에 `( )` |
+
+### 🟠
+
+| 이름 | 조건 |
+|------|------|
+| `silent fail` | `Fail` 이 될 수 있는 식을 `??` 없이 그냥 버림 |
+| `sync storm` | 반복문 안에서 `<->` 를 매 회 호출 (`->` 로 바꾸라는 뜻) |
+| `no yield` | 무한 반복문 안에 양보 지점 없음 |
+| `lonely elif` | `if` 없는 `elif` |
+
+---
+
+## 19. 예제
+
+### Hello
+
+```lmt
+@main
+"Hello, World" -> print
+```
+
+### 함수
+
+```lmt
+#! 두 수를 더한다 !#
+add <- [a: Int, b: Int] ( a + b )
+
+add(3, 5) -> print          # 8
+3 -> add(5) -> print        # 8 — 같은 것
+```
+
+### 액터 전투
+
+```lmt
+Goblin <- [hp: Int = 30, name: Str = "고블린"] {
+    on damage(n: Int) (
+        hp <- hp - n
+        `<red>{name}</red> HP: {hp}` -> print
+        if hp <= 0 (
+            ^died(name)
+            me -> stop
+        )
+    )
+    on ping() ( hp )
+}
+
+@main
+g <- Goblin(hp: 50, name: "큰 고블린")
+
+on g^died (who) ( "{who} 처치!" -> print )
+
+t <- every 1.0 {
+    if not (g <-> alive) ( t -> stop )
+    g -> damage(15)
+}
+```
+
+### 실패
+
+```lmt
+cast <- [mp: Int, cost: Int] (
+    if mp < cost ( fail "마나 부족" )
+    mp - cost
+)
+
+left <- cast(10, 30) ?? ( "못 씀" -> print  10 )
+```
+
+---
+
+## 20. 미정 / TODO
+
+- [ ] 클래스 — 애초에 필요한가? (액터가 있는데 굳이?)
+- [ ] 모듈 / `import` — 액터를 export하면 정의인가 인스턴스인가
+- [ ] `Msg` 를 1급 시민으로 쓴다면: 메시지를 변수에 담고 나중에 보내기 `m <- damage(10)` → `g -> m`
+- [ ] 패턴 매칭 (`on` 을 확장해서 조건부 수신?)
+- [ ] 원격 액터 (다른 프로세스/기계로 `->`)
+- [ ] 핫 리로드 — 상태 유지한 채 `{ }` 만 교체
+- [ ] `<<-` (고정) 표기 확정. 너무 못생겼다.
+- [ ] 게임 API — 3D 객체, 입력, 렌더링
+- [ ] 불변 공유 데이터의 정확한 규칙
+- [ ] `?? ` 없이 실패를 무시하는 방법이 필요한가
+
+---
+
+**tuv — 끝**
+
+> 다음은 **wxyz**. 마지막 글자들.
+
+````
+
+## M.G.S (Make Games Script)
+
+> ErrScript 만들고 나서 언어 기획 재미있어서 또 만들어본 언어
+
+
+````markdown
+아래는 M.G.S (Make Games Script) 언어의 핵심 내용을 처음 보는 사람도 쉽게 이해할 수 있도록, 주요 문법과 설계 의도를 함께 담아 총정리한 내용입니다.
+
+---
+
+# M.G.S (Make Games Script) 언어 총정리
+
+---
+
+## 1. M.G.S 소개 및 설계 목적
+
+* **M.G.S**는 게임 개발을 쉽게 하기 위해 만든 스크립트 언어입니다.
+* Lua보다 조금 더 어렵고 고급스러운 문법을 제공하지만, 게임에 특화된 기능을 내장하여 빠르고 효율적으로 게임 로직을 작성할 수 있게 설계되었습니다.
+* 특히, 반복문, 조건문, 이벤트 처리, 객체 속성 변경을 편리하게 할 수 있도록 설계되어 있습니다.
+
+---
+
+## 2. 변수 선언
+
+* `new` 키워드를 사용해 변수를 선언하고 초기화합니다.
+
+```mgs
+new 변수이름 = 값
+```
+
+예시:
+
+```mgs
+new health = 100
+```
+
+---
+
+## 3. 객체(게체) 속성 변경
+
+* 속성을 변경할 때는 `Changed:` 키워드를 반드시 사용합니다.
+* 문법:
+
+```mgs
+Changed:게체종류.게체이름.속성 = 값
+```
+
+예시:
+
+```mgs
+Changed:brick.trus.Size = changsize(1, 2, 5)
+```
+
+* 복합 할당 연산자도 사용 가능 (`+=`, `-=`, `*=`, `/=`):
+
+```mgs
+Changed:brick.trus.Size += changsize(1, 0, 0)
+```
+
+---
+
+## 4. 조건문
+
+* 기본 if 문:
+
+```mgs
+if 조건 then
+    실행코드
+end
+```
+
+* `==` 대신 비교 연산자(`>`, `<` 등)를 자유롭게 쓸 수 있습니다.
+* `else`, `elseif`도 지원됩니다.
+
+---
+
+## 5. 반복문
+
+### 5-1. Maybe (조건을 지속 검사하며 반복 실행)
+
+```mgs
+Maybe 조건 do
+    실행코드
+end
+```
+
+* `Maybe`는 조건이 참일 때 계속 코드를 반복 실행합니다.
+* 숫자를 붙이면 조건 검사 주기를 지정할 수 있습니다.
+
+```mgs
+Maybe(10) 조건 do
+    실행코드
+end
+```
+
+* `break`로 반복 중단 가능.
+
+### 5-2. While (조건에 따른 반복)
+
+```mgs
+While not 조건(최소반복횟수, 최대반복횟수) do
+    실행코드
+end
+```
+
+* `not`이 없으면 조건이 참일 때 반복합니다.
+* 숫자1(최소횟수)은 무조건 반복하는 횟수이며, 숫자2(최대횟수)는 조건이 만족하지 않을 때 반복 종료 최대값입니다.
+* `then`을 사용하면 조건이 참일 때까지 반복합니다.
+* `nostop`을 써서 무한반복도 가능합니다.
+
+---
+
+## 6. 이벤트 처리
+
+* 이벤트는 `on` 키워드를 사용하여 작성합니다.
+* 기본 문법:
+
+```mgs
+on 게체종류 게체이름 이벤트 human()
+    실행코드
+```
+
+* `human()`은 이벤트 발생 시 감지된 지정체(접촉한 객체 등)를 의미합니다.
+
+예:
+
+```mgs
+on brick.trus Touched human()
+    print("트러스에 닿았습니다:", human..Name)
+```
+
+---
+
+## 7. local 키워드: 특정 객체 대상 반복 실행
+
+* `local`은 특정 종류와 이름 패턴을 가진 객체들을 대상으로 코드를 반복 실행합니다.
+
+```mgs
+local :게체종류:이름패턴:
+    실행코드
+:
+```
+
+* 예:
+
+```mgs
+local :brick:spwn---number:
+    print("소환지점 위치:", brick..Position)
+:
+```
+
+* `brick..Position`에서 `..`는 현재 실행 중인 객체 이름 생략을 의미합니다.
+* `..` 이 이름 생략인 이유는 `brick.?.Position` 에서 ? 를 생략하면 현재 실행중인 객체를 가르키게 된다. 이 발상입니다.
+* 이름 패턴 뒤 `---number`는 접미사 숫자를 변수로 받을 수 있다는 뜻입니다.
+* 여러 조건은 `and`로 결합 가능:
+
+```mgs
+local :brick:door: and :mesh:door:
+    문 열기 코드
+:
+```
+
+---
+
+## 8. 문자열 연결
+
+* Lua의 `..`가 객체 이름 생략으로 예약되어 있어, M.G.S는 문자열 연결 시 `---`를 사용합니다.
+
+```mgs
+print("안녕---친구야")
+```
+
+---
+
+## 9. 함수 선언
+
+### 9-1. 기본 함수
+
+```mgs
+func 함수이름 then(매개변수)
+    실행코드
+end
+```
+
+### 9-2. code 반환 함수 (고급 기능)
+
+* 함수 정의 시 `code`를 인자로 받아 조건문처럼 동작하는 코드를 넘길 수 있습니다.
+
+```mgs
+func 함수이름 code do(매개변수)
+    if code then
+        실행코드
+    end
+end
+```
+
+* `code`는 조건문으로 평가되며, 동적으로 다른 코드를 실행할 때 유용합니다.
+
+---
+
+## 10. 주요 문법 포인트 요약
+
+| 문법         | 설명                | 예시                                           |
+| ---------- | ----------------- | -------------------------------------------- |
+| `new`      | 변수 선언             | `new a = 10`                                 |
+| `Changed:` | 객체 속성 변경          | `Changed:brick.trus.Size = changsize(1,2,5)` |
+| `if`       | 조건문               | `if health > 50 then ... end`                |
+| `Maybe`    | 조건 반복문            | `Maybe health > 0 do ... end`                |
+| `While`    | 반복문               | `While not condition(1,10) do ... end`       |
+| `on`       | 이벤트 처리            | `on brick.trus Touched human()`              |
+| `local`    | 특정 객체 반복 실행       | `local :brick:trap: ... :`                   |
+| `..`       | 현재 실행 객체 이름 생략    | `brick..Position`                            |
+| `---`      | 문자열 연결            | `"안녕---친구야"`                                 |
+| `func`     | 함수 선언, code 반환 지원 | `func foo code do() ... end`                 |
+
+---
+
+## 11. M.G.S 언어 설계 의도
+
+* 게임 개발에 최적화된 스크립팅 제공
+* 반복, 조건, 이벤트 처리 간소화
+* 객체 대상 코드 실행을 편리하게 하기 위한 `local` 반복문
+* 함수에 조건 코드를 넘겨 동적 실행을 가능하게 하는 `code` 반환 함수
+* 이름 생략(`..`)과 문자열 연결(`---`) 구분으로 문법 충돌 방지
+
+---
+
+## 12. 예시 코드
+
+```mgs
+new health = 100
+
+func checkHealth code do()
+    if code then
+        print("체력 체크 중입니다.")
+        if health > 30 then
+            print("체력 충분함")
+        else
+            print("체력 낮음")
+        end
+    end
+end
+
+local :brick:trap:
+    print("트랩 위치: "brick..Position)
+:
+
+Maybe(5) health > 0 do
+    print("플레이어 살아있음")
+end
+
+on brick.trus Touched human()
+    print("트러스에 닿았습니다:", human..Name)
+```
+````
+
+## Chrona
+
+> 똑같이 AI를 썼지만 람다 절벽 위에 있다.
+
+````markdown
+# Chrona 언어 설계 명세
+
+> **이 문서를 읽는 사람에게**
+>
+> 이 문서의 모든 규칙에는 **WHY**가 붙어 있습니다.
+> Chrona의 규칙은 대부분 "불편해 보이는 제약"이며, 그 제약 하나하나는
+> 20라운드 넘는 설계 논쟁에서 **다른 대안을 검토하고 기각한 결과**입니다.
+>
+> WHY를 읽지 않고 규칙만 보면 반드시 "이거 왜 이렇게 불편하게 만들었지?"라는
+> 질문이 나오고, 우리가 이미 폐기한 대안을 다시 제안하게 됩니다.
+> 각 절 끝의 **[기각된 대안]**을 먼저 확인해 주세요.
+>
+> 작성 시점: 설계 라운드 21회차 / 상태: 명세 확정, 예제 코드 검증 직전
+
+---
+
+# 0. Chrona란 무엇인가
+
+## 0.1 한 문장
+
+> **Chrona는 결정론적 게임 시뮬레이션 언어다.**
+
+## 0.2 핵심 계약 (가장 중요한 문장)
+
+> **Chrona는 "결정론을 지원하는 언어"가 아니다.**
+> **Chrona는 "결정론을 깨는 방법 자체를 제공하지 않는 언어"다.**
+
+**WHY — 이 한 문장이 Chrona의 존재 이유 전부다.**
+
+C++에서도 고정소수점 타입, 커맨드 큐, Tick 해시, 리플레이는 전부 라이브러리로 만들 수 있다. 실제로 모든 lockstep 개발자가 그렇게 한다. 그런데 C++에는 **탈출구가 있다.** 팀원 한 명이 새벽 3시에 `<chrono>`를 include하거나, 일반 `float`를 쓰거나, `std::unordered_map`을 순회하면 desync가 난다. 그리고 그걸 영원히 코드 리뷰로 막아야 한다.
+
+탈출구가 하나라도 있으면 **"desync 자동 추적"이라는 도구가 성립하지 않는다.** 원인이 언어 밖에 있을 수 있기 때문이다.
+
+그래서 인과가 이렇게 이어진다:
+
+```
+탈출구가 없다
+   → 모든 상태 변경이 Command를 통과한다
+   → 런타임이 매 Tick을 해시할 수 있다
+   → desync를 이등분해서 "Tick 1820, Enemy #42, damage(15)"를 지목할 수 있다
+```
+
+**즉, Chrona의 모든 제약(§2~§7)은 §8의 desync 추적 도구를 성립시키기 위해 존재한다.**
+제약이 목적이 아니라, 도구가 목적이고 제약이 그 대가다.
+
+## 0.3 판매 문구
+
+> **"desync 하나에 2주 태워봤나? Chrona에선 5분이다. 대신 일반 float를 못 쓴다."**
+
+이 거래를 받아들이는 사람이 고객이고, 안 받아들이는 사람은 고객이 아니다.
+
+## 0.4 경쟁 상대
+
+**Lua가 아니라 C++다.** 더 정확히는 **"C++로 직접 짠 고정소수점 + 틱 해시 + 리플레이 레이어"**다.
+
+**WHY**: 초기에는 경쟁 상대를 Lua/GDScript로 봤다. 하지만 Chrona가 요구하는 제약(float 금지, 직접 수정 금지)을 Lua 사용자는 전부 세금으로만 느낀다. 반면 C++로 lockstep을 짜는 사람은 **이미 그 제약을 스스로 부과하고 있다.** 그들에게 Chrona의 제약은 새로운 부담이 아니라 **자동화**다.
+
+## 0.5 대상 도메인
+
+| 대상 | 이유 |
+|---|---|
+| lockstep RTS | 결정론이 아키텍처 자체 |
+| 롤백 넷코드 격투게임 | 재시뮬 필수 |
+| 오토배틀러 / 방치형 | 서버 검증·리플레이가 본질 |
+| Factorio류 대규모 시뮬 | 결정론 lockstep이 실제 구조 |
+| 턴제 전략 | Tick을 입력 시에만 발생 |
+| 리플레이 기반 e스포츠 / 안티치트 | 재현 가능성이 제품 |
+
+### ❌ 대상이 아닌 것 (명시적 제외)
+
+- **서버 권위 멀티플레이어 (FPS, MMO)** — **WHY**: 서버가 진실이면 클라와 비트 단위로 일치할 이유가 없다. Chrona의 제약이 전부 순수 비용이 된다. 이걸 목록에 넣으면 "시장이 크다"는 착시가 생긴다.
+- **캐주얼 / 인디 일반 게임** — **WHY**: 결정론이 필요 없다. `enemy.hp -= 10`을 못 쓰는 언어를 배울 이유가 없다.
+- **AAA 스튜디오** — **WHY**: 10년치 C++ 코드, 이미 만들어놓은 결정론 인프라, 콘솔 인증, 채용 풀이 전부 C++에 있다. **가장 필요한 사람이 가장 못 바꾼다.**
+
+### ✅ 진짜 고객 (단 하나의 페르소나)
+
+> **"lockstep 결정론이 필요한 새 프로젝트를 이제 막 시작하려는 소규모 팀의 테크리드."**
+
+그는 desync 지옥 후기를 읽고 겁에 질려 있다. **그가 사는 건 언어가 아니라 보험이다.**
+
+시장은 좁다. 전 세계 연간 수백 팀 수준. 하지만 **경쟁자가 없고 고통이 진짜다.**
+
+---
+
+# 1. 설계 원칙
+
+매 라운드 충돌이 생겼을 때 Chrona가 일관되게 선택한 방향:
+
+| 버린 것 | 택한 것 |
+|---|---|
+| 자연스러움 | 결정론 |
+| 즉시성 | 예측 가능성 |
+| 편의성 | 추적 가능성 |
+| 암묵성 | 명시성 |
+| 넓은 시장 | 좁고 확실한 우위 |
+
+> **불편함은 버그가 아니라 의도된 제약이다.** (Rust의 빌림 검사기와 같은 논리)
+
+## 1.1 [기각된 대안] 초기 목표들
+
+| 폐기된 목표 | 폐기 이유 |
+|---|---|
+| "게임을 쉽게 만드는 언어" | 결정론과 근본적으로 충돌. 매 라운드 결정론을 택하다 보니 자연히 죽었다. **공식 폐기.** |
+| "게임 로직을 가장 자연스럽게 표현" | 위와 동일. → **"항상 결정론적으로 표현"**으로 대체 |
+| 범용 언어 | Tick과 Entity를 언어 코어에 넣은 순간 게임 전용으로 확정 |
+| 초보자 친화 | 대상 고객이 C++ 베테랑으로 바뀌면서 무의미 |
+| "쉬운 모드 / 결정론 모드" 이중 제공 | **가장 위험한 대안.** 같은 코드가 모드마다 다르게 동작하면 언어의 의미론이 붕괴한다 |
+| 자동 병렬화 | §2.4 참조 |
+| 스냅샷 실행 모델 | §2.3 참조 |
+| 반응형 규칙 (`when hp <= 50`) | §5.3 참조 |
+
+---
+
+# 2. 실행 모델
+
+## 2.1 Tick 기반
+
+Chrona의 코어 개념은 **Frame이 아니라 Tick**이다.
+
+- 실시간 게임: Tick이 계속 발생 (20~60/s)
+- 턴제 게임: Tick을 입력이 있을 때만 발생
+
+**WHY**: "Frame"이라 부르면 60FPS 실시간 게임 전용으로 좁아진다. Tick으로 추상화하면 턴제 전략(체스, 문명류)도 "입력 시에만 발생하는 Tick"으로 동일 모델에 포섭된다. 실행 순서만 고정되면 되지, 발생 빈도는 결정론과 무관하다.
+
+## 2.2 순차 실행 (Entity ID 순)
+
+모든 엔티티는 **ID 순서대로 하나씩** update된다.
+
+**WHY — 이게 Chrona 결정론의 전부다.**
+> **결정론에는 스냅샷이 필요 없다. 고정된 순서면 충분하다.**
+
+엔티티를 ID 순으로 순차 실행하면, Entity 1이 Entity 2의 **최신** 상태를 읽어도 완벽히 결정론적이다. 매번 같은 순서 → 매번 같은 결과. 실제로 대부분의 C++ lockstep 시뮬이 이렇게 돈다.
+
+## 2.3 [기각된 대안] 스냅샷 / 더블 버퍼링 ⚠️ 중요
+
+**한때 Chrona의 핵심이었으나 완전히 폐기됨.**
+
+폐기된 설계:
+- Read Buffer / Write Buffer 두 개 유지, Tick 끝에 스왑
+- 자기 자신은 Write Buffer(최신), 다른 엔티티는 Read Buffer(지난 Tick) 조회
+
+**WHY 폐기했나:**
+
+스냅샷이 사주는 건 **결정론이 아니라 병렬성**이다(§2.2 참조). 그런데 Chrona는 §2.4에서 자동 병렬화를 약속하지 않기로 했다. 즉:
+
+> **가장 비싼 값(1 Tick 지연)을 치르면서, 그 대가로 받을 것(병렬성)은 약속조차 하지 않았다.**
+> = **지불되지 않은 세금**
+
+스냅샷이 만들던 비용들 (전부 함께 사라짐):
+- 1 Tick 지연 함정 — 다른 엔티티 값이 항상 한 Tick 낡음
+- "자기는 최신, 남은 과거" 이중 규칙 암기 부담
+- `enemy.damage(10)` 직후 `enemy.hp` 검사가 항상 실패하는 문제
+- Command Result 확인 강제 (§5.5에서 함께 삭제)
+- 매 Tick 상태 복사 비용, dirty tracking 오버헤드, 메모리 2배
+- 롤백 넷코드와의 불일치 (롤백은 7~10틱 링버퍼 필요, 버퍼 2개로는 불가)
+
+**⚠️ 이 대안을 다시 제안하지 마라.** 스냅샷을 되살리면 위 비용이 전부 함께 돌아온다.
+
+## 2.4 병렬성 — 약속하지 않는다
+
+> Chrona의 **언어 명세는 순차 실행을 기준으로 한다.**
+> **구현체는 결과를 바꾸지 않는 범위에서** 내부 병렬 최적화를 할 수 있다.
+
+**WHY**: 자동 병렬화는 박사급 연구 주제다. Rust조차 "안전한 병렬성"은 주지만 "자동 병렬성"은 안 준다. Unity가 DOTS/ECS/Burst에 수년간 수십 명을 갈아넣은 게 정확히 이 문제다. **없는 해법을 전제로 언어를 설계할 수 없다.**
+
+단, "언어가 병렬을 약속하지 않는 것"과 "영원히 병렬화 못 하는 것"은 다르다. C 컴파일러가 루프를 벡터화해도 C의 의미론이 바뀌지 않는 것과 같다.
+
+## 2.5 Tick 파이프라인 (언어 명세에 고정)
+
+```
+Tick Start
+  │
+  ├─ 1. Input Phase          외부 입력 적용 (§7.2)
+  │
+  ├─ 2. Logic Phase          Entity ID 순 실행
+  │        ├ 일반 코드
+  │        ├ Query Physics 조회 (읽기 전용, §6.3)
+  │        ├ Command 즉시 실행 + 로그 기록 (§5.1)
+  │        └ Intent 생성 (§5.2)
+  │
+  ├─ 3. Movement Commit      Intent 적용, 위치 변경
+  │
+  ├─ 4. Physics Resolve      충돌 검사 + 겹침 해소 (§6.4)
+  │
+  ├─ 5. Collision Event      on collision 실행, Command 생성
+  │
+  ├─ 6. Spawn Phase          (§4.4)
+  │
+  ├─ 7. Destroy Phase        (§4.5)
+  │
+  ├─ 8. Tick Hash            상태 해시 생성 (§8.1)
+  │
+  └─ 9. Render Export        Bridge로 변경분 전달 (§7.1)
+Tick End
+```
+
+**WHY 고정하나**: 순서가 명세에 고정되지 않으면 구현체마다 결과가 달라진다. 그러면 "동일 입력 → 동일 결과"가 거짓이 된다.
+
+**⚠️ 주의 (3회 반복된 오류)**: Command는 **파이프라인 단계가 아니다.** Logic Phase 안에서 호출 즉시 실행된다. 과거 설계에 "Command Apply" 단계가 있었으나 이는 스냅샷 시절의 잔재이며, 3번 반복해서 실수로 부활했다가 삭제됐다. 다시 넣지 마라.
+
+---
+
+# 3. Determinism Contract (결정론 계약)
+
+> **이 목록이 Chrona의 정체성 그 자체다.**
+> desync 자동 추적(§8)은 **이 금지 목록이 완전할 때만** 성립한다.
+> 하나라도 구멍이 있으면 "원인이 언어 밖에 있을 수 있다"가 되어 킬러 기능이 무너진다.
+
+## 3.1 금지 목록
+
+| 금지 | WHY |
+|---|---|
+| 일반 `Float` (시뮬레이션 내) | 부동소수점은 CPU·컴파일러 최적화(FMA 융합, SSE/AVX/NEON, 연산 재배열)에 따라 비트 단위로 달라진다. 소수점 15번째 자리 차이가 100 Tick 후 게임을 갈라놓는다 |
+| 해시 기반 컬렉션 순회 | `std::unordered_map` 순회 순서는 실행마다 다를 수 있다. "적들을 순회하며 공격"의 순서가 바뀌면 누가 먼저 죽는지가 바뀐다. **C++ lockstep의 가장 흔한 사고** |
+| 시스템 시간 직접 접근 | 실행할 때마다 값이 다르다 |
+| 시드 없는 난수 | 동일 |
+| 포인터 / 메모리 주소 | 힙 배치가 실행마다 다르다. 주소로 정렬하면 즉시 desync |
+| 전역 가변 변수 | 추적 불가능한 상태 변경 경로가 생긴다 |
+| Entity 필드 직접 수정 | §5.1 |
+| 외부 물리 엔진 연결 | §6.1 |
+| 플랫폼 의존 수학 함수 | §3.3 |
+| 검증 없는 외부 데이터 진입 | §7.2 |
+
+## 3.2 대체 수단
+
+| 금지된 것 | 대신 사용 |
+|---|---|
+| `Float` | `DFloat` (§3.3) |
+| `HashMap` | `List`, `OrderedMap` (§3.4) |
+| `random()` | `RandomState(seed)` (§3.5) |
+| `math.sin()` | `dmath.dsin()` (§3.3.5) |
+| 직접 수정 | `Command` (§5.1) |
+| 외부 입력 | `ExternalValue` / `InputValue` (§7.2) |
+
+## 3.3 DFloat — 결정론적 고정소수점
+
+### 3.3.1 표현
+
+```
+DFloat = signed i64
+포맷    = 32.32 고정소수점
+        [ 정수부 32bit ][ 소수부 32bit ]
+범위    ≈ ±2,147,483,648
+정밀도  ≈ 0.00000000023
+```
+
+**WHY 32.32인가**: 16.16은 고전 게임의 방식이지만 현대 RTS 규모(넓은 맵 + 정밀한 위치 + 긴 시뮬레이션)에는 정밀도가 부족하다.
+
+**WHY 고정소수점인가 (IEEE 754 float + 컴파일러 플래그가 아니라)**:
+IEEE float을 쓰면서 최적화를 전부 끄는 방법(fast-math 금지, FMA 금지, 재배열 금지)도 이론상 가능하다. 하지만 그건 **결정론 보장을 컴파일러 백엔드의 선의에 맡기는 것**이다. 백엔드가 조금만 바뀌어도 깨지고, 새 플랫폼마다 재검증해야 한다.
+> **우리가 파는 게 보험이라면, 보험에는 예외 조항이 없어야 한다.**
+정수 연산은 하드웨어가 뭐든 상관없이 참이다.
+
+### 3.3.2 연산 ABI
+
+```
+__df_mul_i64(a, b)   곱셈
+__df_div_i64(a, b)   나눗셈
+```
+
+내부적으로 **signed i128 중간값** 사용:
+
+```
+곱셈:   i128 temp = (i128)a.raw * (i128)b.raw
+        result    = round_div(temp, 2^32)
+
+나눗셈: i128 num   = (i128)a.raw << 32
+        result    = round_div(num, b.raw)
+```
+
+**WHY i128이 필수인가**: 32.32 곱셈은 64비트 두 개를 곱하므로 최대 128비트가 나온다. `(a.raw * b.raw) >> 32`를 i64로 하면 **시프트하기 전에 이미 오버플로우**한다. 예: `10.0 × 10.0`은 중간값이 약 1.84×10²⁰인데 i64 최대는 9.22×10¹⁸ — 20배 초과. 나눗셈도 `a.raw << 32`가 즉시 오버플로우한다.
+
+**WHY 표준 ABI 함수인가**: 플랫폼마다 i128 네이티브 지원 여부가 다르다. x86_64는 네이티브, ARM은 소프트웨어 구현, 콘솔은 자체 구현. **빠르지 않아도 되지만 결과가 다르면 안 된다.**
+
+### 3.3.3 반올림 규칙 (통일)
+
+모든 축소 연산: **round half away from zero**
+
+```
+1.5  →  2
+-1.5 → -2
+```
+
+**WHY 통일하나**: 곱셈은 시프트, 나눗셈은 절삭을 쓰면 음수에서 반올림 방향이 갈린다. 산술 우측 시프트는 음의 무한대 방향, 0 방향 절삭은 0 쪽. 그러면 `a * 0.5d`와 `a / 2d`가 음수에서 다른 결과를 낸다 → 버그 리포트가 쏟아진다. 공통 함수 `round_div()`로 통일.
+
+### 3.3.4 오버플로 / 0 나눗셈
+
+| 상황 | 동작 |
+|---|---|
+| 오버플로 (Debug) | `OverflowError` |
+| 오버플로 (Release) | panic |
+| 0으로 나눔 | `DF_DIV_ZERO` panic |
+
+에러도 결정론적으로 기록: `ErrorCode / Tick / EntityID / Sequence`
+
+**WHY wrap-around를 안 쓰나**: wrap도 결정론적이긴 하다. 하지만 `9999999999 + 1`이 갑자기 음수가 되면 디버깅 지옥이다.
+> **결정론을 깨는 것은 허용하지 않지만, 잘못된 계산도 숨기지 않는다.**
+
+**WHY 에러까지 결정론적이어야 하나**: 플랫폼마다 에러 메시지가 다르면, desync 재현 시 에러 자체가 desync 원인이 된다.
+
+### 3.3.5 결정론적 수학 (`dmath`)
+
+```
+dmath.dsin()  dmath.dcos()  dmath.dsqrt()  ...
+```
+
+`math.sin()` 같은 일반 함수는 **시뮬레이션에서 사용 불가.**
+
+**WHY 표준 libm을 못 쓰나**: libm 구현은 플랫폼·버전마다 결과가 다르다.
+
+**⚠️ "CORDIC을 쓴다"는 명세가 아니다.** CORDIC은 반복 횟수에 따라, 룩업 테이블은 테이블 값과 보간 방식에 따라 결과가 달라진다. 명세에 고정해야 할 것:
+
+```
+- 입력 범위 / 각도 표현
+- 알고리즘 및 반복 횟수
+- 테이블 크기 및 값     (예: sin_table[4096])
+- 보간 방식             (예: linear interpolation)
+- 반올림 규칙           (round half away from zero)
+```
+
+**적합성 테스트 스위트**(`math_conformance/`)를 언어와 함께 배포하고, 새 플랫폼 추가 시 반드시 통과해야 한다. 이것은 표준 라이브러리가 아니라 **언어 명세의 일부**다.
+
+**WHY**: 이건 우리가 파는 보험의 약관이다.
+
+### 3.3.6 리터럴
+
+```chrona
+speed = 0.5d      // DFloat 리터럴
+```
+
+**WHY 전용 문법인가**: `DFloat(0.1)`은 0.1이 32.32로 정확히 표현되지 않아 반올림이 필요한데, 그 규칙이 명세에 없으면 컴파일러마다 다른 raw 값이 나온다. `0.1d` 문법 + `round half away from zero` 고정.
+
+### 3.3.7 변환 (단방향)
+
+```chrona
+DFloat → Float    ✅ 허용 (렌더링용)
+Float  → DFloat   ❌ 금지
+```
+
+**WHY 단방향인가**: 렌더링에는 일반 float가 필요하므로 나가는 방향은 열어야 한다. 반대로 뷰나 입력 장치의 float가 시뮬레이션에 들어오면 결정론이 즉시 깨진다. 외부 데이터는 반드시 §7.2의 명시적 진입점을 거쳐야 한다.
+
+## 3.4 컬렉션
+
+| 타입 | 순회 순서 | 비고 |
+|---|---|---|
+| `List` | 삽입 순서 | |
+| `OrderedMap` | 키 순서 (Tree 기반) | |
+| `HashMap` | — | **이름 자체를 제공하지 않음** |
+
+**WHY 이름조차 없나**: "제공하지만 쓰지 마세요"는 탈출구다. §0.2의 계약을 지키려면 **결정론을 깨는 선택지가 언어에 존재하지 않아야** 한다.
+
+## 3.5 난수
+
+```chrona
+entity Enemy {
+    rng: RandomState        // Entity 필드로 허용
+}
+
+self.rng.next()             // ✅
+Random()                    // ❌ 시드 없는 생성 불가
+```
+
+- 알고리즘 고정 (예: `xorshift128+`) — **WHY**: 알고리즘이 구현마다 다르면 desync
+- **RandomState는 Tick Hash에 포함된다** — **WHY**: RNG 상태가 해시에 없으면 (1) 리플레이 시 복원이 안 돼 재생 지점부터 게임이 갈라지고 (2) RNG가 원인인 desync를 런타임이 탐지하지 못한다
+
+---
+
+# 4. Entity / World
+
+## 4.1 Entity 선언
+
+```chrona
+entity Player {
+    hp: Int
+    pos: DVector2
+    rng: RandomState
+
+    on create()  { }
+    on update(dt) { }
+    on destroy() { }
+    on collision(other) { }
+
+    command damage(amount: Int) accumulate { hp -= amount }
+    intent  move(amount: DVector2) accumulate { }
+}
+```
+
+**WHY entity가 일급 문법인가**: 게임 코드의 본질은 "객체가 있고, 매 Tick 갱신되고, 사건에 반응한다"인데, 모든 엔진이 이걸 보일러플레이트로 억지 표현한다(Unity의 `MonoBehaviour` + 매직 메서드). **단, 문법이 예뻐지는 것만으로는 언어를 만들 이유가 안 된다.** entity가 일급이라서 가능해지는 것 — 결정론적 ID 순 실행, 자동 상태 해시, 추적 가능한 상태 변경 — 이것이 진짜 이유다.
+
+## 4.2 Entity 필드 허용 타입
+
+| 허용 | 금지 |
+|---|---|
+| `Int`, `Bool`, `String` | `Float` |
+| `DFloat`, `DVector2` | `Time` |
+| `RandomState` | 포인터 |
+| `Entity` (참조) | 비결정론 컬렉션 |
+
+## 4.3 Entity ID
+
+```
+EntityID { index: UInt32, generation: UInt32 }
+예: (152, 4) = "152번 슬롯의 4번째 생명"
+```
+
+**WHY 단순 숫자가 아닌가**: index를 재사용하면 ABA 문제가 생긴다 — 죽은 엔티티를 참조하던 코드가 재사용된 새 엔티티를 가리킨다. generation을 올려서 오래된 참조가 무효임을 감지한다. 세대 불일치 시 `InvalidEntity`.
+
+**할당 정책: Lowest Index First (고정)**
+
+**WHY**: 자유 리스트를 LIFO 스택이나 힙으로 구현하면 순서가 구현에 따라 달라져 즉시 desync다. **우리가 없애려던 실수를 우리 런타임이 저지르는 셈.** 가장 낮은 빈 index를 항상 먼저 쓴다.
+
+**Allocator 상태는 World 상태의 일부이며 Tick Hash에 포함된다** (`free_indices`, `generations`, `next_index`).
+
+## 4.4 Spawn
+
+- 생성은 Command로 요청 → **Spawn Phase**에서 실제 생성
+- 정렬: `Tick → SourceID → LocalSpawnSequence`
+- `WorldID = 0` 예약 → World가 항상 최우선
+- **같은 Tick 처리 + 깊이 제한 4**
+
+**WHY 다음 Tick이 아니라 같은 Tick인가**: "보스가 죽으며 파편 3개 생성 → 각 파편이 다시 파편 생성"이 여러 Tick에 걸쳐 진행되면 게임 느낌이 이상해진다.
+
+**WHY 깊이 제한이 필요한가**: `A spawn B → B spawn A → ...` 무한 재귀 폭발 방지. 초과 시 `SPAWN_DEPTH_LIMIT` 결정론적 에러.
+
+## 4.5 Destroy — 논리적 죽음과 물리적 제거 분리
+
+```
+destroy() 호출 시점  → isAlive() 즉시 false
+Destroy Phase        → 실제 메모리 제거
+```
+
+**WHY 즉시 제거하지 않나**: Entity 1의 update에서 Entity 2를 destroy했는데 Entity 2의 update 차례가 아직 안 왔다면, "이번 Tick에 update가 실행됐는가?"가 애매해진다. Tick 끝 일괄 제거로 순서를 명확히 한다.
+
+**죽은 Entity 참조 동작:**
+
+| 동작 | 결과 | WHY |
+|---|---|---|
+| `enemy.isAlive()` | `false` | |
+| `enemy.hp` 읽기 | **허용** (마지막 확정 값) | 읽기는 항상 안전. 읽기까지 막으면 모든 접근에 `isAlive()` 검사가 강제되어 코드가 뒤덮인다 |
+| `enemy.damage(10)` | 무시 | |
+| 크래시 | **절대 없음** | Unity의 "destroyed object 참조"는 가장 악명 높은 버그 유형. 언어 차원에서 제거 |
+
+> **읽기는 항상 성공 / 쓰기는 실패 가능** — 역할 분리
+
+## 4.6 World
+
+```chrona
+world Game {
+    score: Int
+    gameOver: Bool
+    entityAllocator
+}
+```
+
+- **단 하나만 존재.** ID는 `(0, 1)` 예약
+- Entity와 동일하게 Tick 업데이트 / Command 대상 / Hash 포함
+- 전역 가변 변수는 금지 → 전역 상태는 World로
+
+**WHY World가 필요한가**: 점수 같은 전역 상태를 둘 곳이 필요한데, 전역 가변 변수를 허용하면 추적 불가능한 상태 변경 경로가 생겨 §0.2의 계약이 깨진다. World를 Entity로 만들면 `world.score += 100`도 Command로 기록되고 해시에 포함된다.
+
+**WHY 여러 개를 허용하지 않나**: Tick 관리, ID 공간, Hash 기준이 복잡해진다.
+
+**병목 완화**: 모든 걸 World에 넣지 말고 `MatchState`, `ScoreSystem`, `SpawnSystem` 같은 **System Entity**로 분산 권장.
+
+---
+
+# 5. Command / Intent
+
+## 5.1 Command — 즉시 실행되는 추적 가능한 상태 변경
+
+```chrona
+command damage(amount: Int) accumulate {
+    hp -= amount
+}
+```
+
+**규칙**
+- 자기 자신의 상태만 수정 가능
+- 다른 Entity 직접 수정은 **컴파일 오류**
+- **호출 시점에 즉시 실행** + 로그 기록
+
+```chrona
+enemy.hp -= 10        // ❌ 컴파일 오류
+enemy.damage(10)      // ✅
+
+enemy.damage(10)
+if enemy.hp <= 0 {    // ✅ 즉시 반영되므로 정상 동작
+    world.addScore(100)
+}
+```
+
+**WHY 직접 수정을 막나 — 이유가 바뀌었다 ⚠️**
+
+- 과거 이유: 병렬 안전성 (스냅샷 모델) → **폐기됨**
+- **현재 이유: 추적 가능성(Traceability)**
+
+모든 상태 변경이 Command를 통과해야 런타임이 전부 기록할 수 있고, 그래야 §8의 desync 자동 추적이 성립한다. **§0.2의 인과 사슬에서 이것이 두 번째 고리다.**
+
+**WHY 즉시 실행인가**: 스냅샷을 버렸으므로 지연시킬 이유가 없다. 순차 실행이면 실행 순서가 이미 결정론적이고, 추적은 "Command를 통과한다"는 사실만으로 가능하다. 지연시키면 스냅샷 시절의 1 Tick 지연 함정이 그대로 돌아온다.
+
+## 5.2 Intent — Commit 단계에서 적용되는 물리 요청
+
+```chrona
+intent move(amount: DVector2) accumulate
+intent knockback(force: DVector2) accumulate
+intent teleport(pos: DVector2) replace
+```
+
+| | 실행 시점 |
+|---|---|
+| **Command** | 호출 즉시 |
+| **Intent** | Movement Commit Phase |
+
+**WHY 분리했나 ⚠️ (파이프라인 오류가 3회 반복된 근본 원인)**
+
+이전에는 둘 다 `command`로 선언했는데, `damage`는 즉시 실행되고 `move`는 Intent로 수집됐다. **같은 키워드인데 실행 시점이 달랐다.** 개발자가 예측할 수 없고, 파이프라인 명세도 계속 자기모순에 빠졌다. 키워드를 분리해서 해결.
+
+**WHY 이동만 지연되나**: 모든 엔티티가 이동한 뒤에 물리를 계산해야 "반쯤 갱신된 세계"를 보는 문제가 없다(§6.3).
+
+## 5.3 누적 / 덮어쓰기 명시
+
+```chrona
+command heal(amount: Int) accumulate    // 여러 번 호출 시 합산
+intent set_velocity(v: DVector2) replace // 마지막 값만 적용
+```
+
+| 기본 권장 | 종류 |
+|---|---|
+| `accumulate` | 위치 변화, 데미지 |
+| `replace` | 상태 설정 |
+| `queue` | 이벤트 |
+
+**WHY 명시를 강제하나**: `translate`는 누적, `set_velocity`는 덮어쓰기가 상식적이다. 하지만 **상식에 의존하는 건 Chrona의 철학이 아니다.** 사용자 정의 Command가 어느 쪽인지 알 방법이 없으면 안 된다.
+
+## 5.4 [기각된 대안] 반응형 규칙
+
+```chrona
+when hp <= 50 { flee() }    // ❌ 채택하지 않음
+```
+
+**WHY 기각했나**: 언뜻 편해 보이지만 명세가 폭발한다 — 언제 평가하는가? 한 번만 실행되는가? 51이 됐다가 다시 50이 되면 또 실행되는가? 여러 조건이 동시에 만족되면? **이건 언어가 아니라 규칙 엔진이다.**
+
+조건 판단은 `update` 안의 `if`로 충분하다. 이벤트는 최소한만 제공: `on create` / `on update` / `on destroy` / `on collision`.
+
+> **언어의 핵심을 작게 유지한다.**
+
+## 5.5 [기각된 대안] Command Result
+
+과거에 `Success` / `DeadEntity` / `InvalidCommand` 반환을 설계했다가 **삭제됨.**
+
+**WHY 삭제했나**: 스냅샷 시절엔 "살아있다고 봤는데 지난 Tick 정보라 사실 이미 죽음" 상황이 정상 동작 중 항상 발생해서 Result 확인이 필수였다. 순차 즉시 실행에서는 `isAlive()`가 최신 값이므로 이 문제가 사라졌다.
+
+```chrona
+if enemy.isAlive() { enemy.damage(10) }   // 이걸로 충분
+```
+
+> **남은 복잡성은 전부 비용이다.** 이유가 사라진 기능은 삭제한다.
+
+## 5.6 지역 변수는 제약 대상이 아님
+
+```chrona
+var x = hp
+x += 1        // ✅ 자유
+```
+
+**WHY**: 추적이 필요한 건 Entity 상태이지 함수 내부 임시 변수가 아니다. 지역 변수까지 Command를 거치게 하면 언어를 쓸 수 없다.
+
+---
+
+# 6. 결정론적 물리
+
+## 6.1 물리는 언어 안에 있다 ⚠️ 중요
+
+**WHY — 이것이 21라운드 중 가장 큰 구조적 발견이었다.**
+
+초기 설계는 "물리·충돌은 외부 엔진(Unity, Unreal)이 담당하고 Bridge로 연결"이었다. 언어가 결정론으로 방향을 튼 뒤에도 이 초기 결정이 몇 라운드나 남아 있었다. 그런데:
+
+> 앞문을 잠그고(float 금지) 창문에 창살을 달았는데(해시맵 금지), **뒷문이 활짝 열려 있었다.**
+
+외부 물리 엔진은 일반 float를 쓰고, 내부에서 해시맵을 순회하고, SIMD 최적화를 하고, 멀티스레드로 돈다. **물리 엔진 하나로 §3의 모든 계약이 무효가 된다.** C++ lockstep 개발자가 PhysX나 Box2D를 못 쓰고 자체 물리를 짜는 이유가 정확히 이것이다.
+
+**그리고 이 결정은 Chrona의 가치를 오히려 높인다.** C++ 개발자가 결정론 물리를 직접 짜는 그 몇 달을 Chrona가 없애주기 때문이다.
+
+## 6.2 범위 (의도적으로 최소)
+
+| 지원 | 미지원 |
+|---|---|
+| 위치 이동 | Rigidbody |
+| Circle 충돌 | Joint |
+| AABB 충돌 | Cloth / Ragdoll |
+| Raycast | 복잡한 물리 반응 |
+| 거리 계산 | |
+| 공간 분할(Broadphase Grid) | |
+| 충돌 이벤트 | |
+| 겹침 해소 | |
+
+제공 타입: `DVector2`, `DCircle`, `DAABB`, `SpatialGrid`
+
+**WHY 이 범위인가**: Chrona에 필요한 건 **"현실 물리"가 아니라 "재현 가능한 게임 규칙"**이다. lockstep RTS가 실제로 쓰는 건 2D 원형 충돌, AABB, 공간 분할, 경로 탐색 정도다. 완전한 물리 엔진은 언어만큼 큰 프로젝트이므로 범위를 좁혀야 현실적이다.
+
+## 6.3 Query Physics — 읽기 전용 뷰
+
+Logic Phase에서 조회 가능:
+
+```chrona
+distance(a, b)    raycast(...)    overlap(...)
+```
+
+**복사하지 않는다.** Entity Storage에 대한 읽기 전용 View.
+
+**WHY 복사가 필요 없나**: Logic Phase 동안 위치는 변하지 않는다(이동은 Intent로만 수집됨). 세계 상태가 안정적이므로 원본을 그대로 읽으면 된다. 복사하면 스냅샷 시절의 비용이 물리 전용으로 부활한다.
+
+**⚠️ 알려진 성질 (명세에 명시)**: Logic Phase에서 읽는 위치는 **이번 Tick의 이동이 반영되기 전** 상태다. 즉 "적과의 거리 판단"은 Tick 시작 시점 기준이다. 이는 결정론을 위한 의도된 설계이며, RTS의 "명령 입력 → simulation step → 결과 적용" 구조와 일치한다. 그래서 이 단계의 이름은 Logic이 아니라 **Decision Phase**로 이해하는 것이 정확하다.
+
+## 6.4 겹침 해소 (Penetration Resolution)
+
+```
+overlap = radiusA + radiusB - distance
+A를 -overlap/2,  B를 +overlap/2 이동
+```
+
+**충돌 쌍 정렬: 작은 EntityID → 큰 EntityID (고정)**
+
+**WHY 필요한가**: 충돌 **감지**만 있고 **해결**이 없으면, 마주보고 걸어온 유닛 둘이 겹친 채로 남고 매 Tick 충돌 이벤트를 무한히 뿜는다. RTS에서 유닛이 서로 안 겹치게 하는 건 기본 중의 기본이다.
+
+**WHY Command가 아닌가**: 겹침 해소는 게임 로직이 아니라 물리 시스템의 확정 단계다. Command로 만들면 로그가 물리 보정으로 뒤덮인다.
+
+---
+
+# 7. 외부 세계와의 경계
+
+## 7.1 Bridge — 렌더링 전용
+
+```
+Chrona Runtime (시뮬레이션)
+        │  export (변경분만)
+        ▼
+   Render Bridge  ← RenderState Cache 소유
+        │
+        ▼
+Unity / Unreal / Godot / 자체 엔진 (뷰만)
+```
+
+**규칙**
+
+| 방향 | 허용 |
+|---|---|
+| 시뮬레이션 → 엔진 (렌더링) | ✅ |
+| 엔진 충돌 → 시뮬레이션 상태 | ❌ |
+
+> **렌더링은 자유. 게임 결과는 반드시 Chrona 내부.**
+
+**WHY 방향이 이런가**: 초기에는 "엔진이 Chrona의 인터페이스를 구현한다"고 설계했으나 기각. Unity/Unreal이 우리 API에 맞춰줄 이유가 없다. 현실은 반대 — **언어가 엔진에 바인딩된다.**
+
+**타입 중복 방지**: `entity Player`를 정의하면 Bridge Generator가 Unity C# / Unreal C++ / Godot용 바인딩을 자동 생성한다. 개발자가 두 번 정의하지 않는다.
+
+**Dirty Update**: 5000개 중 실제로 변한 120개만 변경 스트림으로 전달. 전체 복사 안 함.
+
+### 보간 (Interpolation)
+
+Tick은 20~30/s, 화면은 60fps → 보간 없이는 유닛이 순간이동하듯 뚝뚝 끊긴다.
+
+- Bridge가 `previous transform` / `current transform`을 보관하고 `lerp` 수행
+- **RenderState는 Entity가 소유하지 않는다. Bridge가 소유한다**
+- **Tick Hash에 포함되지 않는다** — **WHY**: 보간값은 일반 float이며 시뮬레이션 상태가 아니다. 해시에 넣으면 결정론이 깨진다
+- `teleport` 시 `skipInterpolation = true` — **WHY**: 맵 반대편으로 순간이동하는데 보간하면 유닛이 맵을 가로질러 미끄러진다
+- spawn Tick: `previous = current` (즉시 등장)
+
+## 7.2 외부 데이터 진입점
+
+모든 외부 데이터는 명시적 타입을 거쳐야 한다.
+
+```
+InputValue      키보드/마우스/패드
+ExternalValue   세이브 파일, 맵 데이터, 네트워크 입력
+```
+
+```chrona
+DFloat.parse("10.5")              // ❌ 금지
+MapLoader.parseExternalFloat(...)  // ✅
+```
+
+**WHY**: 입력 장치만 막는 걸로는 부족하다. 세이브 파일, 맵/유닛 스탯 데이터(JSON·바이너리), 네트워크로 받은 상대 입력 — 전부 결정론 밖에서 DFloat로 들어오는 문이다. 파싱 방식이 플랫폼마다 조금만 달라도 desync가 난다.
+
+---
+
+# 8. Desync 디버깅 — Chrona의 킬러 기능
+
+> **§1~§7의 모든 제약은 이 절을 성립시키기 위해 존재한다.**
+> C++ 대신 Chrona를 쓸 이유는 문법이 아니라 **여기**에 있다.
+
+## 8.1 Tick Hash
+
+매 Tick 전체 시뮬레이션 상태의 해시를 자동 계산한다.
+
+```
+Tick 1820
+Hash: 0x4A83B912
+```
+
+**해시 포함 대상**
+```
+Entity 상태 (ID, HP, Position, Velocity, ...)
+World 상태 (score, ...)
+RandomState
+Entity Allocator 상태 (free_indices, generations, next_index)
+```
+
+**해시 제외 대상**
+```
+포인터 / 메모리 주소
+힙 배치
+GC 세대 / GC 타이밍
+RenderState (보간 데이터)
+```
+
+**WHY 제외하나**: 이들은 실행마다 다르지만 게임 결과와 무관하다. 해시에 넣으면 정상 실행이 desync로 오탐된다.
+
+## 8.2 자동 Desync 리포트
+
+```
+Desync detected.
+
+First mismatch:
+  Tick:    1820
+  Entity:  Enemy #42
+  Command: damage(15)
+```
+
+**WHY 이게 가능한가**: 모든 상태 변경이 Command를 통과하고(§5.1), 모든 Command가 `Tick → EntityID → Sequence`로 결정론적으로 정렬되며(§5), 탈출구가 없기 때문에(§3) **원인이 반드시 언어 안에 있다.** 런타임이 Tick 해시를 이등분 탐색해서 첫 불일치 지점을 정확히 지목할 수 있다.
+
+C++에서는 이걸 하려면 전부 직접 짜야 하고, 그마저도 원인이 언어 밖(libm, unordered_map, 컴파일러 최적화)에 있을 수 있어 완전하지 않다.
+
+## 8.3 리플레이 / 상태 비교
+
+- Tick별 상태 스냅샷 자동 저장
+- IDE에서 "Tick 1820 상태 비교" 지원
+- 입력만 저장하면 전체 게임 재현 가능
+
+**WHY 런타임/도구인데 언어 명세에 넣나**: 이것이 제품의 본체이기 때문이다. 언어는 이 도구를 성립시키는 수단이다.
+
+---
+
+# 9. 메모리 / 컴파일
+
+## 9.1 GC와 시뮬레이션 분리
+
+| 대상 | 관리 주체 |
+|---|---|
+| **Entity** | **런타임 전용 Entity Pool (GC 대상 아님)** |
+| String, 일반 객체, 임시 데이터 | 증분 GC |
+| GPU 텍스처, 사운드, 물리 객체, Window | 엔진 (Handle로만 노출) |
+
+> **GC 타이밍 ≠ 게임 상태**
+
+**WHY Entity를 GC 밖으로 빼나 — 이번 설계 최고의 수**:
+1. GC 타이밍이 시뮬레이션에 영향을 줄 여지가 구조적으로 사라진다
+2. 롤백 넷코드를 위한 상태 스냅샷을 싸게 뜰 수 있다
+3. 해시에 GC 상태가 새어들어갈 경로가 없다
+
+**WHY 증분 GC인가**: 긴 stop-the-world 멈춤 방지. 단, Entity가 GC 밖이므로 GC 압력 자체가 낮다.
+
+**WHY 엔진 리소스는 Handle인가**: GC가 텍스처를 수거하려는데 엔진이 아직 렌더링에 쓰고 있으면 충돌한다. 소유권을 명확히 분리 — **언어 객체는 런타임, 엔진 리소스는 엔진.**
+
+## 9.2 컴파일 타깃: AOT 네이티브
+
+```
+Source → IR → Native Code
+```
+
+VM 아님. JIT 아님.
+
+**WHY**: 고객(RTS·격투게임·시뮬레이션 개발자)은 예측 가능한 성능, 콘솔/iOS 배포, 런타임 의존성 최소화를 원한다. **VM이나 JIT면 iOS와 콘솔에 못 나가는데, 게임 언어에겐 치명적이다.**
+
+## 9.3 성능 목표 — 명확히 하기
+
+> **목표는 "가장 빠른 언어"가 아니라 "충분히 빠르면서 개발 비용을 크게 줄이는 언어"다.**
+
+C++보다 10% 느려도, desync를 5분에 찾고 / 결정론 인프라를 몇 달 덜 만들고 / 팀원 실수를 컴파일러가 막아준다면 받아들일 팀이 있다. 3~5배 느리면 경쟁력이 없다.
+
+**WHY 명시하나**: "C++와 동급 성능이어야 한다"는 압박은 Chrona의 가치 제안 자체를 부정한다. 우리가 파는 건 최고 성능이 아니라 **보험**이다.
+
+---
+
+# 10. 기초 문법
+
+## 10.1 변수
+
+```chrona
+let hp = 100          // 불변 (한 번만 대입)
+var hp = 100          // 가변
+const MAX_HP = 100    // 컴파일 타임 상수
+let hp: Int = 100     // 타입 명시
+```
+
+정적 타입 + 타입 추론.
+
+**WHY `let`이 불변인가**: 초기에는 `let` = 가변, `const` = 불변으로 설계했으나 수정됨. Rust/Swift/Kotlin 등에서 `let`은 불변 또는 기본 선언이라 다른 언어 사용자가 100% 헷갈린다. 더 중요하게는, **결정론과 추적 가능성을 강조하는 언어가 기본값을 가변으로 두는 건 철학과 어긋난다.**
+
+## 10.2 함수
+
+```chrona
+func distance(a: DVector2, b: DVector2) -> DFloat { }
+
+pure func clamp(x: DFloat, min: DFloat, max: DFloat) -> DFloat { }
+```
+
+`pure` 함수는 컴파일러가 검사:
+- Entity 접근 불가
+- 전역 상태 접근 불가
+- Command 생성 불가
+
+**WHY `pure`가 필요한가**: 최적화에 유리하고, "이 함수는 상태를 건드리지 않는다"를 컴파일러가 보증하면 desync 원인 후보에서 제외할 수 있다.
+
+## 10.3 키워드 정리
+
+| 키워드 | 용도 |
+|---|---|
+| `entity` | 게임 객체 정의 |
+| `world` | 전역 상태 (단 하나) |
+| `on` | 이벤트 핸들러 |
+| `command` | 즉시 실행 상태 변경 |
+| `intent` | Commit 단계 물리 요청 |
+| `func` / `pure func` | 일반 함수 |
+| `let` / `var` / `const` | 변수 선언 |
+| `accumulate` / `replace` / `queue` | Command·Intent 합성 규칙 |
+
+## 10.4 타입
+
+**언어 내장**: `Int`, `DFloat`, `Bool`, `String`, `Entity`
+**표준 라이브러리**: `DVector2`, `DVector3`, `DCircle`, `DAABB`, `Color`, `RandomState`, `List`, `OrderedMap`
+
+**WHY Vector를 언어 내장으로 안 하나**: 언어의 핵심을 작게 유지한다. 표준 라이브러리로 충분하다.
+
+**String은 불변(Immutable)** — **WHY**: 불변이면 여러 곳에서 공유해도 안전하고, 해시 계산이 단순해지며, 수정에 의한 비결정론이 원천 차단된다.
+
+## 10.5 파일 / 도구
+
+```
+언어 이름:   Chrona
+확장자:      .chr
+코드블록:    chrona
+```
+
+**WHY Chrona인가**: 정체성(시간 = Tick, 기록, 재현)에서 도출. 발음이 갈리지 않는다.
+**알려진 문제**: NHL 선수 Magnus Chrona, 디즈니 게임 캐릭터, 안드로이드 앱 등이 이미 존재해 검색 충돌 가능. `Chrona Lang` / `chrona-lang`으로 대응. (Rust도 같은 문제를 겪었으나 `rust-lang`으로 정착)
+
+---
+
+# 11. 미해결 과제
+
+| 과제 | 내용 |
+|---|---|
+| 겹침 해소 연쇄 | A를 밀면 C와 겹치고, C를 밀면 다시 B와 겹친다. 반복 해결 횟수를 고정해야 결정론이 유지되는데, 몇 회로 할지 미정 |
+| 정적(static) 물체 | 벽/건물은 밀려나면 안 된다. 질량 개념 vs `static` 플래그 |
+| Collision Phase의 Intent | 충돌 시 넉백은 Movement Commit이 이미 지났으므로 다음 Tick 적용. 명세에 명시할지, 2차 Commit을 둘지 |
+| 반복문 / 조건문 문법 | 미설계 |
+| 모듈 / import | 미설계 |
+| 에러 처리 (panic 외) | 미설계 |
+| 제네릭 | 미결정 |
+| 표준 라이브러리 범위 | 미결정 |
+| **예제 코드 검증** | **다음 단계 — 아래 참조** |
+
+## 다음 단계: 채택 검증
+
+> **규칙은 종이 위에서 항상 아름답고, 코드 위에서 진실이 드러난다.**
+
+**검증 예제**: 적 3마리가 플레이어를 추적 → 사거리 안이면 공격 → 플레이어 HP 0이면 게임 오버. 플레이어는 가장 가까운 적을 공격, 적이 죽으면 점수 획득.
+
+**단, 문법 검증이 아니라 채택 검증으로 쓴다:**
+1. 같은 게임을 **C++로도 짠다**
+2. 양쪽에 **똑같은 desync 버그를 심는다** (예: 한 클라에서만 float 누산 순서가 다르게)
+3. **찾는 데 걸리는 시간을 잰다**
+
+> 그 차이가 곧 Chrona의 존재 이유다.
+> 차이가 작으면 — 언어를 만들 이유가 없다.
+> 차이가 크면 — 문법이 좀 못생겨도 사람들은 쓴다.
+
+---
+
+# 12. 설계 과정에서 배운 것
+
+이 프로젝트에서 반복적으로 드러난 패턴들. 앞으로의 설계에도 적용된다.
+
+1. **오래된 결정이 새 방향과 충돌하는 걸 아무도 안 본다.**
+   "물리는 외부 엔진" 결정은 3라운드에 내려졌고, 언어가 결정론으로 방향을 튼 뒤에도 몇 라운드나 살아남아 §0.2의 계약을 통째로 무효화하고 있었다. **방향이 바뀌면 과거 결정을 전부 재검토해야 한다.**
+
+2. **문서 안의 두 문장을 나란히 읽지 않으면 모순을 놓친다.**
+   "1 Tick 지연이 최대 리스크"와 "병렬화는 약속 안 함"이 같은 문서에 나란히 있었는데, 그 둘을 곱해보기 전까지 아무도 "지불되지 않은 세금"을 못 봤다.
+
+3. **같은 함정이 이름을 바꿔 돌아온다.**
+   스냅샷을 버려 1 Tick 지연을 없앴다고 생각했지만, Query Physics를 만들자 같은 성질이 부활했다. 완전히 없앨 수 없는 것은 **정직하게 명세에 드러내야** 한다.
+
+4. **이름 하나가 두 의미를 가지면 명세가 계속 자기모순에 빠진다.**
+   `command`가 즉시 실행과 지연 실행을 동시에 뜻했기 때문에 파이프라인 오류가 3번 반복됐다. `command` / `intent` 분리로 근본 해결.
+
+5. **복잡성을 지우는 결정이 추가하는 결정보다 어렵고 가치 있다.**
+   Command Result 삭제가 그 예. **이유가 사라진 기능은 즉시 제거한다.**
+
+6. **설계자가 리뷰를 전부 수용하면 설계가 단련되는 게 아니라 끌려다니는 것이다.**
+   리뷰어가 해법까지 제시하면 설계자는 반박할 여지를 잃는다. 리뷰어는 **구멍만 지적하고 해법은 설계자가 짠다.**
+
+7. **"좋아 보이는 단어 두 개를 붙인 것"은 설계가 아니다.**
+   "ECS와 액터의 중간 형태"라는 표현은 라벨일 뿐 실체가 없었다. 실제 설계는 100% 액터였다.
+
+8. **없는 해법을 전제로 설계하지 않는다.**
+   "1 Tick 지연을 없애면서 병렬성과 결정론을 모두 만족하는 방법"은 알지 못한다. 그래서 그걸 전제로 하지 않고, 아는 것 중에서 골랐다.
+   
+````
+
+## lmnop qrs
+
+> lmnop hijk 다음
+
+````markdown
+# lmnop — qrs 명세 (Specification)
+
+> **lmnop** — l·m·n·o·p. 그리고 이 버전은 그 다음 글자, **qrs**.
+> 확장자 `.lmp` · 목적: **게임 핵심 로직** · 문법 스타일: 실험적
+> (이전 표기 `a0.0.0` → **qrs**로 대체)
+>
+> *살아있는 문서. 설계가 진행되면서 계속 갱신됨.*
+
+---
+
+# 목차
+
+1. 핵심 원칙
+2. 주석
+3. 선언 — `value`
+4. 함수
+5. 타입
+6. 연산자
+7. truthy / falsy
+8. 조건문
+9. 문자열
+10. 출력
+11. 어노테이션 `@`
+12. 엔트리 포인트
+13. 진단 (에디터)
+14. 예제
+15. 미정 / TODO
+
+---
+
+## 1. 핵심 원칙
+
+모든 것은 **키워드 · 함수 · 리터럴** 중 하나다.
+
+```
+모든 것
+├─ 1급 시민
+│   ├─ 함수      (호출 가능, 인자 받음)
+│   └─ 리터럴    (5, "hi", true, false, null …)
+└─ 키워드        (value, return, if, else, final, not …)
+```
+
+- **1급 시민** = 함수 + 리터럴 → 변수에 담기 · 인자로 넘기기 · 반환하기 · 익명으로 만들기 가능
+- **키워드**는 1급 시민이 **아니다** (그냥 문법 장치)
+- 함수 vs 리터럴의 차이는 딱 하나 → **함수는 호출되고, 리터럴은 호출되지 않는다**
+
+---
+
+## 2. 주석
+
+```lmnop
+// 한 줄 주석
+```
+
+---
+
+## 3. 선언 — `value`
+
+이름 있는 1급 시민은 전부 `value`로 선언한다 (변수든 함수든 동일).
+
+```lmnop
+value x     = 5              // 리터럴
+value greet = "hi"           // 리터럴
+value f     = (x):(return x) // 함수
+```
+
+---
+
+## 4. 함수
+
+함수는 **익명이 본체**이고, `value`가 거기에 이름을 붙일 뿐이다.
+
+### 4.1 최종 형태 — 3부분
+
+```lmnop
+(Parameter):(Do):(Info)
+```
+
+| 부분 | 뜻 | 필수 |
+|------|-----|------|
+| `(Parameter)` | 매개변수 | ◯ |
+| `(Do)` | 본체 | ◯ |
+| `(Info)` | 부가정보(메타데이터) | ✕ (생략 가능) |
+
+```lmnop
+value f = (x = 5):(     // 매개변수 x, 기본값 5
+    return x            // return 없으면 null 반환
+):(추가 정보)            // Info — 생략 가능
+```
+
+### 4.2 람다 단축형 — `>>>`
+
+`매개변수 >>> 식` — 그 식이 곧 반환값.
+
+```lmnop
+value inc = (x) >>> (x + 1)
+value add = (x, y) >>> (x + y)
+
+// x, y >>> x + y  도 되지만, 가독성상 괄호 형태를 권장
+```
+
+> ⚠️ **람다(`>>>`)에는 Info를 붙일 수 없다.**
+
+### 4.3 호출
+
+```lmnop
+f(5)          // 위치 인자
+f()           // 기본값 사용 → 5
+f(x = 5)      // 이름 지정 인자
+```
+
+선언부 `(x = 5)`와 호출부 `f(x = 5)`가 같은 `=`로 대칭된다.
+
+### 4.4 고차함수 / 커링
+
+함수는 1급 시민이므로 함수를 반환하고, 연쇄 호출된다.
+
+```lmnop
+value make = () >>> (
+    (x) >>> (x + 1)
+)
+
+make()(5)    // → 6
+```
+
+### 4.5 Info 자동 수집
+
+`(Parameter):(Do):(Info)` 형식에서, **Do 안의 모든 것** — 리터럴, 스크립트 문자,
+선언된 모든 함수·변수 — 이 자동으로 그 함수의 **Info**로 올라간다.
+이 정보는 주로 **스케줄러**가 활용한다.
+
+---
+
+## 5. 타입
+
+| 타입 | 설명 |
+|------|------|
+| `Number` | 128비트 (실수 + 정수) |
+| `Int` | 64비트 정수 |
+| `Double` | 64비트 실수 |
+| `Str` | 문자열 |
+| `Bool` | 불린 |
+| `Null` | 널 |
+| `Any` | 아무거나 |
+| `Expression` | 수식 |
+| `Function` | 함수 |
+| `Variable` | 변수 *(정의 추후)* |
+| `Condition` | 조건 *(정의 추후)* |
+| `Arguments` | 인자 *(정의 추후)* |
+| `Parameter` | 매개변수 *(정의 추후)* |
+| `Info` | 클래스·함수·변수의 부가정보. 일반적으로 스케줄러가 사용 |
+| `Class` | (그 클래스로 만든 객체가 아니라) 클래스 **자체** |
+
+### 5.1 유니언 — `|`
+
+```lmnop
+Int | Str        // Int 또는 Str
+```
+
+### 5.2 숫자 리터럴의 기본 타입
+
+`5` → **`Int | Double`**.
+값이 **64비트를 초과**하면 자동으로 **`Number`**로 승격된다.
+
+---
+
+## 6. 연산자
+
+### 6.1 산술
+
+```lmnop
++   -   *   /   %      // 기본
+_/                     // 정수 나눗셈 (몫만 반환)
+```
+
+### 6.2 비교
+
+| 연산자 | 의미 | 타입 변환 |
+|--------|------|-----------|
+| `==`  | 같다   | ✕ |
+| `===` | 같다   | ◯ (타입 변환까지 해서 비교) |
+| `!=`  | 다르다 | ✕ |
+| `?=`  | 다르다 | ◯ (타입 변환까지 해서 비교) |
+
+> ⚠️ **JavaScript와 정반대다.** lmnop은 `==`가 엄격, `===`가 변환.
+
+**null 특례**
+
+```lmnop
+null === "null"    // → false
+```
+
+### 6.3 불린
+
+```lmnop
+not x     // 토글
+```
+
+---
+
+## 7. truthy / falsy
+
+JS · Python 스타일.
+
+- **falsy:** `0`, `""`, `false`, `null`
+- **truthy:** 그 외 전부
+
+`not`은 값을 truthiness로 바꾼 뒤 토글한다 → **falsy는 true로, truthy는 false로.**
+
+```lmnop
+not 0        // → true
+not ""       // → true
+not "hi"     // → false
+not false    // → true
+not true     // → false
+```
+
+---
+
+## 8. 조건문
+
+`if` / `else` / `final` 뒤에는 **함수**가 오고, 그 가지가 선택되면 그 함수가 호출된다.
+
+```lmnop
+value f = ():()
+if {조건} f              // 이름 있는 함수도 가능
+```
+
+전체 형태:
+
+```lmnop
+if {조건1} ():(
+    // 조건1이 참일 때
+) else {조건2} ():(       // else if — 0개 이상
+    // 조건1 거짓 & 조건2 참
+) else ():(               // bare else — 0~1개
+    // 전부 거짓일 때
+) final ():(              // final — 0~1개
+    // 어느 가지가 돌든, 심지어 아무 가지도 안 돌든 항상 마지막에 실행
+)
+```
+
+**순서 규칙**
+
+```
+if  →  else {조건} (여러 개)  →  else (한 번)  →  final (한 번, 진짜 맨 끝)
+```
+
+> `else` / `else {조건}` 가지가 하나도 없는 `if`에 `final`을 붙이면 → **`lonely final`** 경고 (§13)
+
+---
+
+## 9. 문자열
+
+```lmnop
+"큰따옴표"
+'작은따옴표'
+```
+
+### 9.1 f-string (보간)
+
+`f` 접두사가 붙은 문자열에서만 `{ }` 보간이 동작한다.
+
+```lmnop
+value x = 1
+
+f"{x}.2aaa"      // → 1.2aaa
+f"{{x}}"         // → {x}    (글자 그대로, 보간 안 함)
+f"{{{x}}}"       // → {1}    (바깥 중괄호는 글자, 안쪽 {x}는 보간)
+```
+
+### 9.2 이스케이프
+
+| 시퀀스 | 의미 |
+|--------|------|
+| `\n` | 줄바꿈 (New Line) |
+| `\t` | 탭 (Tab) |
+| `\\` | 백슬래시 `\` |
+| `\"` | 큰따옴표 `"` |
+| `\'` | 작은따옴표 `'` |
+| `{{` | `{` — f-string 전용 |
+| `}}` | `}` — f-string 전용 |
+
+> `\\`(백슬래시)와 `{식}`(보간)은 **서로 독립적으로** 처리된다.
+> 예: `f"\\{x}\\"` (x = 1) → `\1\`
+
+---
+
+## 10. 출력
+
+```lmnop
+print("Hello, World")         // 일반 출력
+console.log("Hello, World")   // golive(라이브) 상태일 때 콘솔창에 출력
+```
+
+> `.`(점)의 동작은 아직 **미정** — 추후 정의.
+
+---
+
+## 11. 어노테이션 `@`
+
+`@이름`으로 선언을 축약한다.
+**하나의 `@`구간은 다음 `@`구간이 나오기 전까지 유지된다.**
+
+```lmnop
+@main
+내용                    // 여기부터
+
+@comment
+이 스크립트가 하는 일     // @main 구간은 여기서 끝
+```
+
+| 어노테이션 | 뜻 |
+|-----------|-----|
+| `@main` | 엔트리 포인트 (§12의 축약형) |
+| `@comment` | 이 스크립트가 하는 일 기록 |
+
+---
+
+## 12. 엔트리 포인트
+
+**원형**
+
+```lmnop
+value main = (String = "UTF-8"):(
+    // 내용
+):()
+```
+
+- `String = "UTF-8"` → 문자열 기본 인코딩이 UTF-8
+- `Info` 부분은 생략 가능
+
+**축약형**
+
+```lmnop
+@main
+// 내용
+```
+
+---
+
+## 13. 진단 (에디터)
+
+| 색 | 심각도 |
+|----|--------|
+| 🔴 빨간줄 | **에러** |
+| 🟠 주황줄 | **경고** |
+
+### 경고 목록
+
+**`lonely final`** 🟠
+
+```lmnop
+if {조건} ():(
+) final ():(       // ← else 가지가 하나도 없는데 final
+)
+```
+
+`else` / `else {조건}`가 없으면 final이 "어느 가지가 돌든 마지막에 실행"이라는 의미를
+잃는다 (그냥 if 안이나 뒤에 넣으면 되니까). 혼자 외로워서(lonely) **lonely final.**
+
+---
+
+## 14. 예제
+
+**Hello, World**
+
+```lmnop
+value main = (String = "UTF-8"):(
+    print("Hello, World")
+)
+```
+
+**축약형으로**
+
+```lmnop
+@main
+print("Hello, World")
+
+@comment
+콘솔에 인사를 출력하는 스크립트
+```
+
+---
+
+## 15. 미정 / TODO
+
+- [ ] `Variable` / `Condition` / `Arguments` / `Parameter` 타입의 정확한 정의 *(다음 예정)*
+- [ ] 클래스 생성 문법 (`Class` · `Info` 연동)
+- [ ] `.` (점) 멤버 접근 동작
+- [ ] 반복문
+- [ ] 리스트 / 배열
+- [ ] 🔴 에러(빨간줄) 종류 정의
+- [ ] `f'...'` (작은따옴표 f-string) 허용 여부
+- [ ] "Info 자동 수집"의 정밀 범위 확정
+- [ ] 스케줄러 동작 정의
+
+````
+
+## lmnop hijk
+
+> 옛날에 만든 언어
+
+````markdown
+# lmnop 언어 명세서 — hijk 버전 (v0.1)
+
+> **lmnop**은 게임용 스레드 중심 프로그래밍 언어입니다.
+> 확장자: `.lp`
+> 첫 번째 버전: **hijk**
+
+---
+
+## 0. 핵심 사상
+
+- **스레드 중심**: 액터 모델 기반, 가벼운 스레드 다수 운용 가능
+- **확장 가능 문법**: 감싸는 기호의 개수를 늘려 내부에 같은 기호 사용 가능
+- **꺽쇠 타입**: 모든 타입 표기는 `<>`로 감쌈
+- **자동 안전**: nan/null 분리, 오버플로우 방지, 자동 timeout
+- **모드 시스템**: `;` / `as` / `with` 세 가지 엄격도 모드
+
+---
+
+## 1. 런타임 구조
+
+| 영역 | 언어 | 역할 |
+|------|------|------|
+| 스레드 / 동시성 | Rust | 스케줄러, 메일박스, ObjectPool |
+| 코드 실행 | C++ | 바이트코드 인터프리터 |
+
+- **M:N 스케줄러** + 워크 스틸링
+- **액터별 GC** (멈춤 분산)
+- **메시지는 복사**, 큰 데이터는 불변 공유
+- **ObjectPools**로 ObjectValue 비용 최소화
+
+---
+
+## 2. 확장 가능 문법 (메타 규칙)
+
+> **감싸는 기호 N개로 시작하면, 안쪽에 N-1개까지 같은 기호 사용 가능**
+
+### 일반 확장 가능 (대칭 기호)
+
+| 종류 | 기본 | 확장 |
+|------|------|------|
+| 큰따옴표 문자열 | `"..."` | `""..."``, ```"""..."""``` |
+| 작은따옴표 문자열 | `'...'` | `''...''` |
+| 백틱 문자열 | `` `...` `` | ` ``...`` ` |
+| 인라인 주석 | `//...//` | `///...///` |
+| 여러 줄 주석 | `((!...!))` | `(((!...!)))` |
+| 도큐 주석 | `/!...!/` | `//!...!//` |
+| 마크다운 굵게 | `**...**` | `****...****` |
+| 마크다운 기울임 | `##...##` | `####...####` |
+| 변수 보간 | `{...}` | `{{...}}` |
+
+### 슬래시 확장 가능 (비대칭 / 글자화)
+
+| 용도 | 표기 |
+|------|------|
+| 이스케이프 글자화 | `__/t/__` → `__t__` 글자 |
+| 색상 태그 글자화 (백틱 내) | `/<red>...</red>/` → 글자 |
+| 변수 보간 글자화 | `/{hp}/` → `{hp}` 글자 |
+| 변수명에 `_` 포함 | `my/_/score` → `my_score` |
+
+---
+
+## 3. 변수 / 상수 / 인스턴스
+
+### 선언 키워드 (콜론 대신 띄어쓰기)
+
+```lp
+Value x = 10                       ! 로컬 가변
+Global VER = "1.0"                 ! 전역 (Global.VER로 접근)
+Instance A<Instance>                ! 정체성 객체 (값과 무관)
+ObjectValue y = 1                  ! 진짜 객체 (액터 간 공유)
+list nums = [1, 2, 3]              ! list 모드 (값 복사)
+map m = {key = value}              ! map 모드 (값 복사)
+
+! 상수 (가장 짧은 형태)
+PI = 3.14
+PI<number> = 3.14
+MAX_HP = 100
+```
+
+### 타입 표기
+
+```lp
+Value x<int> = 100                       ! int만
+Value x<int_> = null                     ! int 또는 null
+Value x<int<>> = nan                     ! int 또는 nan
+Value x<int_<>> = nan                    ! int 또는 null 또는 nan
+Value x<int/string> = 10                 ! 유니온
+Value x<int/string_> = null              ! 유니온 + null
+Value x<> = nan                          ! nan만
+Value x<_> = null                        ! null만
+Value x<any> = anything                  ! 자유
+```
+
+### 기본 타입
+
+```
+int, float, number, bool
+string, markdown, any
+list, map, tuple, option, result
+actor, function
+Instance, _
+```
+
+### 추론 규칙
+
+| 리터럴 | 추론 |
+|--------|------|
+| 숫자 | `number` |
+| `"..."`, `'...'`, `` `...` `` | `string/markdown` |
+| `true`, `false` | `bool` |
+| `null` | `_` |
+| `nan` | `null` (타입) |
+| 함수 | `function` |
+
+### 사용 시
+
+```lp
+이름              ! 그냥 이름 (타입 안 적음)
+Global.이름       ! 전역
+```
+
+### 변수명에 `_` 포함 (슬래시 확장)
+
+```lp
+my/_/score = 100                  ! 변수명 my_score
+my/_/score<int> = 100             ! 타입 명시
+Value my_score = 100              ! Value 안에서는 자유 (콜론 뒤 영역)
+```
+
+---
+
+## 4. 연산자
+
+### 산술
+
+```
++   더하기      복합 +=
+-   빼기        복합 -=
+*   곱하기      복합 *=
+/   나누기      복합 /=
+_/  정수 나누기 복합 _/=
+%   나머지      복합 %=
+^   제곱        복합 ^=
+```
+
+### 비교
+
+```
+==  같다
+\=  다르다
+<   작다
+>   크다
+<=  작거나 같다
+>=  크거나 같다
+```
+
+### 논리
+
+```
+not 조건           ! 복합이면 괄호: not (a and b)
+A and B
+A or B
+```
+
+### 괄호
+
+```lp
+((1 + 2) * 3)                    ! 계산식은 소괄호만
+```
+
+### 연산자 오버로딩 (파일 단위 스코프)
+
+```lp
+Value __add = function(a, b)
+  if a == 0 and b == 0 ;
+    return 1
+  end
+  return a + b                  ! 함수 안의 + 는 원본
+end
+
+print(0 + 0)                    ! 1
+print(2 + 3)                    ! 5
+```
+
+오버로딩 가능:
+`__add`, `__sub`, `__mul`, `__div`, `__floordiv`, `__mod`, `__pow`
+
+---
+
+## 5. 문자열
+
+### 3종
+
+```lp
+"평범한 문자열"
+'평범한 문자열'
+`마크다운 문자열`
+```
+
+### 백틱 마크다운
+
+```lp
+`**굵게**`                    ! 굵게
+`##기울임##`                  ! 기울임
+`<red>빨강</red>`             ! 색상 (이름)
+`<#FF5733>색상</#FF5733>`     ! 색상 (헥스)
+`<big>큰 글자</big>`          ! 크기
+`{변수}` 또는 `{표현식}`       ! 변수 보간
+`:sword:`                     ! 게임 이모티콘
+
+! 중첩 가능
+`<red>**굵빨**</red>`
+```
+
+### 이스케이프
+
+| 표기 | 의미 |
+|------|------|
+| `__t__` | 탭 |
+| `__n__` | 줄바꿈 |
+| `__r__` | 캐리지 리턴 |
+| `__b__` | 백스페이스 |
+| `__sb__` | 백슬래시 |
+| `__0__` | 널 문자 |
+| `__u{1F600}__` | 유니코드 |
+| `__/t/__` | `__t__` 글자화 |
+
+`__` 다음 정해진 코드 없으면 그냥 글자:
+```lp
+"__hello__"      → __hello__ (그대로)
+```
+
+---
+
+## 6. 주석
+
+```lp
+! 한 줄 주석
+
+//인라인 주석//
+///안에 // 사용 가능///
+
+((!
+  여러 줄 주석
+!))
+
+(((!
+  ((! 중첩 !))
+!)))
+
+/! 도큐 주석 — 함수/변수/매개변수 힌트 !/
+/! 여러 줄 쌓이면 줄바꿈으로 표시 !/
+//! 안에 /! !/ 사용 가능 !//
+```
+
+### 도큐 주석 사용
+
+```lp
+/! 기부니가 좋을 때 쓰는 함수 !/
+/! 두 번째 줄 힌트 !/
+Value Happy<function> = function()
+  Output.log("기부니가 좋아요!!@@")
+end
+
+! 매개변수에도
+Value aa<function> = function(s<string> /! 걍 이름 !/)
+  Output.log(`이름: {s}`)
+end<_>
+```
+
+---
+
+## 7. 조건문 / 흐름 제어
+
+### if / eif / else
+
+```lp
+if 조건 ;
+  본문
+eif 조건 ;
+  본문
+else ;
+  본문
+end
+```
+
+### 삼항 (식 if-else)
+
+```lp
+Value a = 1 if(c1) else 2
+Value a = 1 if(c1) eif(c2) 2 else 3
+Value a = 1 if(c1) else 2 if(c2) else 3   ! 체이닝
+```
+
+- `if(조건)` 괄호 필수
+- `else 값` 필수
+
+### with / as 인라인 변수
+
+```lp
+if 조건 with x = 10, y<int> = 20 ;
+  본문
+end
+
+if 조건 with x = 1 with z = 2 as count = 0 ;
+  본문
+end
+```
+
+- `with`: 매 반복 재선언 (반복문에서)
+- `as`: 진입 시 1회 (반복문에서)
+- 단독 do 블록일 땐 둘 다 동등
+
+---
+
+## 8. 반복문
+
+### while
+
+```lp
+while 조건 ;
+  본문
+end
+
+while 조건 with x = 0 as count = 0 ;
+  본문
+end
+```
+
+### for (단순 횟수)
+
+```lp
+for 횟수 ;
+  본문
+end
+
+for 10 with msg = "step" ;
+  본문
+end
+```
+
+### for ... in (컬렉션 순회)
+
+```lp
+for v in nums ;
+  본문
+end
+
+for num<number> in nums ;          ! 타입 명시
+  본문
+end
+
+for v in nums connect c ;          ! c = 인덱스 (0부터)
+  본문
+end
+
+for v in uncertain(nums) ;         ! 랜덤 순서
+  본문
+end
+
+for v in uncertain(nums) connect c ;
+  본문
+end
+```
+
+### repeat (~될 때까지)
+
+```lp
+repeat 조건 ;
+  본문 (조건이 true 되면 종료)
+end
+```
+
+### cooldown (도중 조건 검사)
+
+```lp
+cooldown 조건 ;
+  본문 (조건이 false 되면 즉시 중단)
+end
+```
+
+- 별도 감시 스레드가 조건 모니터링
+- `break()` 가능, `with` 가능
+- `as`, `continue` 불가 (반복문 아님)
+
+### Time (시간제한 반복)
+
+```lp
+Time 반복시간, 딜레이 ;
+  본문
+end
+
+Time 23, 3 ;
+  Output.log("hi")        ! 3초마다, 23초 동안 = 7번
+end
+```
+
+- 첫 실행은 딜레이 후
+- `as`, `with`, `break`, `continue` 사용 가능
+
+### 흐름 제어
+
+```lp
+break                ! 위치 반환
+break()              ! = break(0), 가장 가까운 ; 블록 종료
+break(N)             ! N단계 바깥 종료
+
+continue             ! 위치 반환
+continue()           ! = continue(0)
+continue(N)          ! N단계 바깥 반복문의 다음 반복
+
+when                 ! 위치 반환
+when()               ! 1부터, 가장 가까운 반복문 인덱스
+when(N)              ! N단계 바깥 인덱스
+                     ! 반복문 밖 또는 깊이 초과 시 → 1
+
+prev x = x - 1       ! 인덱스 변환 (1 기반 → 0 기반)
+```
+
+- `break`은 모든 `;` 블록에서 가능
+- `continue`은 반복문 전용 (반복문 밖에선 에러)
+
+---
+
+## 9. 함수
+
+### 정의
+
+```lp
+/! 함수 설명 !/
+Value 이름<function> = function(매개변수)
+  본문
+end<반환타입>
+```
+
+### 매개변수
+
+```lp
+function(a, b)                                ! 추론
+function(a<int>, b<int>)                      ! 명시
+function(a<int_>, b<int>)                     ! nullable
+function(a<int/string>, b)                    ! 유니온
+function(args_s)                              ! 가변 (여러 값)
+function(args<int_s>)                         ! 가변 + 타입
+function(args<int__s>)                        ! 가변 + nullable
+function(args<int/string __s>)                ! 가변 + 유니온 + nullable
+function(s<string> /! 매개변수 도큐 !/)        ! 도큐 주석
+```
+
+### 반환
+
+```lp
+end                  ! 추론
+end<int>             ! int 반환
+end<_>               ! null만 반환 (엄격)
+end<>                ! null 또는 nan (호환)
+```
+
+```lp
+return 값            ! 즉시 종료, 반환
+Nreturn 값           ! 등록만 (한 번), 함수 계속, 변경 불가
+                     ! Nreturn 후 return은 에러
+IsReturn(N)          ! 호출 스택 N단계 함수의 반환 등록 여부
+```
+
+### 람다
+
+```lp
+defive x - x + 1                  ! 매개변수 x, x+1 반환
+defive a, b - a * b               ! 여러 매개변수
+defive x<int> - x * 2             ! 매개변수 타입
+defive x - x + 1 <number>         ! 반환 타입
+```
+
+- 첫 `-`만 구분자, 나머지는 빼기
+- 한 줄만 (여러 줄은 `function ... end`)
+
+### 제너릭
+
+```lp
+Value identity<function> = function_T(x<T>)
+  return x
+end<T>
+
+Value pair = function_T,N(a<T>, b<N>)
+  return [a, b]
+end
+```
+
+- `as` 모드에선 호출 시 타입 명시 필요: `identity<int>(100)`
+- 일반 모드는 추론
+
+### 호출 / 참조
+
+```lp
+함수()                ! 호출
+함수(인자)            ! 호출
+함수                  ! 단독 위치 → 자동 호출 (as 외)
+                      ! 표현식 위치 → 위치 참조
+
+obj:method()          ! self 자동 전달 (Luau 스타일)
+obj.method(obj)       ! 명시적
+obj.field             ! 필드 접근
+```
+
+---
+
+## 10. 스크립트 모드
+
+```lp
+;~~          ! 기본 모드 (호출, when 가능)
+as~~         ! 엄격 모드 (참조, 정적 분석 강화, 성능 좋음)
+with~~       ! 관대 모드 (안전망 추가, 약간 느림)
+```
+
+| 모드 | 단독 식별자 | when() | 추론 | 성능 |
+|------|-----------|--------|------|------|
+| `;` (기본) | 자동 호출 | 사용 가능 | 가능 | 보통 |
+| `as` | 참조 (안 쓰면 에러) | 컴파일 에러 | 필요 시 명시 | 빠름 |
+| `with` | 자동 호출 | 사용 가능 | 가능 | 약간 느림 |
+
+- 파일 시작 또는 도중 변경 가능
+- 블록은 자기 모드 우선 (예: `as~~` 안에서 `with;` 블록은 with 모드)
+
+---
+
+## 11. 타입 검사
+
+```lp
+Type.Get(값)                     ! 실제 타입 반환
+                                 ! nan → null, null → _
+
+Type.Is(값, 타입)                ! 호환 검사 (Tree 조상 포함)
+Type.Is(값)                      ! = Type.Is(값, null) = nan 검사
+Type.IsNan(값) / 값:IsNan()      ! nan 검사 (권장: :IsNan())
+
+! 자동 메소드 (모든 값)
+값:Type()                        ! = Type.Get(값)
+값:ToString()                    ! 문자열 변환
+값:ToNumber()                    ! 숫자 변환 (실패 시 null)
+값:IsNan()                       ! nan 검사
+```
+
+### Truthy / Falsy
+
+- **Falsy**: `false`, `null`, `nan`
+- **Truthy**: 그 외 모두 (0, "", 빈 리스트 포함)
+
+---
+
+## 12. 시간 / 스레드
+
+### 시간
+
+```lp
+Wait(초)                         ! 시간 대기
+Until(조건)                      ! 조건 true 될 때까지
+Until(false)                     ! 영원히
+
+os.time()                        ! 앱 시작 후 경과 시간 (초, number)
+os.date.year / .month / .day
+os.date.clock / .minute / .second
+```
+
+### 스레드 생성
+
+```lp
+Thread.new(function(dt)
+  본문                           ! dt = delta time
+end)
+
+Thread.delay(2.0, function(dt)
+  spawn_explosion()              ! 2초 후 1회
+end)
+
+Thread.repeat(0.1, function(dt)
+  update()                       ! 0.1초마다
+end)
+
+Thread.at(시각, function(dt)
+  본문                           ! 절대 시각
+end)
+
+Value t = Thread.new(...)        ! Thread 객체 반환
+```
+
+### 스레드 메소드
+
+```lp
+t:Wait()                         ! 완료 대기
+t:result()                       ! 완료 대기 + 반환값 (Nreturn 포함)
+t:is_running()                   ! 실행 중
+t:is_finished()                  ! 완료
+
+Thread.Get()                     ! 현재 자기 스레드
+```
+
+### 부모-자식
+
+```lp
+Thread.new(function(dt)
+  Thread.new(function(dt)        ! 자식
+    ...
+  end)
+end)
+! 부모 죽으면 자식도 죽음
+```
+
+### Timeout
+
+| 모드 | 동작 |
+|------|------|
+| `with` | 5초 yield 없음 → yield 코드 존재/도달 검사. 6초는 절대 한계 |
+| `as`, `;` | 5초 yield 없음 → 즉시 timeout |
+
+- yield 지점: `Wait`, `Until`, `cooldown`, `Time`, 메시지 송수신
+- timeout 시 해당 스레드만 죽음
+
+---
+
+## 13. 데이터 구조
+
+### List
+
+```lp
+Value nums = [1, 2, 3]                          ! ObjectValue (자동, 액터 간 공유)
+list nums = [1, 2, 3]                           ! Value 모드 (복사)
+Value nums<[int_s]> = [1, 2, 3]                 ! 타입 명시
+Value mixed<[[int_s], float, float]> = [[1,2,3], 1.0, 0.1]   ! 중첩
+```
+
+### 인덱스 (0부터)
+
+```lp
+nums[0]                          ! 첫 요소
+nums[3]                          ! 4번째
+nums[-1]                         ! 마지막
+nums[prev 1]                     ! nums[0]
+```
+
+### List 메소드
+
+```lp
+nums:Empty()                     ! 비었나
+nums:Turn()                      ! 순서 거꾸로
+nums:insert(값, 위치)            ! 위치 null이면 끝
+nums:remove(값)                  ! 그 값 삭제
+nums:Destroy(인덱스)             ! 그 인덱스 삭제
+nums:of(시작, 끝, 간격)          ! Python의 nums[start:stop:step]
+                                 ! null로 슬롯 생략
+```
+
+### 즉석 인스턴스 생성
+
+```lp
+Value states<[Instance_s]> = [-Idle-, -Move-]           ! Instance
+Value items = [.Sword., .Shield.]                        ! ObjectValue
+```
+
+### Map (Luau 스타일)
+
+```lp
+Value m = {
+  name = "철수",
+  hp = 100,
+  mp = 50
+}
+
+m.name / m["name"]               ! 접근
+m.hp = 90                        ! 수정
+
+Value m<map<string, int>> = {hp = 100}   ! 타입 명시
+```
+
+### Tree
+
+```lp
+Value types = Tree.new({
+  -Number- = {-int-, -float-},
+  -Text- = {-string-, -markdown-}
+})
+
+types.Number == types.int        ! true (부모-자식)
+types.Number == types.float      ! true
+types.int == types.float         ! false (형제)
+types.int == types.Number        ! true (대칭)
+
+! 깊은 계층도 가능
+Value t = Tree.new({
+  -Animal- = {
+    -Mammal- = {-Dog-, -Cat-}
+  }
+})
+t.Dog == t.Animal                ! true (조상-후손)
+```
+
+### Instance
+
+```lp
+Instance A<Instance>             ! 기본값 true
+Instance B<Instance> = [1, 3, 5] ! 값도 가질 수 있음
+
+A == B                           ! false (다른 정체성)
+A == [1, 3, 5]                   ! false (값 비교 안 함)
+
+! enum, 분류, Type 값 등에 사용
+```
+
+---
+
+## 14. 출력 / 입력
+
+```lp
+Output.log(값)                   ! 굵은 파랑 (디버그)
+Output.warn(값)                  ! 굵은 주황
+Output.error(값)                 ! 굵은 빨강
+
+Input()                          ! 콘솔 입력 (Python의 input과 같음)
+```
+
+### `__log` 특수 변수
+
+```lp
+Value __log = "메시지"           ! 줄 0 (재설정 기준점)
+log()                            ! "메시지(1)" — 줄 1
+log()                            ! "메시지(2)"
+log() log()                      ! "메시지(3-1)" "메시지(3-2)" (같은 줄)
+
+Value __log = "새 메시지"        ! 재설정, 다시 줄 0
+log()                            ! "새 메시지(1)"
+```
+
+- `log()` = `Output.log(`{__log}({카운트})`)` 자동
+- 카운트는 재설정 후 상대 줄 번호
+- `__log`만 특수, 다른 `__이름`은 일반 변수
+
+---
+
+## 15. 동적 코드 실행
+
+```lp
+CanToCode()                      ! 현재 파일에서 ToCode 활성화
+ToCode("스크립트")               ! 동적 실행
+```
+
+### 반환
+
+| 결과 | 반환 |
+|------|------|
+| 실행 실패 (구문 에러, 런타임 에러) | `nan` |
+| 성공, 반환값 없음 | `null` |
+| 성공, 반환값 있음 | `result(반환값)` |
+
+```lp
+! 반환하려면 return 명시 필수
+ToCode("100 + 200")              ! nan (return 없음 → 에러)
+ToCode("return 100 + 200")       ! result(300)
+ToCode("Output.log('hi')")       ! null
+```
+
+### 사용 예
+
+```lp
+Value r = ToCode("스크립트")
+
+if not r:IsNan() ;
+  Output.error("실행 실패")
+eif not r ;
+  Output.log("반환값 없음")
+else ;
+  Output.log(`결과: {r}`)
+end
+```
+
+---
+
+## 16. 진법 표기
+
+```lp
+_2_1010                          ! 2진법 = 10
+_8_17                            ! 8진법 = 15
+_16_FF                           ! 16진법 = 255
+```
+
+2 / 8 / 16진법만 지원.
+
+---
+
+## 17. 핵심 표준 함수 / 모듈
+
+### Output
+
+- `Output.log(값)`
+- `Output.warn(값)`
+- `Output.error(값)`
+- `log()` (특수)
+
+### Input
+
+- `Input()` 콘솔 입력
+
+### Type
+
+- `Type.Get(값)`
+- `Type.Is(값, 타입)` / `Type.Is(값)`
+- `Type.IsNan(값)`
+- `Type.ToString(값)`
+- `Type.ToNumber(값)`
+- 자동 메소드: `값:Type()`, `값:ToString()`, `값:ToNumber()`, `값:IsNan()`
+
+### Thread
+
+- `Thread.new(함수)`
+- `Thread.delay(초, 함수)`
+- `Thread.repeat(간격, 함수)`
+- `Thread.at(시각, 함수)`
+- `Thread.Get()` (현재 스레드)
+- 메소드: `t:Wait()`, `t:result()`, `t:is_running()`, `t:is_finished()`
+
+### os
+
+- `os.time()` (앱 경과)
+- `os.date.year/month/day/clock/minute/second`
+
+### Tree
+
+- `Tree.new(구조)`
+
+### 동적 실행
+
+- `CanToCode()`
+- `ToCode(문자열)`
+
+### 흐름 제어 함수
+
+- `Wait(초)`
+- `Until(조건)`
+- `when()` / `when(N)`
+- `break()` / `break(N)`
+- `continue()` / `continue(N)`
+- `IsReturn(N)`
+- `uncertain(리스트)` (랜덤 순회)
+- `prev x` (x - 1)
+
+---
+
+## 18. 미해결 / 추후 결정 (hijk 이후로)
+
+- **액터 정의 문법** (lmnop 핵심, 다음 버전)
+- **모듈 / import** 시스템
+- **에러 처리** (try/catch 등)
+- **표준 라이브러리 확장** (math, string, util)
+- **게임 API** (3D 객체, 입력, 렌더링)
+- **비교 연산자 오버로딩** (`__eq`, `__lt` 등)
+- **한 줄 여러 문장 구분 규칙**
+- **`ObjectValue` 동시 접근 세부 정책**
+- **반환 타입 표기 일관성** (함수 변수 `<function>`와 `end<반환타입>`의 결합)
+
+---
+
+## 부록 A: 키워드 목록
+
+### 제어
+`if`, `eif`, `else`, `while`, `for`, `repeat`, `cooldown`, `Time`, `end`, `in`, `connect`
+
+### 변수
+`Value`, `Global`, `Instance`, `ObjectValue`, `list`, `map`, `with`, `as`
+
+### 함수
+`function`, `function_T`, `defive`, `return`, `Nreturn`
+
+### 흐름
+`break`, `continue`, `when`, `prev`, `not`, `and`, `or`
+
+### 값
+`true`, `false`, `null`, `nan`
+
+### 모드
+`;~~`, `as~~`, `with~~`
+
+---
+
+## 부록 B: lmnop 디자인 매핑
+
+| lmnop | 의미 | 비교 (Luau) |
+|-------|------|-------------|
+| `_` 접미사 | nullable | `?` |
+| `/` | 유니온 | `\|` |
+| `_s` | 가변 (여러 값) | `...` |
+| `__s` | 가변 + nullable | — |
+| `<>` | nan 타입 | — |
+| `<_>` | null 타입 | `nil` |
+| `defive` | 람다 | `function`/익명 |
+| `function_T` | 제너릭 | `function<T>` |
+| `-name-` | Instance 즉석 생성 | — |
+| `.name.` | ObjectValue 즉석 | `Instance.new()` |
+| `:` | 메소드 호출 | `:` 동일 |
+| `.` | 필드 접근 | `.` 동일 |
+
+---
+
+## 부록 C: 작은 예시 모음
+
+### Hello World
+```lp
+Output.log("Hello, lmnop!")
+```
+
+### 함수
+```lp
+/! 두 숫자 더하기 !/
+Value add<function> = function(a<int>, b<int>)
+  return a + b
+end<int>
+
+Output.log(add(3, 5))
+```
+
+### 반복
+```lp
+Value enemies = [-Goblin-, -Orc-, -Dragon-]
+
+for e in enemies connect i ;
+  Output.log(`{i}: {e}`)
+end
+```
+
+### 스레드
+```lp
+Value t = Thread.new(function(dt)
+  for 10 ;
+    Output.log(`tick {when()}`)
+    Wait(1)
+  end
+  return "완료"
+end)
+
+Output.log(t:result())
+```
+
+### 타입 트리
+```lp
+Value types = Tree.new({
+  -Enemy- = {
+    -Melee- = {-Goblin-, -Orc-},
+    -Boss-
+  }
+})
+
+Value g = types.Goblin
+if g == types.Enemy ;
+  Output.log("적이다")
+end
+```
+
+### 마크다운 + 보간
+```lp
+Value player = {
+  name = "철수",
+  hp = 80,
+  max_hp = 100
+}
+
+Output.log(`<red>**{player.name}**</red> HP: {player.hp}/{player.max_hp}`)
+```
+
+---
+
+**hijk 버전 (lmnop v0.1) — 끝**
+
+> 다음 버전에서: 액터, 모듈, 에러 처리, 게임 API 추가 예정
+````
+
+## Error Script
+
+> DSL 언어
+
+```txt
+🌟 언어 이름: ErrScript (에러스크립트)
+이름 뜻:
+error/^/ 같은 명령어가 기본 시작이라 ‘에러’를 포함해 직관적이면서도 독특한 느낌을 줌.
+‘Script’는 스크립트 언어임을 나타냄.
+
+📚 ErrScript 문법 정리
+1. 명령어 시작
+모든 명령어는 아래 중 하나로 시작
+
+error/^/ (단일 명령어)
+
+error/+ (두 개 명령어 동시 실행)
+
+error/* (다중 명령어 실행, 최대 3개)
+
+event/^/ (이벤트 명령어)
+
+2. 게체(대상) 지정
+대상 게체 속성명은 대문자 시작 CamelCase 스타일
+
+대상이 여러 개일 수 있을 때는 대괄호 [ ] 안에 "특정 조건"을 넣음
+
+예: [“all”] (전체), [“명에의 랭킹”], [“BadNPC”]
+
+대괄호 안 문자열은 큰따옴표 " "로 감싸야 함
+
+특정 개체 이름은 따옴표 없이 직접 작성 (예: golem)
+
+3. 명령어 및 옵션 구분
+옵션 실행형: 세미콜론 ;
+
+실행 코드형: 점 .
+
+지정형: 대괄호 [ ]
+
+4. 기본 실행 옵션 (Default Option)
+명령어마다 기본 실행 옵션이 있으며, 옵션 미작성 시 자동 적용
+
+예:
+
+.stop 기본 옵션은 Position → 옵션 생략 가능
+
+.heal 기본 옵션은 Amount (치유량) → 숫자만 적으면 힐량으로 처리
+
+5. 옵션 표기
+옵션 첫 글자는 반드시 대문자
+
+옵션과 명령어 구분자는 반드시 지켜야 함 (; 또는 .)
+
+6. 변수 선언 및 사용
+변수 선언은 /^local 변수명/ 으로 함
+
+변수 사용 시 변수명 앞뒤를 #로 감싸서 구분 (#변수명#)
+
+매개변수는 명령어 시작 전에 (매개변수) 형태로 작성
+
+7. 복합 명령어 작성
+여러 명령어는 error/+, error/* 로 구분해 실행
+
+최대 3개 명령어까지 가능
+
+한 개 명령어일 때는 error/^/ 사용
+
+8. 기타 문법
+명령어는 모두 소문자로 작성 (실행 코드만)
+
+명령어 옵션은 대소문자 엄격 구분
+
+end 문은 ' 로 생략 가능
+
+;는 옵션 실행형에서만 사용, 필요 없으면 생략 가능
+
+큰따옴표 " "는 지정형 [ ] 안 특정 집합을 가리킬 때만 사용
+
+🛠️ 예시 코드
+plaintext
+복사
+편집
+error/^/GoodNPC.heal[engel];10          # engel 힐러가 10만큼 치료  
+error/+Player.if position;Y<=45 then.takedamage;5["all"]  # Y좌표 45 이하 플레이어 전원에게 5 데미지  
+error/*BadNPC.stop[golem];             # golam이 위치에서 멈춤 (Position 옵션 기본)  
+event/^/Touched/^(hit),/^local humanoid/  # 이벤트 핸들러 예시
+```
+
+### 어디서 사용되냐?
+
+````markdown
+
+---
+
+🎮 시크릿 어드벤처: 신비한 섬들
+
+게임 기획 요약 문서
+
+
+---
+
+1. 게임 개요
+
+
+
+제목: 시크릿 어드벤처: 신비한 섬들
+
+장르: 탐험 + 아이템 수집 + 보스 레이드 (PVE)
+
+플랫폼: Roblox
+
+대상 연령: 9세 이상
+
+특징:
+
+해금 가능한 섬들
+
+아이템 조합 시스템
+
+바다 신전 및 보스 전투
+
+유물 기반 진행 방식
+
+협력형 PVE, PVP 없음
+
+
+---
+
+2. 섬 구조
+
+
+
+총 15개 섬
+
+등급 구분:
+
+초급
+
+중급
+
+고급
+
+최상급
+
+시크릿
+
+각 섬은:
+
+고유 아이템 생성기 보유
+
+고유 해금 조건
+
+등급이 높아질수록 강력한 보상 제공
+
+
+---
+
+3. 아이템 & 무기 시스템
+
+
+
+⏱ 생성기 쿨타임:
+
+초급: 45초
+
+중급: 60초
+
+고급: 90초
+
+최상급: 120초
+
+시크릿: 250초
+
+🔧 무기 종류:
+
+칼
+
+마법
+
+펫
+
+소비 아이템
+
+각 아이템마다 생성기가 다름(한 섬에는 두개의 아이템 생성기가 있고 아이템 생성기 속성은 랜덤)
+
+🔁 조합 방식:
+
+초급: 완제품 아이템 제공
+
+중급: 부품 조합하여 제작
+
+고급: 재료 강화
+
+최상급: 제작 + 강력한 장비 강화
+
+시크릿: 초희귀 아이템 드롭
+
+
+---
+
+초급섬
+
+1번째 섬:칼 해금
+
+2번째섬:마법 해금
+
+3번째섬:팻 해금
+
+4번짜섬:소모형 무기 해금
+
+
+---
+
+4. 섬 해금 조건
+
+
+
+초급섬:
+
+칼,마법,팻,소모형 무기 모두 해금
+
+고급 섬:
+
+조합 재료 5개
+
+보스 2마리 처치
+
+희귀 등급 이상 장비 3종 (칼, 마법 등)
+
+지도 아이템으로 발견
+
+최상급 섬:
+
+유물 수집
+
+퀘스트 완료
+
+특별 업적 달성
+
+
+---
+
+5. 보상 & 경제 시스템
+
+
+
+🔄거래 시스템(한정판 팻은 거래 불가)
+
+💰 상점 시스템 없음
+
+🔄 보상 획득처:
+
+일일 로그인
+
+보스 처치
+
+섬 해금
+
+퀘스트 완료
+
+기간 한정 이벤트
+
+
+---
+
+6. 캐릭터 & 마법 이동기 시스템
+
+
+
+캐릭터:
+
+레벨업
+
+장비 슬롯
+
+마법 이동기:
+
+마법으로 이동
+
+예:물 워를 걷기,마법진 타고 날기
+
+색깔 봐꾸기
+
+이동기 진화
+
+예:순간이동->그림자 순간이동->어둠 의 순간이동
+
+
+---
+
+7. 컷신 & 시네마틱
+
+
+
+🌊 바다 신전 해금: 바닷속 바닥이 열리며 숨겨진 신전 등장 초희귀 아이템,여러가지 능력의 보스 담험의 끝,맨 마지막 보스를 잡으면 숨겨진 영상 시청 가능(우리가 전에 만든었던거)
+
+🏯 신전 입장: 최종 보스 등장 컷신
+
+🗺 섬 발견: 극적인 공개 및 알림
+
+
+---
+
+🎆이벤트섬
+
+이벤트 할때미다 열리는 섬
+
+하루30분 제한
+
+
+---
+
+🟰중복 아이템 속성 불가
+
+대신 20분 동안 같은 속성 아이템을 가질수 있는  아이템 있음.
+
+
+---
+
+🌐게임 내 채팅
+
+게임 왼쪽에 이 게임 전용 채팅창
+
+
+---
+
+☢️게임 핵
+
+핵 유저 신고 받기
+
+핵 신고받은 사람은 부작자가 판별해 핵인지 아닌지 결정
+
+
+---
+
+🏝 모든섬을 해금했을때
+
+무기 조합(40%로 실패)
+
+5번 연속으로 실패시 실패확율10%로 5분동안 낮춰주는 아이템
+
+
+---
+
+🏆랭킹 시스템
+
+게임 내 특별 리더보드
+
+만약 어떤 사람이 어떤 사람을 역전하면 서버 공지
+
+예:A님이B님을 역전하였습니다
+
+역전 보상:역전의 아이템 하나 랜덤하게(역전의 아이템은 여러개)
+
+50번 이상 역전시
+
+전설의 랭킹
+
+50000번 이상 역전시
+
+명에에 랭킹 칭호
+
+명에에 랭킹 칭호를 받은사람들끼리 역전하면 전서버 공지
+
+
+---
+
+마법 이동기 스킨
+
+무과금유저 불리X
+
+
+---
+
+2번째 섬
+
+아이템 생성기로 아이템을 얻고있을따 갑자기 골램 등장
+
+골램을 잡았을따:
+
+축하합니다 첫 보스를 잡으셨습니다!
+
+
+---
+
+🛖유물 발굴
+
+장비 강화에 필요
+
+매 시즌 숨겨진 섬 발견에 필요(필요 유물은 랜덤)
+
+🗺지도
+
+모든 섬의 위치(시크릿섬같은 숨겨진섬 제웨)20분간 표시
+
+다음 시즌,이벤트섬 예고에 쓰임
+
+예:다음 이벤트섬 위치에 뭔가가 깜빡임
+
+서버 전용 채팅창에 뭔가가 움직인다
+
+
+---
+
+시즌:
+
+시즌마다 숨겨진 섬
+
+숨겨진 섬 안에 있는 아이템500개 선착순
+
+아이템을 얻으면 칭호 줌
+
+
+---
+
+✅️팀 시스템
+
+팀은 단 하나의 팀만 소속가능
+
+자유협력 가능
+
+팀 시스템 사용 방식:친구들과 같이 게임할때
+
+
+---
+
+기타 사항:
+
+섬마다 다른 특징 있음
+
+섬 하나에 많은 컨텐츠
+
+❌ PVP 없음
+
+🧪 섬 진행은 아이템 및 업적 기반
+
+깜작 놀래키는 요소 많음
+
+AI조롱 시스템
+
+예:보스를 이겼을때 "난 시작도 아니야 좀더 키우고 다른보스 잡아"
+
+보스 잡았을따 리플레이
+
+리플레이는 죽이기 진전 모습
+
+칭호 시스템
+
+어떤 조건을 달성하면 칭호 줌
+
+각 칭호마다 혜택 있음
+
+예:명에에 랭킹 칭호:점수+15%
+
+글로벌 진출을위해 영어로
+
+와 이걸 내가 했다고?라는 말이 나오게 유도
+
+이게임 안하면 유행 못따라 가는거 라는 인식 주기
+
+
+---
+
+
+---
+
+🎮 시크릿 어드벤처: 신비한 섬들
+
+게임 기획 요약 문서
+
+
+---
+
+1. 게임 개요
+
+
+
+제목: 시크릿 어드벤처: 신비한 섬들
+
+장르: 탐험 + 아이템 수집 + 보스 레이드 (PVE)
+
+플랫폼: Roblox
+
+대상 연령: 9세 이상
+
+특징:
+
+해금 가능한 섬들
+
+아이템 조합 시스템
+
+바다 신전 및 보스 전투
+
+유물 기반 진행 방식
+
+협력형 PVE, PVP 없음
+
+
+---
+
+2. 섬 구조
+
+
+
+총 15개 섬
+
+등급 구분:
+
+초급
+
+중급
+
+고급
+
+최상급
+
+시크릿
+
+각 섬은:
+
+고유 아이템 생성기 보유
+
+고유 해금 조건
+
+등급이 높아질수록 강력한 보상 제공
+
+
+---
+
+3. 아이템 & 무기 시스템
+
+
+
+⏱ 생성기 쿨타임:
+
+초급: 45초
+
+중급: 60초
+
+고급: 90초
+
+최상급: 120초
+
+시크릿: 250초
+
+🔧 무기 종류:
+
+칼
+
+마법
+
+펫
+
+소비 아이템
+
+각 아이템마다 생성기가 다름(한 섬에는 두개의 아이템 생성기가 있고 아이템 생성기 속성은 랜덤)
+
+🔁 조합 방식:
+
+초급: 완제품 아이템 제공
+
+중급: 부품 조합하여 제작
+
+고급: 재료 강화
+
+최상급: 제작 + 강력한 장비 강화
+
+시크릿: 초희귀 아이템 드롭
+
+
+---
+
+초급섬
+
+1번째 섬:칼 해금
+
+2번째섬:마법 해금
+
+3번째섬:팻 해금
+
+4번짜섬:소모형 무기 해금
+
+
+---
+
+4. 섬 해금 조건
+
+
+
+초급섬:
+
+칼,마법,팻,소모형 무기 모두 해금
+
+고급 섬:
+
+조합 재료 5개
+
+보스 2마리 처치
+
+희귀 등급 이상 장비 3종 (칼, 마법 등)
+
+지도 아이템으로 발견
+
+최상급 섬:
+
+유물 수집
+
+퀘스트 완료
+
+특별 업적 달성
+
+
+---
+
+5. 보상 & 경제 시스템
+
+
+
+🔄거래 시스템(한정판 팻은 거래 불가)
+
+💰 상점 시스템 없음
+
+🔄 보상 획득처:
+
+일일 로그인
+
+보스 처치
+
+섬 해금
+
+퀘스트 완료
+
+기간 한정 이벤트
+
+
+---
+
+6. 캐릭터 & 마법 이동기 시스템
+
+
+
+캐릭터:
+
+레벨업
+
+장비 슬롯
+
+마법 이동기:
+
+마법으로 이동
+
+예:물 워를 걷기,마법진 타고 날기
+
+색깔 봐꾸기
+
+이동기 진화
+
+예:순간이동->그림자 순간이동->어둠 의 순간이동
+
+
+---
+
+7. 컷신 & 시네마틱
+
+
+
+🌊 바다 신전 해금: 바닷속 바닥이 열리며 숨겨진 신전 등장 초희귀 아이템,여러가지 능력의 보스 담험의 끝,맨 마지막 보스를 잡으면 숨겨진 영상 시청 가능(우리가 전에 만든었던거)
+
+🏯 신전 입장: 최종 보스 등장 컷신
+
+🗺 섬 발견: 극적인 공개 및 알림
+
+
+---
+
+🎆이벤트섬
+
+이벤트 할때미다 열리는 섬
+
+하루30분 제한
+
+
+---
+
+🟰중복 아이템 속성 불가
+
+대신 20분 동안 같은 속성 아이템을 가질수 있는  아이템 있음.
+
+
+---
+
+🌐게임 내 채팅
+
+게임 왼쪽에 이 게임 전용 채팅창
+
+
+---
+
+☢️게임 핵
+
+핵 유저 신고 받기
+
+핵 신고받은 사람은 부작자가 판별해 핵인지 아닌지 결정
+
+
+---
+
+🏝 모든섬을 해금했을때
+
+무기 조합(40%로 실패)
+
+5번 연속으로 실패시 실패확율10%로 5분동안 낮춰주는 아이템
+
+모든 컨텐츠 끝넨 사람만,콘텐츠가 없는 사람들을 위해
+
+
+---
+
+🏆랭킹 시스템
+
+게임 내 특별 리더보드
+
+만약 어떤 사람이 어떤 사람을 역전하면 서버 공지
+
+예:A님이B님을 역전하였습니다
+
+역전 보상:역전의 아이템 하나 랜덤하게(역전의 아이템은 여러개)
+
+50번 이상 역전시
+
+전설의 랭킹
+
+50000번 이상 역전시
+
+명에에 랭킹 칭호
+
+명에에 랭킹 칭호를 받은사람들끼리 역전하면 전서버 공지
+
+
+---
+
+마법 이동기 스킨
+
+무과금유저 불리X
+
+
+---
+
+2번째 섬
+
+아이템 생성기로 아이템을 얻고있을따 갑자기 골램 등장
+
+골램을 잡았을따:
+
+축하합니다 첫 보스를 잡으셨습니다!
+
+
+---
+
+🛖유물 발굴
+
+장비 강화에 필요
+
+매 시즌 숨겨진 섬 발견에 필요(필요 유물은 랜덤)
+
+🗺지도
+
+모든 섬의 위치(시크릿섬같은 숨겨진섬 제웨)20분간 표시
+
+다음 시즌,이벤트섬 예고에 쓰임
+
+예:다음 이벤트섬 위치에 뭔가가 깜빡임
+
+
+---
+
+시즌:
+
+시즌마다 숨겨진 섬
+
+숨겨진 섬 안에 있는 아이템500개 선착순
+
+용도:컨덴츠가 다 끝난 사람을 위해 그리고 빨리 이벤트가 끝나면 이벤트가 끝나고 할게 없어지는까 몇개월 동안 고갈 않되게 함 그리고 속도를 늦추기 위해 보스같은건2~3번 시도하게 하기,난이도말고 양으로 오래걸리게 하기
+
+아이템을 얻으면 칭호 줌
+
+
+---
+
+✅️팀 시스템
+
+팀은 단 하나의 팀만 소속가능
+
+자유협력 가능
+
+팀 시스템 사용 방식:친구들과 같이 게임할때
+
+팀 저장 가능
+
+
+---
+
+⏱️단계 표시UI
+
+단계 알려주는 UI
+
+무슨 섬은지 까지도 나옴
+
+무슨 단계인지 나옴
+
+몇%인지도 나옴
+
+어덯게 해서 다음섬 해금해야 하는지도 나옴
+
+
+---
+
+기타 사항:
+
+섬마다 다른 특징 있음
+
+섬 하나에 많은 컨텐츠
+
+❌ PVP 없음
+
+🧪 섬 진행은 아이템 및 업적 기반
+
+깜작 놀래키는 요소 많음
+
+AI조롱 시스템
+
+예:보스를 이겼을때 "난 시작도 아니야 좀더 키우고 다른보스 잡아"
+
+보스 잡았을따 리플레이
+
+리플레이는 죽이기 진전 모습
+
+칭호 시스템
+
+어떤 조건을 달성하면 칭호 줌
+
+각 칭호마다 혜택 있음
+
+예:명에에 랭킹 칭호:점수+15%
+
+글로벌 진출을위해 영어로
+
+와 이걸 내가 했다고?라는 말이 나오게 유도
+
+
+---
+````
+
+여기서 Dev's Notebook 의 콘솔에서 쓰는 언어가 ErrScript, DSL 언어다.
+
+## lmnop def
+
+> lmnop hijk 전, lmnop 의 시작 컴파일러가 완성된 유일한 lmnop 계열 언어
+
+### 기획
+
+```txt
+주석
+
+! 한 줄 주석
+
+(! 여러 줄 주석 !)
+
+/인라인 주석/
+
+변수
+
+Value:이름 = 값
+
+Value:이름 = 값<int>     ! 타입: int, float, str, bool
+
+LocalValue:이름 = 값
+
+문자열
+
+"문자열"  '문자열'
+
+"a" :: "b"              ! 연결
+
+f"값은 {x}입니다"       ! f-string
+
+연산자
+
+! 산술
+
+/ % ^ ~(루트)
+
+! 비교
+
+== /= < > <= >=
+
+! 논리
+
+and or not(x)
+
+! 기타
+
+:: (문자열 연결)
+
+(파이프)
+
+조건문
+
+if 조건;
+
+코드
+
+eif 조건;
+
+코드
+
+else
+
+코드
+
+end
+
+반복문
+
+While 조건;
+
+코드
+
+end
+
+For 10;
+
+코드
+
+end
+
+For 1..10;
+
+코드
+
+end
+
+For 1..10..2;
+
+코드
+
+end
+
+For 리스트 in 값;
+
+코드
+
+end
+
+Repeat 조건;
+
+코드
+
+end
+
+Time 2,10;
+
+코드
+
+end
+
+Cooldown 조건;
+
+코드
+
+end
+
+반복문 공통:
+
+break
+
+When()
+
+When.left()
+
+When.time()
+
+When.start()
+
+When.end()
+
+When.step()
+
+반복문,if문,cooldown같은 ;을 쓰는데에는 ;뒤에 인라인변수 쓸수 있음
+
+! 인라인 변수
+
+For 10; i=1, j=2
+
+코드
+
+end
+
+함수
+
+Function:이름 = (매개변수)
+
+코드
+
+end
+
+Function:Get.이름 = (매개변수)
+
+Return 값
+
+UnReturn 값
+
+end
+
+이름:Play(인자)
+
+이름:Run
+
+이름:Stop
+
+Get.이름:Play(인자)
+
+Get.이름:SledPlay(인자)
+
+! 익명 함수
+
+((매개변수)
+
+코드
+
+)
+
+Get.((매개변수)
+
+Return 값
+
+)
+
+Always
+
+이름:Always.error(코드)
+
+이름:Always.start(코드)
+
+이름:Always.end(코드)
+
+이름:Always.stop(코드)
+
+이름:Always.return(코드)
+
+스레드
+
+Value:P = 이름:SledPlay(인자)
+
+Get.Sled(P):Stop
+
+Get.Sled(P):Play
+
+Get.Sled(P):UnError
+
+Get.Sled()
+
+Get.Sled().wait(초)
+
+Get.Sled().error
+
+Get.Sled().new(코드)
+
+에러
+
+Error("메세지")
+
+Error("메세지", false)
+
+리스트
+
+List:lis = [1, 2, 3]
+
+lis.add(값)
+
+lis.remove(인덱스)
+
+lis.get(인덱스)
+
+lis.len()
+
+lis.has(값)
+
+lis.clear()
+
+딕셔너리
+
+Dict:dic = {name: "aa", age: 20}
+
+dic.get("키")
+
+dic.set("키", 값)
+
+dic.has("키")
+
+dic.remove("키")
+
+dic.keys()
+
+Event / Maybe / Wait
+
+Event(조건)
+
+Maybe Event(조건) then 매개변수; 인라인변수
+
+코드
+
+end
+
+Maybe 조건;
+
+코드
+
+end
+
+Wait(조건)
+
+출력
+
+printer.Print("내용")
+
+printer.Print(f"값: {x}")
+
+printer.Clear
+
+상수
+
+Get.pi
+
+Get.e
+
+Get.null
+
+서비스
+
+import MathService
+
+MathService.sin(x)   MathService.cos(x)   MathService.tan(x)
+
+MathService.asin(x)  MathService.acos(x)  MathService.atan(x)
+
+MathService.log(x)   MathService.abs(x)
+
+MathService.floor(x) MathService.ceil(x)  MathService.round(x)
+
+MathService.max(x,y) MathService.min(x,y) MathService.random(x,y)
+
+import ValueService
+
+Event(ValueService.Change(변수))
+
+Event(ValueService.Change(변수, 값))
+
+import InputService
+
+Event(InputService.Input)
+
+import TimeService
+
+Event(TimeService.time)
+
+Event(TimeService.tick)
+
+break 범위
+
+! 반복문, 조건문, 스크립트 어디서든 사용 가능
+
+break
+```
+
+### 컴파일러
+
+컴파일러가 너무 길어 여기에 담기엔 어려워서 별도 파일 lmnop-def-compiler.md 에 담아놨다. 만약 직접 봐보고 싶으면 [lmnop-def-compiler.md](lmnop-def-compiler.md)에 가보면 된다.
+
+## zevra
+
+> 그냥 Room 이라는 SNS 앱에서 커스터마징 할때 쓰는 언어인데 Python 이랑 거이 동급이다.
+
+### 컴파일러
+
+```typescript
+import * as Line from './line.js';
+import * as Command from './command.js';
+import * as Account from './account.js';
+import * as Setting from './settings.js';
+
+// zevra: Room 커스터마이징 언어 (v0.1)
+// 파이프라인: tokenize(글자→토큰) → parse(토큰→AST) → evaluate(AST 실행)
+// 설계: "엄격한 JS" — 암묵적 형변환 없음, == 가 엄격, 조건은 boolean만.
+// 사용자에게 보이는 메시지(에러 등)는 모두 영어.
+
+// ── Token ─────────────────────────────────────────────────────────────────────
+
+const enum T {
+  VAR, CON, KEYWORD, IDENTIFIER,
+  NUMBER, STRING, TEMPLATE, BOOLEAN, NULL,
+  OPERATOR, EOF,
+}
+
+type Token = { type: T; value: any; line: number; col: number };
+
+class ZevraError extends Error {}                       // 언어/실행 에러 (catch 가능)
+class ZevraThrow { constructor(public value: any) {} }  // throw 문으로 던진 값
+class ReturnSignal { constructor(public value: any) {} }
+class BreakSignal {}
+class ContinueSignal {}
+
+function err(message: string): never { throw new ZevraError(message); }
+function isBasePrefixedNumber(ch: string, next: string, prefix: string): boolean { return ch === "0" && next === prefix; }
+
+// ── Tokenizer ─────────────────────────────────────────────────────────────────
+
+const KEYWORDS = new Set([
+  'func', 'return', 'if', 'else', 'switch', 'case', 'default',
+  'while', 'for', 'in', 'break', 'continue',
+  'class', 'extends', 'super', 'self', 'new', 'static',
+  'try', 'catch', 'finally', 'throw', 'when', 'as',
+  'import', 'export', 'from', 'elevator', 'take',
+]);
+
+// 길이가 긴 것부터 (그래야 ** 가 * 보다 먼저 매칭됨)
+const OPERATORS = [
+  '...', '==', '!=', '<=', '>=', '&&', '||',
+  '+=', '-=', '*=', '/=', '%=', '++', '--', '?.', '**',
+  '+', '-', '*', '/', '%', '<', '>', '=', '!', '?', ':',
+  '.', ',', ';', '(', ')', '{', '}', '[', ']',
+];
+
+function tokenize(code: string): Token[] {
+  const tokens: Token[] = [];
+  let i = 0;
+
+  // 인덱스 → {line, col} 변환. 각 줄이 시작하는 인덱스를 미리 모아두고 거기서 계산한다.
+  const lineStarts = [0];
+  for (let k = 0; k < code.length; k++) if (code[k] === '\n') lineStarts.push(k + 1);
+  const posAt = (idx: number): { line: number; col: number } => {
+    let line = 1;
+    for (let k = 1; k < lineStarts.length; k++) { if (lineStarts[k] <= idx) line = k + 1; else break; }
+    return { line, col: idx - lineStarts[line - 1] + 1 };
+  };
+  // start = 토큰이 시작한 인덱스. 거기서 line/col 을 구해 토큰에 붙인다.
+  const tok = (type: T, value: any, start: number): void => {
+    tokens.push({ type, value, ...posAt(start) });
+  };
+
+  // code[i] 부터 정규식에 맞는 글자를 연달아 모은다. i 를 전진시키고 모은 문자열 반환.
+  // 진법(2/8/10/16)은 허용 글자 정규식만 다르므로 이걸로 공통화한다.
+  const readDigits = (re: RegExp): string => {
+    let v = '';
+    while (i < code.length && re.test(code[i])) { v += code[i]; i++; }
+    return v;
+  };
+
+  // 숫자 하나를 읽어 NUMBER 토큰으로 넣는다. re=허용 글자, base=진수(10이면 소수점도 허용).
+  // 2/8/10/16진수가 정규식·진수만 다르고 나머진 같아서 여기로 공통화한다.
+  const pushNumber = (re: RegExp, base: number, start: number): void => {
+    let value = readDigits(re);
+    if (base === 10 && code[i] === '.' && /[0-9]/.test(code[i + 1])) {
+      value += code[i]; i++;                 // 소수점
+      value += readDigits(re);
+    }
+    if (value === '') { const p = posAt(start); err(`Invalid number literal (line ${p.line}, col ${p.col})`); }
+    tok(T.NUMBER, base === 10 ? Number(value) : parseInt(value, base), start);
+  };
+
+  while (i < code.length) {
+    const ch = code[i];
+    const next = code[i + 1];
+
+    if (/\s/.test(ch)) { i++; continue; }
+
+    // 한 줄 주석 (버린다)
+    if (ch === '/' && next === '/') {
+      i += 2;
+      while (i < code.length && code[i] !== '\n') i++;
+      continue;
+    }
+
+    // 여러 줄 주석 (버린다)
+    if (ch === '/' && next === '*') {
+      i += 2;
+      while (i < code.length && !(code[i] === '*' && code[i + 1] === '/')) i++;
+      if (i >= code.length) err('Unterminated block comment.');
+      i += 2;
+      continue;
+    }
+    
+    // 문자열 / 템플릿 ( "..."  '...' = 일반 문자열,  `...` = 보간 템플릿 )
+    if (ch === '"' || ch === '«' || ch === "'" || ch === '`') {
+      const start = i;
+      const quote = ch === "«" ? "»" : ch;
+      i++;
+      let value = '';
+      while (i < code.length && code[i] !== quote) {
+        if (code[i] === '\\') {
+          i++;
+          const e = code[i];
+          if (e === undefined) err('Unterminated string escape.');
+          value += e === 'n' ? '\n' : e === 't' ? '\t' : e === 'r' ? '\r' : e;
+          i++;
+          continue;
+        }
+        value += code[i];
+        i++;
+      }
+      if (i >= code.length) { const p = posAt(start); err(`Unterminated string (line ${p.line}, col ${p.col})`); }
+      i++;
+      // 백틱은 보간되는 템플릿, 큰따옴표는 일반 문자열
+      tok(quote === '`' ? T.TEMPLATE : T.STRING, value, start);
+      continue;
+    }
+
+    // 숫자 (10진수 + 0b 2진, 0o 8진, 0x 16진)
+    if (/[0-9]/.test(ch)) {
+      const start = i;
+      if (isBasePrefixedNumber(ch, next, "b"))      { i += 2; pushNumber(/[01]/, 2, start); }
+      else if (isBasePrefixedNumber(ch, next, "o")) { i += 2; pushNumber(/[0-7]/, 8, start); }
+      else if (isBasePrefixedNumber(ch, next, "x")) { i += 2; pushNumber(/[0-9a-fA-F]/, 16, start); }
+      else                                            pushNumber(/[0-9]/, 10, start);
+      continue;
+    }
+
+    // 식별자 / 키워드 / 리터럴
+    if (/[a-zA-Z_]/.test(ch)) {
+      const start = i;
+      let value = '';
+      while (i < code.length && /[a-zA-Z0-9_]/.test(code[i])) { value += code[i]; i++; }
+      if (value === 'true' || value === 'false') tok(T.BOOLEAN, value === 'true', start);
+      else if (value === 'null') tok(T.NULL, null, start);
+      else if (value === 'var') tok(T.VAR, value, start);
+      else if (value === 'con') tok(T.CON, value, start);
+      else if (KEYWORDS.has(value)) tok(T.KEYWORD, value, start);
+      else tok(T.IDENTIFIER, value, start);
+      continue;
+    }
+
+    // 연산자/구두점
+    const op = OPERATORS.find(o => code.startsWith(o, i));
+    if (op) { tok(T.OPERATOR, op, i); i += op.length; continue; }
+
+    const p = posAt(i);
+    err(`Unexpected character: ${ch} (line ${p.line}, col ${p.col})`);
+  }
+
+  tok(T.EOF, null, i);
+  return tokens;
+}
+
+// ── Parser ────────────────────────────────────────────────────────────────────
+// 토큰 커서를 공유하는 재귀 하강 파서.
+
+type Cursor = { tokens: Token[]; pos: number };
+
+const peek = (c: Cursor): Token => c.tokens[c.pos];
+const advance = (c: Cursor): Token => c.tokens[c.pos++];
+const isEOF = (c: Cursor): boolean => peek(c).type === T.EOF;
+
+function isOp(c: Cursor, v: string): boolean {
+  const t = peek(c);
+  return t.type === T.OPERATOR && t.value === v;
+}
+function isKw(c: Cursor, v: string): boolean {
+  const t = peek(c);
+  return t.type === T.KEYWORD && t.value === v;
+}
+// 파서 에러 — 현재 토큰의 line/col 을 메시지에 붙여 던진다.
+function perr(c: Cursor, msg: string): never {
+  const t = peek(c);
+  return err(`${msg} (line ${t.line}, col ${t.col})`);
+}
+function eatOp(c: Cursor, v: string): void {
+  if (!isOp(c, v)) perr(c, `Expected '${v}'`);
+  advance(c);
+}
+function eatKw(c: Cursor, v: string): void {
+  if (!isKw(c, v)) perr(c, `Expected '${v}'`);
+  advance(c);
+}
+function eatIdent(c: Cursor): string {
+  const t = peek(c);
+  if (t.type !== T.IDENTIFIER) perr(c, 'Expected identifier');
+  advance(c);
+  return t.value;
+}
+
+function parse(tokens: Token[]): any {
+  const c: Cursor = { tokens, pos: 0 };
+  const body: any[] = [];
+  while (!isEOF(c)) body.push(parseStatement(c));
+  return { k: 'program', body };
+}
+
+function parseStatement(c: Cursor): any {
+  const t = peek(c);
+
+  if (t.type === T.VAR || t.type === T.CON) return parseVarDecl(c);
+
+  if (t.type === T.KEYWORD) {
+    switch (t.value) {
+      case 'if': return parseIf(c);
+      case 'while': return parseWhile(c);
+      case 'for': return parseFor(c);
+      case 'switch': return parseSwitch(c);
+      case 'elevator': return parseElevator(c);
+      case 'class': return parseClass(c);
+      case 'when': return parseWhen(c);
+      case 'try': return parseTry(c);
+      case 'return': { advance(c); const v = isOp(c, ';') ? null : parseExpression(c); eatOp(c, ';'); return { k: 'return', value: v }; }
+      case 'throw': { advance(c); const v = parseExpression(c); eatOp(c, ';'); return { k: 'throw', value: v }; }
+      case 'break': { advance(c); eatOp(c, ';'); return { k: 'break' }; }
+      case 'continue': { advance(c); eatOp(c, ';'); return { k: 'continue' }; }
+      case 'import': return parseImport(c);
+      case 'take': return parseTake(c);
+      case 'export': return parseExport(c);
+      case 'func':
+        // func name(...) {} = 선언. func(...) {} (이름 없음) 은 표현식으로 흘려보낸다.
+        if (c.tokens[c.pos + 1]?.type === T.IDENTIFIER) return parseFuncDecl(c);
+        break;
+    }
+  }
+
+  if (isOp(c, '{')) return parseBlock(c);
+
+  // 표현식 문장
+  const expr = parseExpression(c);
+  eatOp(c, ';');
+  return { k: 'exprStmt', expr };
+}
+
+function parseBlock(c: Cursor): any {
+  eatOp(c, '{');
+  const body: any[] = [];
+  while (!isOp(c, '}') && !isEOF(c)) body.push(parseStatement(c));
+  eatOp(c, '}');
+  return { k: 'block', body };
+}
+
+function parseVarDecl(c: Cursor): any {
+  const kind = advance(c).type === T.CON ? 'con' : 'var';
+  const name = eatIdent(c);
+  eatOp(c, '=');
+  const value = parseExpression(c);
+  eatOp(c, ';');
+  return { k: 'varDecl', kind, name, value };
+}
+
+function parseIf(c: Cursor): any {
+  eatKw(c, 'if');
+  eatOp(c, '(');
+  const test = parseExpression(c);
+  eatOp(c, ')');
+  const then = parseBlock(c);
+  let alt: any = null;
+  if (isKw(c, 'else')) {
+    advance(c);
+    alt = isKw(c, 'if') ? parseIf(c) : parseBlock(c);
+  }
+  return { k: 'if', test, then, alt };
+}
+
+function parseWhile(c: Cursor): any {
+  eatKw(c, 'while');
+  eatOp(c, '(');
+  const test = parseExpression(c);
+  eatOp(c, ')');
+  const body = parseBlock(c);
+  return { k: 'while', test, body };
+}
+
+function parseFor(c: Cursor): any {
+  eatKw(c, 'for');
+  eatOp(c, '(');
+  const declKind = advance(c).type === T.CON ? 'con' : 'var';   // 예시는 항상 var/con
+  const name = eatIdent(c);
+
+  if (isKw(c, 'in')) {
+    advance(c);
+    const iter = parseExpression(c);
+    eatOp(c, ')');
+    const body = parseBlock(c);
+    return { k: 'forIn', name, name2: null, iter, body };
+  }
+
+  // for (var a, b in iter)  — 두 번째 변수: 리스트면 index, 객체면 value
+  if (isOp(c, ',')) {
+    advance(c);
+    const name2 = eatIdent(c);
+    eatKw(c, 'in');
+    const iter = parseExpression(c);
+    eatOp(c, ')');
+    const body = parseBlock(c);
+    return { k: 'forIn', name, name2, iter, body };
+  }
+
+  eatOp(c, '=');
+  const init = parseExpression(c);
+  eatOp(c, ';');
+  const test = parseExpression(c);
+  eatOp(c, ';');
+  const update = parseExpression(c);
+  eatOp(c, ')');
+  const body = parseBlock(c);
+  return { k: 'for', declKind, name, init, test, update, body };
+}
+
+// func name(params) { } — 이름 있는 함수 선언
+function parseFuncDecl(c: Cursor): any {
+  eatKw(c, 'func');
+  const name = eatIdent(c);
+  const params = parseParams(c);
+  const body = parseBlock(c);
+  return { k: 'funcDecl', name, params, body };
+}
+
+// 문자열 리터럴 하나를 받아 그 값을 돌려준다 (import 의 모듈 이름용)
+function eatString(c: Cursor): string {
+  const t = peek(c);
+  if (t.type !== T.STRING) perr(c, 'Expected a module name string');
+  advance(c);
+  return t.value;
+}
+
+// take "packid" as name;  — 등록된 (로컬) 확장팩 전체를 모듈로 가져와 name 에 바인딩.
+// 없는 id 면 에러. (추후: 미설치 공유 확장팩이면 자동 설치)
+function parseTake(c: Cursor): any {
+  eatKw(c, 'take');
+  const source = eatString(c);
+  eatKw(c, 'as');
+  const name = eatIdent(c);
+  eatOp(c, ';');
+  return { k: 'take', source, name };
+}
+
+// import name from "math";       (맨 윗줄 export id="math" 인 파일 모듈)
+// import { a, b } from "math";   (named)
+// (팩 전체를 가져오려면 import 가 아니라 take 를 쓴다)
+function parseImport(c: Cursor): any {
+  eatKw(c, 'import');
+  if (isOp(c, '{')) {
+    advance(c);
+    const names: string[] = [];
+    while (!isOp(c, '}')) { names.push(eatIdent(c)); if (isOp(c, ',')) advance(c); }
+    eatOp(c, '}');
+    eatKw(c, 'from');
+    const source = eatString(c);
+    eatOp(c, ';');
+    return { k: 'import', kind: 'named', names, source };
+  }
+  const name = eatIdent(c);
+  eatKw(c, 'from');
+  const source = eatString(c);
+  eatOp(c, ';');
+  return { k: 'import', kind: 'namespace', name, source };
+}
+
+// export <선언>  (var/con/func/class) — 선언하면서 모듈 export 로도 표시
+// export id = "이름";  → 이 파일을 모듈로 선언 (맨 윗줄에만 의미 있음, extractModuleId 가 떼어냄)
+function parseExport(c: Cursor): any {
+  eatKw(c, 'export');
+  const t = peek(c);
+  if (t.type === T.IDENTIFIER && t.value === 'id') {   // export id = "..."
+    advance(c);
+    eatOp(c, '=');
+    const id = eatString(c);
+    eatOp(c, ';');
+    return { k: 'moduleId', id };
+  }
+  let decl: any;
+  if (t.type === T.VAR || t.type === T.CON) decl = parseVarDecl(c);
+  else if (isKw(c, 'func')) decl = parseFuncDecl(c);
+  else if (isKw(c, 'class')) decl = parseClass(c);
+  else return perr(c, 'export must be followed by id, var, con, func, or class');
+  return { k: 'export', decl };
+}
+
+// switch 와 elevator 는 문법이 같다 (다른 건 평가 때 fall-through 여부뿐). 파서 공유.
+function parseCases(c: Cursor, kw: string, k: string): any {
+  eatKw(c, kw);
+  eatOp(c, '(');
+  const disc = parseExpression(c);
+  eatOp(c, ')');
+  eatOp(c, '{');
+  const cases: any[] = [];
+  let def: any = null;
+  while (!isOp(c, '}') && !isEOF(c)) {
+    if (isKw(c, 'case')) {
+      advance(c);
+      const test = parseExpression(c);
+      eatOp(c, ':');
+      const body = parseBlock(c);
+      cases.push({ test, body });
+    } else if (isKw(c, 'default')) {
+      advance(c);
+      eatOp(c, ':');
+      def = parseBlock(c);
+    } else err("Expected 'case' or 'default'");
+  }
+  eatOp(c, '}');
+  return { k, disc, cases, def };
+}
+
+const parseSwitch = (c: Cursor): any => parseCases(c, 'switch', 'switch');
+const parseElevator = (c: Cursor): any => parseCases(c, 'elevator', 'elevator');
+
+function parseClass(c: Cursor): any {
+  eatKw(c, 'class');
+  const name = eatIdent(c);
+  let parent: string | null = null;
+  if (isKw(c, 'extends')) { advance(c); parent = eatIdent(c); }
+  eatOp(c, '{');
+  const methods: any[] = [];
+  while (!isOp(c, '}') && !isEOF(c)) {
+    let isStatic = false;
+    if (isKw(c, 'static')) { advance(c); isStatic = true; }
+    eatKw(c, 'func');
+    const mName = eatIdent(c);
+    const params = parseParams(c);
+    const body = parseBlock(c);
+    methods.push({ name: mName, params, body, isStatic });
+  }
+  eatOp(c, '}');
+  return { k: 'class', name, parent, methods };
+}
+
+function parseWhen(c: Cursor): any {
+  eatKw(c, 'when');
+  eatOp(c, '(');
+  const event = parseExpression(c);
+  eatOp(c, ')');
+  // when ('evt') as (a, b) { }  — emit 가 넘긴 값을 순서대로 받는다 (as 없으면 안 받음)
+  let params: any[] = [];
+  if (isKw(c, 'as')) { advance(c); params = parseParams(c); }
+  const body = parseBlock(c);
+  return { k: 'when', event, params, body };
+}
+
+function parseTry(c: Cursor): any {
+  eatKw(c, 'try');
+  const block = parseBlock(c);
+  let param: string | null = null;
+  let handler: any = null;
+  let final: any = null;
+  if (isKw(c, 'catch')) {
+    advance(c);
+    // catch as (e) { }  — 에러 값을 받는다 (as 없으면 안 받음: catch { })
+    if (isKw(c, 'as')) { advance(c); eatOp(c, '('); param = eatIdent(c); eatOp(c, ')'); }
+    handler = parseBlock(c);
+  }
+  if (isKw(c, 'finally')) { advance(c); final = parseBlock(c); }
+  return { k: 'try', block, param, handler, final };
+}
+
+// 매개변수: (a, b = 1, ...rest)
+function parseParams(c: Cursor): any[] {
+  eatOp(c, '(');
+  const params: any[] = [];
+  while (!isOp(c, ')')) {
+    if (isOp(c, '...')) { advance(c); params.push({ name: eatIdent(c), rest: true }); break; }
+    const name = eatIdent(c);
+    let def: any = null;
+    if (isOp(c, '=')) { advance(c); def = parseExpression(c); }
+    params.push({ name, def });
+    if (isOp(c, ',')) advance(c);
+  }
+  eatOp(c, ')');
+  return params;
+}
+
+// ── 표현식 (우선순위: 낮은 결합 → 높은 결합) ───────────────────────────────────
+
+function parseExpression(c: Cursor): any { return parseAssign(c); }
+
+const ASSIGN_OPS = new Set(['=', '+=', '-=', '*=', '/=', '%=']);
+
+function parseAssign(c: Cursor): any {
+  const left = parseTernary(c);
+  const t = peek(c);
+  if (t.type === T.OPERATOR && ASSIGN_OPS.has(t.value)) {
+    advance(c);
+    const value = parseAssign(c);
+    if (left.k !== 'identifier' && left.k !== 'member' && left.k !== 'index') err('Invalid assignment target');
+    return { k: 'assign', op: t.value, target: left, value };
+  }
+  return left;
+}
+
+function parseTernary(c: Cursor): any {
+  const test = parseOr(c);
+  if (isOp(c, '?')) {
+    advance(c);
+    const yes = parseAssign(c);
+    eatOp(c, ':');
+    const no = parseAssign(c);
+    return { k: 'ternary', test, yes, no };
+  }
+  return test;
+}
+
+function parseOr(c: Cursor): any {
+  let left = parseAnd(c);
+  while (isOp(c, '||')) { advance(c); left = { k: 'logical', op: '||', left, right: parseAnd(c) }; }
+  return left;
+}
+function parseAnd(c: Cursor): any {
+  let left = parseEquality(c);
+  while (isOp(c, '&&')) { advance(c); left = { k: 'logical', op: '&&', left, right: parseEquality(c) }; }
+  return left;
+}
+function parseEquality(c: Cursor): any {
+  let left = parseCompare(c);
+  while (isOp(c, '==') || isOp(c, '!=')) { const op = advance(c).value; left = { k: 'binary', op, left, right: parseCompare(c) }; }
+  return left;
+}
+function parseCompare(c: Cursor): any {
+  let left = parseAdd(c);
+  while (isOp(c, '<') || isOp(c, '>') || isOp(c, '<=') || isOp(c, '>=')) {
+    const op = advance(c).value; left = { k: 'binary', op, left, right: parseAdd(c) };
+  }
+  return left;
+}
+function parseAdd(c: Cursor): any {
+  let left = parseMul(c);
+  while (isOp(c, '+') || isOp(c, '-')) { const op = advance(c).value; left = { k: 'binary', op, left, right: parseMul(c) }; }
+  return left;
+}
+function parseMul(c: Cursor): any {
+  let left = parsePow(c);
+  while (isOp(c, '*') || isOp(c, '/') || isOp(c, '%')) { const op = advance(c).value; left = { k: 'binary', op, left, right: parsePow(c) }; }
+  return left;
+}
+function parsePow(c: Cursor): any {
+  const left = parseUnary(c);
+  if (isOp(c, '**')) { advance(c); return { k: 'binary', op: '**', left, right: parsePow(c) }; } // 우결합
+  return left;
+}
+function parseUnary(c: Cursor): any {
+  if (isOp(c, '!') || isOp(c, '-')) { const op = advance(c).value; return { k: 'unary', op, arg: parseUnary(c) }; }
+  if (isOp(c, '++') || isOp(c, '--')) { const op = advance(c).value; return { k: 'update', op, prefix: true, arg: parseUnary(c) }; }
+  return parsePostfix(c);
+}
+
+function parsePostfix(c: Cursor): any {
+  let node = parsePrimary(c);
+  while (true) {
+    if (isOp(c, '.')) { advance(c); node = { k: 'member', obj: node, name: eatIdent(c), optional: false }; }
+    else if (isOp(c, '?.')) { advance(c); node = { k: 'member', obj: node, name: eatIdent(c), optional: true }; }
+    else if (isOp(c, '[')) { advance(c); const idx = parseExpression(c); eatOp(c, ']'); node = { k: 'index', obj: node, index: idx }; }
+    else if (isOp(c, '(')) { node = { k: 'call', callee: node, args: parseArgs(c) }; }
+    else if (isOp(c, '++') || isOp(c, '--')) { const op = advance(c).value; node = { k: 'update', op, prefix: false, arg: node }; }
+    else break;
+  }
+  return node;
+}
+
+// 인자: 위치 인자와 이름 인자(name = expr) 혼용 가능
+function parseArgs(c: Cursor): any {
+  eatOp(c, '(');
+  const positional: any[] = [];
+  const named: Record<string, any> = {};
+  while (!isOp(c, ')')) {
+    if (peek(c).type === T.IDENTIFIER && c.tokens[c.pos + 1]?.type === T.OPERATOR && c.tokens[c.pos + 1].value === '=') {
+      const name = eatIdent(c);
+      eatOp(c, '=');
+      named[name] = parseExpression(c);
+    } else {
+      positional.push(parseExpression(c));
+    }
+    if (isOp(c, ',')) advance(c);
+  }
+  eatOp(c, ')');
+  return { positional, named };
+}
+
+function parsePrimary(c: Cursor): any {
+  const t = peek(c);
+
+  if (t.type === T.NUMBER) { advance(c); return { k: 'number', value: t.value }; }
+  if (t.type === T.STRING) { advance(c); return { k: 'string', value: t.value }; }
+  if (t.type === T.TEMPLATE) { advance(c); return { k: 'template', raw: t.value }; }
+  if (t.type === T.BOOLEAN) { advance(c); return { k: 'boolean', value: t.value }; }
+  if (t.type === T.NULL) { advance(c); return { k: 'null' }; }
+  if (t.type === T.IDENTIFIER) { advance(c); return { k: 'identifier', name: t.value }; }
+
+  if (t.type === T.KEYWORD) {
+    if (t.value === 'self') { advance(c); return { k: 'self' }; }
+    if (t.value === 'super') { advance(c); return { k: 'super' }; }
+    if (t.value === 'func') { advance(c); const params = parseParams(c); const body = parseBlock(c); return { k: 'func', params, body }; }
+    if (t.value === 'new') { advance(c); const cls = eatIdent(c); const args = parseArgs(c); return { k: 'new', cls, args }; }
+  }
+
+  if (isOp(c, '(')) { advance(c); const e = parseExpression(c); eatOp(c, ')'); return e; }
+
+  if (isOp(c, '[')) {
+    advance(c);
+    const items: any[] = [];
+    while (!isOp(c, ']')) { items.push(parseExpression(c)); if (isOp(c, ',')) advance(c); }
+    eatOp(c, ']');
+    return { k: 'list', items };
+  }
+
+  if (isOp(c, '{')) {
+    advance(c);
+    const props: any[] = [];
+    while (!isOp(c, '}')) {
+      const key = peek(c).type === T.STRING ? advance(c).value : eatIdent(c);
+      eatOp(c, ':');
+      props.push({ key, value: parseExpression(c) });
+      if (isOp(c, ',')) advance(c);
+    }
+    eatOp(c, '}');
+    return { k: 'object', props };
+  }
+
+  perr(c, `Unexpected token: ${JSON.stringify(t.value)}`);
+}
+
+// ── Values & Environment ──────────────────────────────────────────────────────
+
+class Environment {
+  vars = new Map<string, any>();
+  consts = new Set<string>();
+  moduleExports: Map<string, any> | null = null;   // 모듈 최상위 env 에만 설정 (export 가 여기 쌓임)
+  constructor(public parent: Environment | null = null) {}
+
+  define(name: string, value: any, isConst: boolean): void {
+    this.vars.set(name, value);
+    if (isConst) this.consts.add(name);
+  }
+  get(name: string): any {
+    let e: Environment | null = this;
+    while (e) { if (e.vars.has(name)) return e.vars.get(name); e = e.parent; }
+    err(`Undefined variable: ${name}`);
+  }
+  set(name: string, value: any): void {
+    let e: Environment | null = this;
+    while (e) {
+      if (e.vars.has(name)) {
+        if (e.consts.has(name)) err(`Cannot reassign constant: ${name}`);
+        e.vars.set(name, value);
+        return;
+      }
+      e = e.parent;
+    }
+    err(`Undefined variable: ${name}`);
+  }
+}
+
+type ZFunc = { zk: 'func'; params: any[]; body: any; closure: Environment; self?: any };
+// params: 매개변수 이름 순서. 주면 호출 시 name=value 인자를 그 순서대로 pos 에 합쳐준다
+// (그래서 native 본문은 p[0], p[1] 만 읽으면 positional/named 둘 다 처리됨).
+type ZNative = { zk: 'native'; fn: (pos: any[], named: Record<string, any>) => any; params?: string[] };
+type ZClass = { zk: 'class'; name: string; methods: Map<string, any>; statics: Map<string, any>; parent: ZClass | null };
+type ZInstance = { zk: 'instance'; cls: ZClass; fields: Map<string, any> };
+type ZObject = { zk: 'object'; map: Map<string, any> };
+type ZRegex = { zk: 'regex'; re: RegExp };   // JS RegExp 를 감싼 정규식 값
+
+// TS 쪽에서 zevra 값을 만들어 emit(event, ...args) 페이로드로 넘길 때 쓰는 생성자들.
+// 숫자/문자열/불리언/null 은 그대로 넘기면 되고, object/list/regex 는 zevra 표현이 달라서 이걸로 감싼다.
+export function zObject(record: Record<string, any>): ZObject {
+  return { zk: 'object', map: new Map(Object.entries(record)) };
+}
+export function zList(items: any[]): any[] {
+  return items;   // zevra 리스트는 그냥 JS 배열 (API 일관성용)
+}
+export function zRegex(pattern: string, flags = ''): ZRegex {
+  return { zk: 'regex', re: new RegExp(pattern, flags) };
+}
+
+// zevra 값 ↔ 순수 JS 값 변환 (JSON.parse/stringify 용).
+// zevra object 는 {zk:'object', map} 이라 그대로 JSON.stringify 하면 안 되므로 변환이 필요하다.
+function zevraToJs(v: any): any {
+  if (Array.isArray(v)) return v.map(zevraToJs);
+  if (v && v.zk === 'object') { const o: Record<string, any> = {}; for (const [k, val] of v.map) o[k] = zevraToJs(val); return o; }
+  if (v && v.zk === 'instance') { const o: Record<string, any> = {}; for (const [k, val] of v.fields) o[k] = zevraToJs(val); return o; }
+  if (v && (v.zk === 'func' || v.zk === 'native' || v.zk === 'class' || v.zk === 'regex')) return undefined;   // JSON 은 함수 등을 버린다
+  return v;   // number/string/boolean/null
+}
+function jsToZevra(v: any): any {
+  if (Array.isArray(v)) return v.map(jsToZevra);
+  if (v && typeof v === 'object') { const map = new Map<string, any>(); for (const k of Object.keys(v)) map.set(k, jsToZevra(v[k])); return { zk: 'object', map }; }
+  return v;   // string/number/boolean/null (JSON.parse 는 이것들만 만든다)
+}
+
+// native(JS 함수)가 돌려준 값을 zevra 값으로 변환한다.
+// 이미 zevra 값(zk 있음)·원시값·Promise 는 그대로 두고, 순수 JS 객체만 zevra object 로 (중첩 포함).
+function toZevra(v: any): any {
+  if (v === undefined || v === null) return null;
+  if (typeof v !== 'object') return v;            // number/string/boolean/function
+  if (v instanceof Promise) return v;             // (callValue 가 await 하지만 방어적으로)
+  if (v.zk) return v;                             // 이미 zevra (object/instance/func/native/class/regex)
+  if (Array.isArray(v)) return v.map(toZevra);    // 리스트 (요소도 변환)
+  const map = new Map<string, any>();             // 순수 JS 객체 → zevra object
+  for (const k of Object.keys(v)) map.set(k, toZevra(v[k]));
+  return { zk: 'object', map };
+}
+
+function zType(v: any): string {
+  if (typeof v === 'number') return 'number';
+  if (typeof v === 'string') return 'string';
+  if (typeof v === 'boolean') return 'boolean';
+  if (v === null) return 'null';
+  if (Array.isArray(v)) return 'list';
+  if (v && v.zk === 'object') return 'object';
+  if (v && v.zk === 'instance') return 'object';
+  if (v && (v.zk === 'func' || v.zk === 'native')) return 'function';
+  if (v && v.zk === 'class') return 'class';
+  if (v && v.zk === 'regex') return 'regex';
+  return 'unknown';
+}
+
+function zStr(v: any): string {
+  if (typeof v === 'string') return v;
+  if (typeof v === 'number') return String(v);
+  if (typeof v === 'boolean') return v ? 'true' : 'false';
+  if (v === null) return 'null';
+  if (Array.isArray(v)) return '[' + v.map(zStr).join(', ') + ']';
+  if (v && v.zk === 'object') return '{' + [...v.map].map(([k, val]) => `${k}: ${zStr(val)}`).join(', ') + '}';
+  if (v && v.zk === 'instance') return `<${v.cls.name}>`;
+  if (v && (v.zk === 'func' || v.zk === 'native')) return '<func>';
+  if (v && v.zk === 'class') return `<class ${v.name}>`;
+  if (v && v.zk === 'regex') return `/${v.re.source}/${v.re.flags}`;
+  return String(v);
+}
+
+const needBool = (v: any, where: string): boolean => { if (typeof v !== 'boolean') err(`${where} requires a boolean (got ${zType(v)})`); return v; };
+const needNum = (v: any, where: string): number => { if (typeof v !== 'number') err(`${where} requires a number (got ${zType(v)})`); return v; };
+
+function strictEq(a: any, b: any): boolean {
+  if (zType(a) !== zType(b)) return false;
+  return a === b;   // 리스트/객체/인스턴스는 참조 비교
+}
+
+// ── Evaluator (async — Room API 가 비동기라서) ─────────────────────────────────
+
+const eventHandlers = new Map<string, ZFunc[]>();
+
+// 로드 단계: 모든 확장팩 파일을 "동시에" 켜는 느낌을 주기 위해, 로드 중 발생한 emit 은
+// 바로 발생시키지 않고 모아뒀다가 (모든 파일의 when 핸들러가 다 등록된 뒤) 한꺼번에 발생시킨다.
+// → 파일/팩 순서와 무관하게 cross-file 이벤트가 통한다.
+let _loading = false;
+const _deferredEmits: Array<{ event: string; args: any[] }> = [];
+
+async function evalBlock(nodes: any[], env: Environment): Promise<void> {
+  for (const n of nodes) await evalStmt(n, env);
+}
+
+async function evalStmt(node: any, env: Environment): Promise<void> {
+  switch (node.k) {
+    case 'varDecl': env.define(node.name, await evalExpr(node.value, env), node.kind === 'con'); return;
+    case 'exprStmt': await evalExpr(node.expr, env); return;
+    case 'block': await evalBlock(node.body, new Environment(env)); return;
+    case 'if':
+      if (needBool(await evalExpr(node.test, env), 'if condition')) await evalStmt(node.then, env);
+      else if (node.alt) await evalStmt(node.alt, env);
+      return;
+    case 'while':
+      while (needBool(await evalExpr(node.test, env), 'while condition')) {
+        try { await evalStmt(node.body, new Environment(env)); }
+        catch (e) { if (e instanceof BreakSignal) break; if (e instanceof ContinueSignal) continue; throw e; }
+      }
+      return;
+    case 'for': {
+      const loopEnv = new Environment(env);
+      loopEnv.define(node.name, await evalExpr(node.init, loopEnv), node.declKind === 'con');
+      while (needBool(await evalExpr(node.test, loopEnv), 'for condition')) {
+        try { await evalStmt(node.body, new Environment(loopEnv)); }
+        catch (e) { if (e instanceof BreakSignal) break; if (!(e instanceof ContinueSignal)) throw e; }
+        await evalExpr(node.update, loopEnv);
+      }
+      return;
+    }
+    case 'forIn': {
+      const iter = await evalExpr(node.iter, env);
+      // 순회 쌍: 리스트는 [값, 인덱스], 객체는 [키, 값]. 변수 하나면 첫째만(값/키) 받는다.
+      let pairs: [any, any][];
+      if (Array.isArray(iter)) pairs = iter.map((v, idx) => [v, idx]);
+      else if (iter && iter.zk === 'object') pairs = [...iter.map.entries()];
+      else return err('for..in requires a list or object');
+      for (const [first, second] of pairs) {
+        const it = new Environment(env);
+        it.define(node.name, first, false);
+        if (node.name2) it.define(node.name2, second, false);
+        try { await evalStmt(node.body, it); }
+        catch (e) { if (e instanceof BreakSignal) break; if (!(e instanceof ContinueSignal)) throw e; }
+      }
+      return;
+    }
+    case 'switch': {
+      const d = await evalExpr(node.disc, env);
+      for (const cse of node.cases) {
+        if (strictEq(d, await evalExpr(cse.test, env))) {
+          try { await evalStmt(cse.body, new Environment(env)); } catch (e) { if (e instanceof BreakSignal) return; throw e; }
+          return;
+        }
+      }
+      if (node.def) { try { await evalStmt(node.def, new Environment(env)); } catch (e) { if (!(e instanceof BreakSignal)) throw e; } }
+      return;
+    }
+    case 'elevator': {
+      // switch 와 같지만 break 자동 추가 없음 → 일치한 case 부터 break 만날 때까지 아래로 흘러간다.
+      const d = await evalExpr(node.disc, env);
+      let matched = -1;
+      for (let idx = 0; idx < node.cases.length; idx++) {
+        if (strictEq(d, await evalExpr(node.cases[idx].test, env))) { matched = idx; break; }
+      }
+      try {
+        if (matched >= 0) {
+          for (let idx = matched; idx < node.cases.length; idx++) await evalStmt(node.cases[idx].body, new Environment(env));
+        } else if (node.def) {
+          await evalStmt(node.def, new Environment(env));
+        }
+      } catch (e) { if (!(e instanceof BreakSignal)) throw e; }
+      return;
+    }
+    case 'return': throw new ReturnSignal(node.value ? await evalExpr(node.value, env) : null);
+    case 'break': throw new BreakSignal();
+    case 'continue': throw new ContinueSignal();
+    case 'throw': throw new ZevraThrow(await evalExpr(node.value, env));
+    case 'try': {
+      try { await evalStmt(node.block, new Environment(env)); }
+      catch (e) {
+        if (e instanceof ReturnSignal || e instanceof BreakSignal || e instanceof ContinueSignal) { if (node.final) await evalStmt(node.final, new Environment(env)); throw e; }
+        if (node.handler) {
+          const he = new Environment(env);
+          if (node.param) {   // catch as (e) 일 때만 에러 값을 바인딩
+            const caught = e instanceof ZevraThrow ? e.value : e instanceof ZevraError ? e.message : String(e);
+            he.define(node.param, caught, false);
+          }
+          await evalStmt(node.handler, he);
+        } else if (!node.final) throw e;
+      }
+      finally { if (node.final) await evalStmt(node.final, new Environment(env)); }
+      return;
+    }
+    case 'class': { env.define(node.name, makeClass(node, env), true); return; }
+    case 'funcDecl': {
+      env.define(node.name, { zk: 'func', params: node.params, body: node.body, closure: env } as ZFunc, false);
+      return;
+    }
+    case 'moduleId': return err('export id must be the top line of the file');
+    case 'export': {
+      await evalStmt(node.decl, env);                 // 선언은 항상 평소처럼 실행
+      let e: Environment | null = env;
+      while (e && !e.moduleExports) e = e.parent;     // 모듈 최상위 env 찾기
+      // import 로 불린 게 아니면(직접 실행/로컬팩) 모듈 컨텍스트가 없다 → 선언만 하고 export 기록은 건너뜀
+      if (e) e.moduleExports!.set(node.decl.name, env.get(node.decl.name));
+      return;
+    }
+    case 'import': {
+      // 맨 윗줄 export id="..." 인 파일 모듈에서 가져온다.
+      const exports = await importNamed(node.source);
+      if (node.kind === 'namespace') {
+        env.define(node.name, { zk: 'object', map: exports }, true);
+      } else {
+        for (const n of node.names) {
+          if (!exports.has(n)) err(`'${n}' is not exported by '${node.source}'`);
+          env.define(n, exports.get(n), true);
+        }
+      }
+      return;
+    }
+    case 'take': {
+      // 등록된 (로컬) 확장팩 전체를 모듈로 가져와 namespace 로 바인딩. 없으면 importModule 가 에러.
+      const exports = await importModule(node.source);
+      env.define(node.name, { zk: 'object', map: exports }, true);
+      return;
+    }
+    case 'when': {
+      const name = await evalExpr(node.event, env);
+      if (typeof name !== 'string') err('when() event name must be a string');
+      const handler: ZFunc = { zk: 'func', params: node.params ?? [], body: node.body, closure: env };
+      if (!eventHandlers.has(name)) eventHandlers.set(name, []);
+      eventHandlers.get(name)!.push(handler);
+      return;
+    }
+    default: err(`Unknown statement: ${node.k}`);
+  }
+}
+
+function makeClass(node: any, env: Environment): ZClass {
+  const parent = node.parent ? env.get(node.parent) : null;
+  if (node.parent && (!parent || parent.zk !== 'class')) err(`Cannot extend non-class: ${node.parent}`);
+  const methods = new Map<string, any>();
+  const statics = new Map<string, any>();
+  for (const m of node.methods) {
+    const fn: ZFunc = { zk: 'func', params: m.params, body: m.body, closure: env };
+    if (m.isStatic) statics.set(m.name, fn); else methods.set(m.name, fn);
+  }
+  return { zk: 'class', name: node.name, methods, statics, parent };
+}
+
+function findMethod(cls: ZClass | null, name: string): ZFunc | null {
+  let c = cls;
+  while (c) { if (c.methods.has(name)) return c.methods.get(name); c = c.parent; }
+  return null;
+}
+
+async function evalExpr(node: any, env: Environment): Promise<any> {
+  switch (node.k) {
+    case 'number': case 'string': case 'boolean': return node.value;
+    case 'null': return null;
+    case 'identifier': return env.get(node.name);
+    case 'self': return env.get('self');
+    case 'template': return evalTemplate(node.raw, env);
+
+    case 'list': { const out: any[] = []; for (const it of node.items) out.push(await evalExpr(it, env)); return out; }
+    case 'object': { const map = new Map<string, any>(); for (const p of node.props) map.set(p.key, await evalExpr(p.value, env)); return { zk: 'object', map }; }
+    case 'func': return { zk: 'func', params: node.params, body: node.body, closure: env } as ZFunc;
+
+    case 'ternary': return needBool(await evalExpr(node.test, env), 'ternary condition') ? evalExpr(node.yes, env) : evalExpr(node.no, env);
+
+    case 'logical': {
+      const l = needBool(await evalExpr(node.left, env), `'${node.op}' operand`);
+      if (node.op === '&&' && !l) return false;
+      if (node.op === '||' && l) return true;
+      return needBool(await evalExpr(node.right, env), `'${node.op}' operand`);
+    }
+
+    case 'unary': {
+      const v = await evalExpr(node.arg, env);
+      if (node.op === '!') return !needBool(v, "'!'");
+      return -needNum(v, "unary '-'");
+    }
+
+    case 'binary': return evalBinary(node.op, await evalExpr(node.left, env), await evalExpr(node.right, env));
+
+    case 'update': {
+      const cur = needNum(await evalExpr(node.arg, env), `'${node.op}'`);
+      const updated = node.op === '++' ? cur + 1 : cur - 1;
+      await assignTo(node.arg, updated, env);
+      return node.prefix ? updated : cur;
+    }
+
+    case 'assign': {
+      let value = await evalExpr(node.value, env);
+      if (node.op !== '=') {
+        const cur = await evalExpr(node.target, env);
+        value = evalBinary(node.op[0], cur, value);
+      }
+      await assignTo(node.target, value, env);
+      return value;
+    }
+
+    case 'member': {
+      const obj = await evalExpr(node.obj, env);
+      if (node.optional && obj === null) return null;
+      return getMember(obj, node.name);
+    }
+    case 'index': {
+      const obj = await evalExpr(node.obj, env);
+      const idx = await evalExpr(node.index, env);
+      return getIndex(obj, idx);
+    }
+
+    case 'new': return evalNew(node, env);
+    case 'super': return null;   // super 단독은 의미 없음 (call 에서 처리)
+    case 'call': return evalCall(node, env);
+
+    default: err(`Unknown expression: ${node.k}`);
+  }
+}
+
+function evalBinary(op: string, l: any, r: any): any {
+  switch (op) {
+    case '+':
+      if (typeof l === 'number' && typeof r === 'number') return l + r;
+      if (typeof l === 'string' && typeof r === 'string') return l + r;
+      return err(`'+' needs two numbers or two strings (got ${zType(l)} and ${zType(r)})`);
+    case '-': return needNum(l, "'-'") - needNum(r, "'-'");
+    case '*': return needNum(l, "'*'") * needNum(r, "'*'");
+    case '/': return needNum(l, "'/'") / needNum(r, "'/'");
+    case '%': return needNum(l, "'%'") % needNum(r, "'%'");
+    case '**': return needNum(l, "'**'") ** needNum(r, "'**'");
+    case '==': return strictEq(l, r);
+    case '!=': return !strictEq(l, r);
+    case '<': case '>': case '<=': case '>=': {
+      if (typeof l !== typeof r || (typeof l !== 'number' && typeof l !== 'string')) err(`'${op}' needs two numbers or two strings`);
+      return op === '<' ? l < r : op === '>' ? l > r : op === '<=' ? l <= r : l >= r;
+    }
+  }
+  return err(`Unknown operator: ${op}`);
+}
+
+async function assignTo(target: any, value: any, env: Environment): Promise<void> {
+  if (target.k === 'identifier') { env.set(target.name, value); return; }
+  if (target.k === 'member') {
+    const obj = await evalExpr(target.obj, env);
+    if (obj && obj.zk === 'object') { obj.map.set(target.name, value); return; }
+    if (obj && obj.zk === 'instance') { obj.fields.set(target.name, value); return; }
+    err(`Cannot assign to member of ${zType(obj)}`);
+  }
+  if (target.k === 'index') {
+    const obj = await evalExpr(target.obj, env);
+    const idx = await evalExpr(target.index, env);
+    if (Array.isArray(obj)) { obj[needNum(idx, 'list index')] = value; return; }
+    if (obj && obj.zk === 'object') { obj.map.set(String(idx), value); return; }
+    err(`Cannot index-assign to ${zType(obj)}`);
+  }
+  err('Invalid assignment target');
+}
+
+function getIndex(obj: any, idx: any): any {
+  if (Array.isArray(obj)) return obj[needNum(idx, 'list index')] ?? null;
+  if (typeof obj === 'string') return obj[needNum(idx, 'string index')] ?? null;
+  if (obj && obj.zk === 'object') return obj.map.has(String(idx)) ? obj.map.get(String(idx)) : null;
+  return err(`Cannot index ${zType(obj)}`);
+}
+
+function getMember(obj: any, name: string): any {
+  if (obj === null) err(`Cannot read '${name}' of null`);
+
+  if (typeof obj === 'string') {
+    if (name === 'length') return obj.length;
+    // 문자열 메서드 중 split/contains/replace/match 는 정규식 값도 받는다 (없으면 일반 문자열로)
+    const pat = (v: any) => (v && v.zk === 'regex') ? v.re : v;
+    const m: Record<string, ZNative> = {
+      upper: native(() => obj.toUpperCase()),
+      lower: native(() => obj.toLowerCase()),
+      trim: native(() => obj.trim()),
+      split: native((p) => obj.split(pat(p[0])), ['sep']),
+      contains: native((p) => (p[0] && p[0].zk === 'regex') ? p[0].re.test(obj) : obj.includes(p[0]), ['value']),
+      replace: native((p) => obj.replace(pat(p[0]), zStr(p[1])), ['target', 'repl']),
+      match: native((p) => obj.match(pat(p[0])) ?? [], ['pattern']),
+    };
+    return m[name] ?? err(`Unknown string member: ${name}`);
+  }
+
+  if (Array.isArray(obj)) {
+    if (name === 'length') return obj.length;
+    const m: Record<string, ZNative> = {
+      push: native((p) => { obj.push(p[0]); return obj; }, ['value']),
+      pop: native(() => obj.length ? obj.pop() : null),
+      contains: native((p) => obj.some(x => strictEq(x, p[0])), ['value']),
+      indexOf: native((p) => obj.findIndex(x => strictEq(x, p[0])), ['value']),
+      map: native(async (p) => { const out = []; for (const x of obj) out.push(await callValue(p[0], [x], {})); return out; }, ['fn']),
+      filter: native(async (p) => { const out = []; for (const x of obj) if (needBool(await callValue(p[0], [x], {}), 'filter')) out.push(x); return out; }, ['fn']),
+    };
+    return m[name] ?? err(`Unknown list member: ${name}`);
+  }
+
+  if (obj && obj.zk === 'object') {
+    if (obj.map.has(name)) return obj.map.get(name);
+    const m: Record<string, ZNative> = {
+      keys: native(() => [...obj.map.keys()]),
+      values: native(() => [...obj.map.values()]),
+      has: native((p) => obj.map.has(p[0]), ['key']),
+    };
+    return m[name] ?? err(`Unknown object member: ${name}`);
+  }
+
+  if (obj && obj.zk === 'regex') {
+    if (name === 'source') return obj.re.source;
+    if (name === 'flags') return obj.re.flags;
+    const m: Record<string, ZNative> = {
+      test: native((p) => { obj.re.lastIndex = 0; return obj.re.test(zStr(p[0])); }, ['str']),
+      match: native((p) => zStr(p[0]).match(obj.re) ?? [], ['str']),
+      replace: native((p) => zStr(p[0]).replace(obj.re, zStr(p[1])), ['str', 'repl']),
+      split: native((p) => zStr(p[0]).split(obj.re), ['str']),
+    };
+    return m[name] ?? err(`Unknown regex member: ${name}`);
+  }
+
+  if (obj && obj.zk === 'instance') {
+    if (obj.fields.has(name)) return obj.fields.get(name);
+    const method = findMethod(obj.cls, name);
+    if (method) return { ...method, self: obj } as ZFunc;
+    err(`Unknown member '${name}' on ${obj.cls.name}`);
+  }
+
+  if (obj && obj.zk === 'class') {
+    if (obj.statics.has(name)) return obj.statics.get(name);
+    err(`Unknown static member: ${name}`);
+  }
+
+  return err(`Cannot read '${name}' of ${zType(obj)}`);
+}
+
+async function evalTemplate(raw: string, env: Environment): Promise<string> {
+  let out = '';
+  let i = 0;
+  while (i < raw.length) {
+    if (raw[i] === '$' && raw[i + 1] === '{') {
+      let depth = 1; let j = i + 2; let expr = '';
+      while (j < raw.length && depth > 0) {
+        if (raw[j] === '{') depth++;
+        else if (raw[j] === '}') { depth--; if (depth === 0) break; }
+        expr += raw[j]; j++;
+      }
+      const ast = parse(tokenize(expr + ';'));
+      out += zStr(await evalExpr(ast.body[0].expr, env));
+      i = j + 1;
+    } else { out += raw[i]; i++; }
+  }
+  return out;
+}
+
+async function evalNew(node: any, env: Environment): Promise<ZInstance> {
+  const cls = env.get(node.cls);
+  if (!cls || cls.zk !== 'class') err(`Cannot 'new' a non-class: ${node.cls}`);
+  const inst: ZInstance = { zk: 'instance', cls, fields: new Map() };
+  const init = findMethod(cls, 'init');
+  if (init) await callFunc({ ...init, self: inst }, node.args, env);
+  return inst;
+}
+
+async function evalCall(node: any, env: Environment): Promise<any> {
+  // super(...) — 부모 생성자
+  if (node.callee.k === 'super') {
+    const self = env.get('self');
+    const init = findMethod(self.cls.parent, 'init');
+    if (init) await callFunc({ ...init, self }, node.args, env);
+    return null;
+  }
+  // super.method(...) — 부모 메서드
+  if (node.callee.k === 'member' && node.callee.obj.k === 'super') {
+    const self = env.get('self');
+    const method = findMethod(self.cls.parent, node.callee.name);
+    if (!method) err(`Unknown super member: ${node.callee.name}`);
+    return callFunc({ ...method, self }, node.args, env);
+  }
+
+  const callee = await evalExpr(node.callee, env);
+  return callFunc(callee, node.args, env);
+}
+
+async function callFunc(callee: any, argsNode: any, env: Environment): Promise<any> {
+  const pos: any[] = [];
+  for (const a of argsNode.positional) pos.push(await evalExpr(a, env));
+  const named: Record<string, any> = {};
+  for (const key in argsNode.named) named[key] = await evalExpr(argsNode.named[key], env);
+  return callValue(callee, pos, named);
+}
+
+// native 호출: 선언된 params 가 있으면 name=value 인자를 그 순서대로 pos 에 끼워넣는다.
+function mergeNativeArgs(nat: ZNative, pos: any[], named: Record<string, any>): any[] {
+  if (!nat.params) return pos;
+  const out = pos.slice();
+  for (const key in named) {
+    const idx = nat.params.indexOf(key);
+    if (idx < 0) err(`Unknown argument: ${key}`);
+    out[idx] = named[key];
+  }
+  return out;
+}
+
+async function callValue(callee: any, pos: any[], named: Record<string, any>): Promise<any> {
+  if (callee && callee.zk === 'native') return toZevra(await callee.fn(mergeNativeArgs(callee, pos, named), named));
+  if (!callee || callee.zk !== 'func') err(`Cannot call ${zType(callee)}`);
+
+  const fnEnv = new Environment(callee.closure);
+  if (callee.self !== undefined) fnEnv.define('self', callee.self, true);
+
+  let p = 0;
+  for (const param of callee.params) {
+    if (param.rest) { fnEnv.define(param.name, pos.slice(p), false); p = pos.length; break; }
+    let val: any;
+    if (param.name in named) val = named[param.name];
+    else if (p < pos.length) val = pos[p++];
+    else if (param.def) val = await evalExpr(param.def, fnEnv);
+    else val = null;
+    fnEnv.define(param.name, val, false);
+  }
+
+  try { await evalBlock(callee.body.body, fnEnv); }
+  catch (e) { if (e instanceof ReturnSignal) return e.value; throw e; }
+  return null;
+}
+
+// ── Globals (Room API 노출) ────────────────────────────────────────────────────
+
+function native(fn: (pos: any[], named: Record<string, any>) => any, params?: string[]): ZNative {
+  return { zk: 'native', fn, params };
+}
+
+// packId: 지금 실행 중인 모듈/팩의 id. localStorage 가 이걸로 'zevra:<id>:' 네임스페이스를 자동으로 붙인다.
+function globalEnv(packId = ''): Environment {
+  const env = new Environment();
+
+  env.define('print', native((p) => { Line.addLine(zStr(p[0])); return null; }, ['value']), true);
+  env.define('str', native((p) => zStr(p[0]), ['value']), true);
+  env.define('num', native((p) => { const n = Number(p[0]); if (Number.isNaN(n)) err(`Cannot convert to number: ${zStr(p[0])}`); return n; }, ['value']), true);
+  env.define('int', native((p) => { const n = Number(p[0]); if (Number.isNaN(n)) err(`Cannot convert to int: ${zStr(p[0])}`); return Math.trunc(n); }, ['value']), true);
+  env.define('bool', native((p) => { if (p[0] === 'true') return true; if (p[0] === 'false') return false; if (typeof p[0] === 'boolean') return p[0]; return err(`Cannot convert to bool: ${zStr(p[0])}`); }, ['value']), true);
+  env.define('type', native((p) => zType(p[0]), ['value']), true);
+  env.define('len', native((p) => { const v = p[0]; if (typeof v === 'string' || Array.isArray(v)) return v.length; if (v && v.zk === 'object') return v.map.size; return err('len() needs a string, list, or object'); }, ['value']), true);
+  env.define('range', native((p) => { const a = p.length > 1 ? p[0] : 0; const b = p.length > 1 ? p[1] : p[0]; const out: number[] = []; for (let n = a; n < b; n++) out.push(n); return out; }), true);   // variadic: range(end) / range(start, end) — positional only
+  env.define('wait', native((p) => { const ms = needNum(p[0], 'wait()'); return new Promise(resolve => setTimeout(resolve, ms)); }, ['ms']), true);   // tick(ms) 만큼 대기
+  env.define('regex', native((p) => {   // regex("pattern", "flags") → 정규식 값 (JS RegExp 기반)
+    const flags = p[1] == null ? '' : zStr(p[1]);
+    try { return { zk: 'regex', re: new RegExp(zStr(p[0]), flags) } as ZRegex; }
+    catch (e) { return err(`Invalid regex: ${e instanceof Error ? e.message : String(e)}`); }
+  }, ['pattern', 'flags']), true);
+
+  // Line.*
+  const lineObj: ZObject = { zk: 'object', map: new Map<string, any>([
+    ['addLine', native((p) => { Line.addLine(zStr(p[0])); return null; }, ['text'])],
+    ['showError', native((p) => { Line.showError(zStr(p[0])); return null; }, ['msg'])],
+    ['showSuccess', native((p) => { Line.showSuccess(zStr(p[0])); return null; }, ['msg'])],
+    ['askInput', native((p) => Line.askInput(zStr(p[0])), ['prompt'])],
+    ['tryResolveInput', native((p) => Line.tryResolveInput(zStr(p[0])), ['value'])],
+    ['clear', native(() => {Line.clear()})],
+  ]) };
+  env.define('Line', lineObj, true);
+
+  // Command.run("@...") / defineCmd / defineSystem (등록 후 disconnect 함수 반환)
+  const commandObj: ZObject = { zk: 'object', map: new Map<string, any>([
+    ['run', native((p) => Command.run(zStr(p[0])), ['input'])],
+    ['defineCmd', native((p) => {
+      const name = zStr(p[0]);
+      const fn = p[1];
+      Command.defineCommand(name, [], async () => { await callValue(fn, [], {}); });
+      return native(() => { Command.undefineCommand(name); return null; });   // disconnect
+    }, ['name', 'fn'])],
+    ['defineSystem', native((p) => {
+      const name = zStr(p[0]);
+      const fn = p[1];
+      Command.defineSystem(name, () => { callValue(fn, [], {}); });
+      return native(() => { Command.undefineSystem(name); return null; });    // disconnect
+    }, ['name', 'fn'])],
+  ]) };
+  env.define('Command', commandObj, true);
+
+  // JSON (reviver/replacer 는 sync 콜백이라 async zevra 함수로 못 받음 → 미지원)
+  const jsonObj: ZObject = { zk: 'object', map: new Map<string, any>([
+    ['parse', native((p) => { try { return jsToZevra(JSON.parse(zStr(p[0]))); } catch { return err('Invalid JSON'); } }, ['text'])],
+    ['stringify', native((p) => JSON.stringify(zevraToJs(p[0]), null, p[1] == null ? 2 : p[1]), ['value', 'space'])],   // space 기본 2
+  ]) };
+  env.define('JSON', jsonObj, true);
+
+  // localStorage — 팩별로 'zevra:<id>:' 네임스페이스 (Room 키도, 다른 팩 키도 못 건드림). id 입력 불필요.
+  const Z = `zevra:${packId}:`;
+  const localStorageObj: ZObject = { zk: 'object', map: new Map<string, any>([
+    ['setItem', native((p) => { localStorage.setItem(Z + zStr(p[0]), zStr(p[1])); return null; }, ['key', 'value'])],
+    ['getItem', native((p) => localStorage.getItem(Z + zStr(p[0])), ['key'])],
+    ['removeItem', native((p) => { localStorage.removeItem(Z + zStr(p[0])); return null; }, ['key'])],
+    ['clear', native(() => { for (const k of Object.keys(localStorage)) if (k.startsWith(Z)) localStorage.removeItem(k); return null; })],
+  ]) };
+  env.define('localStorage', localStorageObj, true);
+
+  // Setting — 일반(Room) 설정 + 이 팩의 사용자 설정(user*). user* 는 scope='local' + packId 자동(입력 불필요).
+  const settingObj: ZObject = { zk: "object", map: new Map<string, any>([
+    // 일반 Room 설정
+    ['set', native((p) => Setting.setFromString(p[0], p[1]), ['key', 'value'])],
+    ['get', native((p) => Setting.get(p[0]), ['key'])],
+    ['has', native((p) => Setting.has(p[0]), ['key'])],
+    ['reset', native((p) => p[0] == null ? false : Setting.reset(p[0]), ['key'])],   // 안전: key 필수 (전체 초기화 불가)
+    ['all', native(() => Setting.all())],
+    // 이 팩의 사용자 설정 (이 팩 것만 다룸)
+    ['userInit', native(() => Setting.newExpansionPackSettings('local', packId))],
+    ['userNew', native((p) => Setting.newUserSetting('local', packId, p[0], p[1], p[2]), ['key', 'value', 'default'])],
+    ['userSet', native((p) => Setting.setUserSettings('local', packId, p[0], p[1]), ['key', 'value'])],
+    ['userGet', native((p) => { const r = Setting.getUserSettings('local', packId, p[0]); return r.success ? r.value : null; }, ['key'])],
+    ['userHas', native((p) => Setting.hasZevraUserSettingsKey('local', packId, p[0]), ['key'])],
+    ['userReset', native((p) => p[0] == null ? false : Setting.resetUserSettings('local', packId, p[0]), ['key'])],   // key 필수 (실수로 전체 초기화 방지)
+    ['userSetDefault', native((p) => Setting.setDefaultValue('local', packId, p[0], p[1]), ['key', 'value'])],
+  ]) };
+  env.define('Setting', settingObj, true);
+
+  // Event
+  const eventObj: ZObject = { zk: 'object', map: new Map<string, any>([
+    ['emit', native((p) => emit(p[0], ...p.slice(1)))],   // Event.emit('evt', ...args)
+  ]) };
+  env.define('Event', eventObj, true);
+
+  // Account.* (zevra 이름은 camelCase, 내부 함수는 snake_case)
+  const accountObj: ZObject = { zk: 'object', map: new Map<string, any>([
+    ['create', native((p) => Account.createAccount(p[0] ?? '', p[1] ?? '', p[2] ?? '', p[3] ?? ''), ['via', 'email', 'password', 'id'])],
+    ['logIn', native((p) => Account.log_in(p[0] ?? '', p[1] ?? '', p[2] ?? ''), ['via', 'email', 'password'])],
+    ['logOut', native(() => Account.log_out())],
+    ['getCurrentUser', native(() => Account.getCurrentUser())],
+  ]) };
+  env.define('Account', accountObj, true);
+
+  return env;
+}
+
+// ── Entry ─────────────────────────────────────────────────────────────────────
+
+// zevra 코드 한 덩어리를 실행한다. (맨 윗줄 id="..." 모듈 선언 줄은 무시하고 실행)
+// packId: localStorage 네임스페이스용. 로컬팩 실행 땐 pack.id, 즉석 실행이면 빈 문자열.
+export async function run(code: string, packId = ''): Promise<void> {
+  try {
+    await evalBlock(extractModuleId(parse(tokenize(code))).body, globalEnv(packId));
+  } catch (e) {
+    if (e instanceof ZevraError) Line.showError(`[zevra] ${e.message}`);
+    else if (e instanceof ZevraThrow) Line.showError(`[zevra] uncaught: ${zStr(e.value)}`);
+    else throw e;
+  }
+}
+
+// ── Module system ───────────────────────────────────────────────────────────
+// 모듈 가져오기 두 가지:
+//   import x from "math";   → 맨 윗줄 export id="math" 인 파일(named 모듈). 어느 팩에 있든 찾는다.
+//   take "math" as x;       → 등록된 로컬 확장팩 id "math" 전체.
+// 둘 다 한 번만 실행하고 exports 를 캐시한다.
+const moduleCache = new Map<string, Map<string, any>>();   // packId → exports (take)
+const namedCache = new Map<string, Map<string, any>>();    // 선언된 id → exports (named 모듈)
+
+// 파일 맨 윗줄이 export id = "이름"; 이면 그 이름을 떼어내고 나머지 본문을 돌려준다 (선언 줄은 실행 안 함).
+function extractModuleId(program: any): { id: string | null; body: any[] } {
+  const first = program.body[0];
+  if (first?.k === 'moduleId') return { id: first.id, body: program.body.slice(1) };
+  return { id: null, body: program.body };
+}
+
+// 한 모듈 본문을 새 env 에서 실행하고 exports 맵을 채운다 (cache 에는 호출 측이 미리 넣어둠 — 순환 대비).
+async function runModuleBody(body: any[], exports: Map<string, any>, packId: string): Promise<void> {
+  const modEnv = new Environment(globalEnv(packId));
+  modEnv.moduleExports = exports;
+  await evalBlock(body, modEnv);
+}
+
+// named 모듈: 등록된 모든 팩의 파일 중 맨 윗줄 id 가 일치하는 걸 찾아 실행. 캐시 + 순환 안전.
+async function importNamed(name: string): Promise<Map<string, any>> {
+  const cached = namedCache.get(name);
+  if (cached) return cached;
+  for (const pack of loadPacks()) {
+    const sources = pack.code !== undefined ? [pack.code] : (pack.files ?? []).map(f => f.content);
+    for (const src of sources) {
+      const { id, body } = extractModuleId(parse(tokenize(src)));
+      if (id === name) {
+        const exports = new Map<string, any>();
+        namedCache.set(name, exports);
+        await runModuleBody(body, exports, name);   // 모듈 id 로 네임스페이스
+        return exports;
+      }
+    }
+  }
+  return err(`Module not found: '${name}'`);
+}
+
+// packId 모듈(take): 그 팩의 파일들을 한 모듈로 실행. 캐시 + 순환 안전.
+async function importModule(packId: string): Promise<Map<string, any>> {
+  const cached = moduleCache.get(packId);
+  if (cached) return cached;
+
+  const pack = loadPacks().find(p => p.id === packId);
+  if (!pack) return err(`take: pack '${packId}' is not installed`);
+
+  const exports = new Map<string, any>();
+  moduleCache.set(packId, exports);   // 실행 전에 먼저 캐시 (A↔B 순환 시 같은 맵 공유)
+
+  const modEnv = new Environment(globalEnv(packId));
+  modEnv.moduleExports = exports;
+  // code 팩은 그 코드, files 팩은 .ze 들을 같은 env 에서 순서대로 실행 (각 파일의 맨 윗줄 id 선언은 무시)
+  const sources = pack.code !== undefined ? [pack.code] : (pack.files ?? []).map(f => f.content);
+  for (const src of sources) await evalBlock(extractModuleId(parse(tokenize(src))).body, modEnv);
+  return exports;
+}
+
+// 경로(파일/폴더)에 있는 .ze 를 실행한다. (Electron 의 roomFS 필요)
+export async function runPath(path: string): Promise<void> {
+  const fsBridge = (globalThis as any).roomFS;
+  if (!fsBridge) { Line.showError('Running a path requires the desktop app.'); return; }
+  try {
+    const result = await fsBridge.readPack(path);   // { ze: [{name, content}], readme }
+    for (const file of result.ze) {
+      if (!file.name.toLowerCase().endsWith('.ze')) continue;   // .ze 만 실행
+      await run(file.content);
+    }
+  } catch {
+    Line.showError(`Failed to run path: ${path}`);
+  }
+}
+
+// 이벤트 발생 → 등록된 when 핸들러 실행. args 는 핸들러의 as(...) 매개변수로 순서대로 전달.
+// 예: emit('Start')  /  emit('login', userId, name)
+export async function emit(event: string, ...args: any[]): Promise<void> {
+  if (_loading) { _deferredEmits.push({ event, args }); return; }   // 로드 중이면 모아뒀다 나중에
+  const handlers = eventHandlers.get(event);
+  if (!handlers) return;
+  for (const h of handlers) {
+    try { await callValue(h, args, {}); }
+    catch (e) {
+      if (e instanceof ZevraError) Line.showError(`[zevra] ${e.message}`);
+      else if (e instanceof ZevraThrow) Line.showError(`[zevra] uncaught: ${zStr(e.value)}`);
+      else throw e;
+    }
+  }
+}
+
+// ── Local expansion packs ──────────────────────────────────────────────────────
+// 등록된 경로(파일/폴더)의 .ze 를 Room 시작 때마다 실행한다. localStorage 에 저장.
+// 로그인 여부와 무관하게 동작.
+
+const PACKS_KEY = 'room_local_packs';
+// 로컬 확장팩: path(폴더/파일 경로, id 는 이름에서 자동) 또는 code(zevra 코드, id 는 사용자 지정).
+// path 는 출처 표시용(어디서 가져왔는지)일 뿐, 실행은 설치 때 저장한 files 스냅샷으로 한다.
+// → 경로가 바뀌거나 파일이 옮겨져도 동작한다.
+type PackFile = { name: string; content: string };
+type LocalPack = { id: string; path?: string; code?: string; files?: PackFile[]; installedAt?: string; readme?: string };
+
+// README 내용에서 한 줄 설명을 뽑는다 (제목/빈 줄 건너뛴 첫 본문 줄).
+function readmeSummary(readme?: string): string {
+  if (!readme) return '';
+  for (const raw of readme.split('\n')) {
+    const line = raw.replace(/^#+\s*/, '').trim();   // 머리말 # 제거
+    if (line) return line.length > 60 ? line.slice(0, 57) + '...' : line;
+  }
+  return '';
+}
+
+function loadPacks(): LocalPack[] {
+  try { return JSON.parse(localStorage.getItem(PACKS_KEY) ?? '[]'); } catch { return []; }
+}
+function savePacks(packs: LocalPack[]): void {
+  localStorage.setItem(PACKS_KEY, JSON.stringify(packs));
+}
+
+export function listLocalPack(): void {
+    const packs = loadPacks();
+    Line.addLine('Local expansion packs:');
+    for (const p of packs) {
+      const desc = readmeSummary(p.readme);
+      Line.addLine(`  ${p.id}  (${p.path ?? 'code'})${desc ? ' — ' + desc : ''}`);
+    }
+}
+
+// 경로로 로컬 확장팩 등록: 설치 시점에 .ze 내용을 읽어 스냅샷으로 저장한다.
+// id 는 항상 콘텐츠에서 정해진다 — 폴더면 .packid 파일, 단일 파일이면 그 파일 맨 윗줄 export id="...".
+export async function addLocalPack(path: string): Promise<void> {
+  if (!path) { Line.showError('Please provide a path.'); return; }
+  const fsBridge = (globalThis as any).roomFS;
+  if (!fsBridge) { Line.showError('Path packs can only be installed in the desktop app.'); return; }
+
+  let result;
+  try {
+    result = await fsBridge.readPack(path);   // { ze: [{name, content}], readme, packId, isFile }
+  } catch {
+    Line.showError(`Failed to read path: ${path}`);
+    return;
+  }
+
+  let packId: string | null;
+  if (result.isFile) {
+    // 단일 파일 → 맨 윗줄 export id="..." 에서
+    try { packId = extractModuleId(parse(tokenize(result.ze[0]?.content ?? ''))).id; }
+    catch { Line.showError(`Could not read the file: ${path}`); return; }
+    if (!packId) { Line.showError('A file pack must declare `export id = "...";` on its top line.'); return; }
+  } else {
+    // 폴더 → .packid 파일에서만
+    packId = result.packId;
+    if (!packId) { Line.showError('A folder pack must contain a .packid file.'); return; }
+  }
+
+  const packs = loadPacks();
+  if (packs.some(p => p.id === packId)) { Line.showError(`A local expansion pack named '${packId}' already exists.`); return; }
+
+  const files: PackFile[] = result.ze.filter((f: PackFile) => f.name.toLowerCase().endsWith('.ze'));
+  if (files.length === 0) { Line.showError('No .ze files found at that path.'); return; }
+
+  packs.push({ id: packId, path, files, installedAt: new Date().toISOString(), readme: result.readme ?? undefined });
+  savePacks(packs);
+  Line.showSuccess(`Local expansion pack added: ${packId} (${files.length} file${files.length > 1 ? 's' : ''})`);
+}
+
+// zevra 코드로 직접 로컬 확장팩 등록 (id 는 사용자가 지정)
+export function addCode(id: string, code: string): void {
+  if (!id) { Line.showError('Please provide an id.'); return; }
+  if (!code) { Line.showError('Please provide code.'); return; }
+  const packs = loadPacks();
+  if (packs.some(p => p.id === id)) { Line.showError(`A local expansion pack named '${id}' already exists.`); return; }
+  packs.push({ id, code, installedAt: new Date().toISOString() });
+  savePacks(packs);
+  Line.showSuccess(`Local expansion pack added: ${id}`);
+}
+
+// 이미 등록된 로컬 확장팩을 그 path(또는 새 path)에서 다시 읽어 갱신한다. id 는 그대로 유지.
+// (delete + add-path 반복 대신.) 변경은 다음 :rejoin 때 적용된다.
+export async function updatePack(id?: string, newPath?: string): Promise<void> {
+  if (!id) { Line.showError('update-pack requires an id.'); return; }
+  const packs = loadPacks();
+  const pack = packs.find(p => p.id === id);
+  if (!pack) { Line.showError(`No local expansion pack with id: ${id}`); return; }
+
+  const path = newPath || pack.path;
+  if (!path) { Line.showError(`Pack '${id}' was added as code and has no path to update from.`); return; }
+  const fsBridge = (globalThis as any).roomFS;
+  if (!fsBridge) { Line.showError('Updating a path pack requires the desktop app.'); return; }
+
+  let result;
+  try { result = await fsBridge.readPack(path); }
+  catch { Line.showError(`Failed to read path: ${path}`); return; }
+  const files: PackFile[] = result.ze.filter((f: PackFile) => f.name.toLowerCase().endsWith('.ze'));
+  if (files.length === 0) { Line.showError('No .ze files found at that path.'); return; }
+
+  pack.files = files;
+  pack.path = path;                          // 새 path 면 갱신
+  pack.readme = result.readme ?? undefined;  // README 도 갱신
+  pack.installedAt = new Date().toISOString();
+  savePacks(packs);
+  moduleCache.delete(id);                     // 이번 세션 캐시 무효화
+  Line.showSuccess(`Updated local expansion pack: ${id} (${files.length} file${files.length > 1 ? 's' : ''}). Run :rejoin to apply.`);
+}
+
+// Room 시작 시 호출: 등록된 로컬 확장팩 실행.
+// 설치 때 저장해둔 내용(code 또는 files 스냅샷)으로 실행한다 — 경로 재접근 불필요.
+export async function loadLocalPacks(): Promise<void> {
+  _loading = true;   // 로드 중 emit 은 모아둔다 (모든 파일이 동시에 켜지는 효과)
+  for (const pack of loadPacks()) {
+    try {
+      const sources = pack.code !== undefined ? [pack.code] : (pack.files ?? []).map(f => f.content);
+      for (const src of sources) {
+        if (extractModuleId(parse(tokenize(src))).id !== null) continue;   // 모듈 파일(맨 윗줄 id=)은 import 될 때만 실행
+        await run(src, pack.id);   // localStorage 네임스페이스 = pack.id
+      }
+    } catch (e) {
+      const msg = e instanceof ZevraError ? e.message : e instanceof ZevraThrow ? zStr(e.value) : String(e);
+      Line.showError(`Failed to load local expansion pack: ${pack.id} (${msg})`);
+    }
+  }
+  _loading = false;
+  // 이제 모든 when 핸들러가 등록됐으니, 로드 중 쌓인 이벤트를 순서대로 발생시킨다.
+  const queued = _deferredEmits.splice(0);
+  for (const { event, args } of queued) await emit(event, ...args);
+}
+
+// 로컬 확장팩 제거 (id 여러 개 가능). id 없으면 목록 보여주고 입력받음 (, 로 여러 개 구분).
+export async function removeLocalPack(ids?: string | string[]): Promise<void> {
+  const packs = loadPacks();
+  if (packs.length === 0) { Line.addLine('No local expansion packs.'); return; }
+
+  let list = (Array.isArray(ids) ? ids : ids ? [ids] : []).map(s => s.trim()).filter(Boolean);
+  if (list.length === 0) {
+    Line.addLine('Local expansion packs:');
+    for (const p of packs) Line.addLine(`  ${p.id}  (${p.path ?? 'code'})`);
+    const answer = await Line.askInput('Enter the id(s) to remove (comma-separated):');
+    list = answer.split(',').map(s => s.trim()).filter(Boolean);
+  }
+  if (list.length === 0) return;
+
+  const have = new Set(packs.map(p => p.id));
+  const removed = list.filter(id => have.has(id));
+  const notFound = list.filter(id => !have.has(id));
+
+  if (removed.length > 0) {
+    savePacks(packs.filter(p => !removed.includes(p.id)));
+    Line.showSuccess(`Removed local expansion pack(s): ${removed.join(', ')}`);
+  }
+  if (notFound.length > 0) Line.showError(`No local expansion pack with id: ${notFound.join(', ')}`);
+}
+
+```
+
 -- *tenn*
