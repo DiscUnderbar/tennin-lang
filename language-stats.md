@@ -1128,6 +1128,955 @@ JavaScript가 5.2인 건 나쁜 언어라서가 아니라 **이 렌즈가 "운"�
 
 문법은 철학, 고통, 도메인, 제약에서 나와야하고 안그러면 ::label:: goto label; 이 아니라 fuck 3; 이런것도 독창성이 된다, 또한 철학은 고통, 도메인, 제약, 또다른 철학에서 나와야하고 안그러면 키워드는 익숙하게 욕으로 한다. 이런 철학이 생길수도 있다. 또한 킬러 유즈케이스는 고통에서 나와야한다. 안그러면 킬러유즈 케이스가 모든 키워드는 익숙하게 욕이다가 될수도 있다
 
+그리고 경험담인데, 가장 좋은 방법은 직접 설계하며 경험하고, 경험하는것이다.
+
+---
+
+AI 를 잘 사용하는법이다.
+
+오후 3시 20분, Pro 가 결제되어 있는 유일한 AI Claude의 토큰을 모두 다 써버렸다. 심심한데, 나 혼자 언어를 설계하면서 놀기에는 너무 어렵고 ChatGPT 는 말귀를 못 알아듣고, 재미도 없다. 이따 ChatGPT 랑 이런 방식으로 언어를 만들어본다.
+
+내가 먼저, 언어를 만들자고 한다. 이러면 ChatGPT 는 Proxima Centauri 같은 언어를 만들어 줄꺼다. 이러면 우린 위에 있는 이 문서 전체를 종합한 문장을 프롬프트로 보낸다. 그리고 그럼 ChatGPT 는 어떻게 할까? 언어를 이런식으로 하면 좋겠다. 수준만 설계할것이다. 이때 우리는 그냥 문법을 모두 완성하라고 **절대 하지 말고** 그냥 Chrona 처럼 같이 대화하며 난 비판하고, ChatGPT 는 언어를 설계하고, 이런식으로 언어를 만들어본다. 결과는 놀랍다.
+
+```
+프로그래밍 언어 설계해봐
+
+언어 이름을 Nova라고 해보겠습니다. 목표는 C의 성능 + Python의 간결함 + Rust의 안전성입니다.
+
+기본 문법
+fn main() {
+    println("Hello, World!");
+}
+변수
+let name = "Kim";      // 변경 불가
+var age = 20;          // 변경 가능
+
+age += 1;
+타입
+let n: i32 = 100;
+let pi: f64 = 3.14159;
+let ok: bool = true;
+let text: string = "Hello";
+
+타입 추론도 가능합니다.
+
+let x = 10;
+함수
+fn add(a: i32, b: i32) -> i32 {
+    return a + b;
+}
+
+println(add(3, 5));
+
+한 줄 함수
+
+fn square(x) => x * x;
+조건문
+if score >= 90 {
+    println("A");
+} else if score >= 80 {
+    println("B");
+} else {
+    println("F");
+}
+반복문
+while
+var i = 0;
+
+while i < 5 {
+    println(i);
+    i += 1;
+}
+for
+for i in 0..10 {
+    println(i);
+}
+
+0..10은 0~9입니다.
+
+배열
+let nums = [1, 2, 3, 4];
+
+println(nums[0]);
+
+추가
+
+nums.push(5);
+반복
+for n in nums {
+    println(n);
+}
+구조체
+struct Player {
+    name: string,
+    hp: i32,
+}
+
+let p = Player {
+    name: "Hero",
+    hp: 100
+};
+
+println(p.name);
+메서드
+impl Player {
+
+    fn damage(self, amount) {
+        self.hp -= amount;
+    }
+
+}
+
+사용
+
+p.damage(20);
+enum
+enum Color {
+    Red,
+    Green,
+    Blue
+}
+match
+match color {
+
+    Red => println("R"),
+
+    Green => println("G"),
+
+    Blue => println("B")
+
+}
+Optional
+
+null 대신 Optional을 사용합니다.
+
+let user: string?;
+
+if user? {
+    println(user);
+}
+
+또는
+
+let name = user ?? "Guest";
+에러 처리
+fn load() throws FileError {
+
+}
+
+사용
+
+try {
+
+    load();
+
+} catch e {
+
+    println(e);
+
+}
+메모리 관리
+
+가비지 컬렉터는 없습니다.
+
+참조 카운팅을 기본으로 사용합니다.
+
+let a = Player();
+let b = a;
+
+두 변수가 같은 객체를 참조하고, 참조가 모두 사라지면 자동으로 메모리가 해제됩니다.
+
+비동기
+async fn download() {
+
+}
+
+await download();
+모듈
+import math;
+
+println(math.sqrt(25));
+제네릭
+fn max<T>(a: T, b: T) -> T {
+
+    if a > b {
+        return a;
+    }
+
+    return b;
+}
+문자열 보간
+let name = "Kim";
+
+println("Hello {name}");
+클래스 없이 객체지향
+struct Animal {
+
+    name: string
+
+}
+
+impl Animal {
+
+    fn speak(self) {
+
+        println("...");
+
+    }
+
+}
+
+클래스 대신 struct + impl을 사용합니다.
+
+컴파일러 특징
+LLVM 기반 컴파일
+네이티브 실행 파일 생성
+자동 타입 추론
+참조 카운팅 기반 메모리 관리
+GC 없음
+크로스 플랫폼 지원
+패키지 매니저 nova
+예제 프로그램
+struct Person {
+    name: string,
+    age: i32,
+}
+
+impl Person {
+
+    fn greet(self) {
+        println("안녕하세요! 저는 {self.name}이고 {self.age}살입니다.");
+    }
+
+}
+
+fn main() {
+
+    let person = Person {
+        name: "Kim",
+        age: 20
+    };
+
+    person.greet();
+
+    for i in 1..6 {
+        println(i);
+    }
+
+}
+
+이 언어는 문법은 Python처럼 읽기 쉽지만, 컴파일 후에는 C/C++에 가까운 성능을 목표로 설계되었습니다. 참조 카운팅으로 메모리를 자동 관리하면서도 GC에 의한 실행 중 일시 정지를 없애고, struct + impl, 제네릭, async/await, match, Optional 타입 등을 기본 기능으로 포함해 현대적인 시스템 프로그래밍과 일반 애플리케이션 개발 모두에 사용할 수 있도록 구성했습니다.
+
+맞습니다. 지금까지 설계한 Nova는 "Python에 타입 붙인 언어" 쪽으로 기울어져 있습니다.
+
+그렇게 하면:
+
+배우기는 쉽다 ✅
+보기 쉽다 ✅
+그런데 대규모 유지보수 보장? ❌
+
+이 됩니다.
+
+왜냐하면 유지보수성이 좋은 언어들이 어려운 이유는 단순히 문법 때문이 아닙니다.
+
+그 언어들은 코드에 미래의 정보를 강제로 남기기 때문입니다.
+
+예를 들어 Java:
+
+userService.findUser(id);
+
+보기 어렵지만, 구조가 강합니다.
+
+Rust:
+
+let user: Result<User, Error>
+
+복잡하지만, 실패 가능성이 코드에 남습니다.
+
+Nova가 해결해야 하는 문제:
+
+"문법은 Python처럼 읽히는데, Java/Rust처럼 미래의 개발자가 필요한 정보를 잃지 않는다."
+
+입니다.
+
+그래서 문법 방향을 바꿔야 합니다.
+
+Nova의 핵심: "쉬운 표면 + 강한 구조"
+
+Python처럼:
+
+user = find_user(id)
+
+가능.
+
+하지만 컴파일러가 요구하는 최소 정보가 있습니다.
+
+예:
+
+user = find_user(id)
+
+내부적으로:
+
+user:
+    type = User?
+    effect = Database
+    failure = Possible
+
+같은 정보를 추적합니다.
+
+1. 타입은 선택이 아니라 추론 결과로 존재
+
+문법:
+
+let user = find_user(id)
+
+하지만 컴파일러는:
+
+let user: Optional<User> = find_user(id)
+
+처럼 이해합니다.
+
+중요한 것은:
+
+개발자가 안 적어도 없는 것이 아니라 존재한다는 점입니다.
+
+2. 함수 계약을 강하게
+
+Python:
+
+def save(user):
+
+아무 정보 없음.
+
+Nova:
+
+fn save(user) {
+}
+
+처음에는 허용.
+
+하지만 public 함수가 되면:
+
+public fn save(user: User) -> Result
+
+를 요구.
+
+왜냐하면 유지보수 문제는 대부분 "공개되는 순간" 발생하기 때문입니다.
+
+3. 변수의 역할을 저장
+
+Python:
+
+users = []
+
+이게 뭔지 모름.
+
+Nova:
+
+let users = []
+
+처음에는 추론.
+
+하지만:
+
+users.add(User)
+
+하면:
+
+users: List<User>
+
+가 됨.
+
+4. 변경 가능성은 강제
+
+여기가 중요합니다.
+
+Python:
+
+config = load()
+
+누군가 바꿀 수 있음.
+
+Nova:
+
+let config = load()
+
+읽기 전용.
+
+변경:
+
+var config = load()
+
+즉:
+
+"나중에 누가 수정할 수 있는가?"
+
+라는 유지보수 정보를 코드에 남김.
+
+5. 상속 제거
+
+큰 프로젝트에서 유지보수 지옥이 되는 대표적인 부분:
+
+Animal
+   |
+ Dog
+   |
+ SuperDog
+
+Nova:
+
+struct Dog
+impl Dog
+
+데이터와 기능을 분리.
+
+6. 효과 시스템 추가
+
+여기가 Nova만의 핵심 후보입니다.
+
+함수:
+
+fn calculate()
+
+순수 계산.
+
+하지만:
+
+fn save()
+
+파일이나 DB를 건드리면:
+
+fn save() -> IO
+
+처럼 표시.
+
+코드를 읽는 사람이:
+
+"이 함수 호출하면 무슨 일이 생기지?"
+
+를 추측하지 않음.
+
+그러면 Nova 문법은 이렇게 됩니다.
+
+간단한 코드:
+
+fn hello(name) {
+    print("Hello {name}")
+}
+
+큰 프로젝트:
+
+public fn create_user(
+    name: String
+) -> Result<User, DatabaseError>
+effects Database
+{
+    ...
+}
+
+둘 다 같은 언어입니다.
+
+결국 Nova의 차별점은:
+
+Python:
+
+"쉽게 작성"
+
+Java/Rust:
+
+"미래를 위해 현재 복잡"
+
+Nova:
+
+"현재는 Python처럼 작성하고, 커질 때 필요한 구조는 컴파일러가 확보한다."
+
+입니다.
+
+그래서 다음 단계에서 설계해야 하는 건 문법보다 먼저:
+
+Nova 컴파일러가 어떤 정보를 자동으로 추적하고, 언제부터 개발자에게 명시를 요구할 것인가
+
+입니다.
+
+이걸 정하면 문법은 자연스럽게 나옵니다.
+
+아 그럼 이런식으로 우선 타입은 필수로, 또한 나머지 effect, failure 그런 정보를 추척한다 이건 또 유지보수에 어렵고 그럼 아에 새로운 우하한 해답을 찾아야해, 그리고 너가 말한게 해답이 될수도 있을것 같아.
+
+맞습니다. 여기서 중요한 지점을 잡았습니다.
+
+우리가 방금 갔던 방향:
+
+타입 필수
++
+effect 추적
++
+failure 추적
++
+변경 가능성 추적
++
+온갖 정보 표시
+
+이건 유지보수를 위해 정보를 추가하는 방식인데, 결국 Java/Rust가 가진 문제를 다시 가져올 가능성이 큽니다.
+
+즉:
+
+"유지보수가 어려우니까 정보를 더 적자"
+
+라는 접근은 맞지만,
+
+"정보를 개발자가 계속 관리하게 한다"
+
+가 되는 순간 Nova의 철학과 충돌합니다.
+
+그러면 진짜 문제는:
+
+유지보수에 필요한 정보를 누가 책임질 것인가?
+
+입니다.
+
+기존 언어:
+
+개발자
+  ↓
+정보 작성
+  ↓
+컴파일러 검사
+
+Nova가 원하는 방향:
+
+개발자
+  ↓
+쉬운 코드 작성
+  ↓
+컴파일러가 코드에서 구조 발견
+  ↓
+유지보수 정보 생성
+
+그래서 아까 말한 "추적"은 문법이 아니라 컴파일러 능력이어야 합니다.
+
+예:
+
+Nova 코드:
+
+fn save(user: User) {
+    database.save(user)
+}
+
+개발자는 이것만 작성.
+
+컴파일러 내부:
+
+save
+
+입력:
+ User
+
+출력:
+ Unit
+
+사용:
+ Database
+
+실패:
+ DatabaseError 가능
+
+상태 변경:
+ database
+
+이 정보를 자동 생성.
+
+개발자가 매번:
+
+fn save(
+    user: User
+) -> Result<Unit, DatabaseError>
+effects Database
+
+를 작성하는 것이 아닙니다.
+
+그러면 Nova의 핵심 아이디어가 생깁니다.
+
+"코드는 쉽게 작성하지만, 컴파일 결과는 엄격하다"
+
+입니다.
+
+예를 들어 Python:
+
+def add(a, b):
+    return a+b
+
+실행 전까지:
+
+add?
+
+입니다.
+
+Nova:
+
+fn add(a, b) {
+    return a + b
+}
+
+작성 가능.
+
+하지만 컴파일러가:
+
+추론:
+
+a: Number
+b: Number
+return: Number
+
+pure function
+
+으로 저장.
+
+그리고 중요한 부분:
+
+공개 코드만 강제
+
+개인 함수:
+
+fn calculate(x) {
+}
+
+자유.
+
+라이브러리:
+
+public fn calculate(x) {
+}
+
+여기부터:
+
+API 계약 생성
+
+을 요구.
+
+이게 중요한 이유:
+
+모든 코드가 유지보수 대상은 아닙니다.
+
+대부분의 문제는:
+
+다른 사람이 사용하는 코드
+여러 팀이 공유하는 코드
+오래 유지되는 코드
+
+에서 발생합니다.
+
+그래서 Nova의 설계 방향:
+
+내부 코드
+
+Python처럼:
+
+fn process(data) {
+}
+
+빠름.
+
+경계 코드
+
+강함:
+
+public fn process(data: User) -> Result
+
+안정성.
+
+그리고 IDE가 중간을 연결
+
+개발자는:
+
+user.name
+
+작성.
+
+IDE는:
+
+user: User
+name: String
+nullable: false
+
+를 알고 있음.
+
+결국 Nova의 우아한 해답은:
+
+"유지보수성을 위한 정보를 문법으로 요구하지 말고, 컴파일러가 만들어내게 한다."
+
+입니다.
+
+그러면 Nova는:
+
+Python:
+
+사람이 자유롭게 작성
+미래 정보 부족
+
+Java/Rust:
+
+사람이 미래 정보를 작성
+현재 속도 저하
+
+Nova:
+
+사람이 쉽게 작성
+컴파일러가 미래 정보를 확보
+
+라는 세 번째 길이 됩니다.
+
+이 방향이면 처음 목표였던:
+
+Python처럼 보기 쉽고, 배우기 쉽지만 유지보수가 쉬운 언어
+
+에 훨씬 가까워집니다.
+
+그럼 아예 터미널에서 nova --info 파일 이름 이러면 그냥 이 파일 이름에 대한 유지보수를 위한 정보가 나오는거 어떰? 그리고 이건 메인으로 활용하게 하는거고, 그 정보를 직접 자료 형태로 얻을려면 get_info() 이런 함수를 사용하면 되고, (get_info() 는 REPL 용) 이 해답을 너가 말한곳에서 얻은것 같아. 그리고 public 나 그런건 최소한 명시하게 해서 유지보수 정보는 얻는게 가능하게 그리고 여기서 유지보수 정보는 얻는게 가능하게를 위해 너가 방금 말한걸 사용하면 될것같아.
+
+이 방향이 훨씬 Nova의 철학과 맞습니다.
+
+핵심 변화는:
+
+기존 접근:
+
+유지보수를 위해 코드 작성자가 정보를 계속 적는다.
+
+Nova 접근:
+
+코드는 자연스럽게 작성하고, 언어가 코드의 유지보수 정보를 분석해서 제공한다.
+
+입니다.
+
+nova --info 파일명은 단순한 디버그 명령이 아니라 Nova의 핵심 기능이 될 수 있습니다.
+
+Nova 정보 시스템
+
+예:
+
+nova --info user.nova
+
+출력:
+
+File: user.nova
+
+Structure:
+  Types:
+    User
+    Account
+
+Functions:
+  create_user()
+    Input:
+      name: String
+    Output:
+      User
+
+    Effects:
+      Database
+
+    Calls:
+      validate_name()
+      save_user()
+
+Dependencies:
+    database.nova
+    validation.nova
+
+Mutable State:
+    User.balance
+
+Public API:
+    create_user()
+
+Risk:
+    Medium
+
+Reason:
+    Database dependency
+    Mutable state detected
+
+개발자가 직접 작성하지 않았는데 컴파일러가 코드에서 얻은 정보입니다.
+
+중요한 점: 이 정보는 "문법"이 아니다
+
+Nova 코드:
+
+fn create_user(name) {
+
+    let user = User(name)
+
+    database.save(user)
+
+    return user
+
+}
+
+그냥 코드입니다.
+
+하지만 Nova 엔진은:
+
+create_user
+
+parameter:
+ String
+
+return:
+ User
+
+effect:
+ Database
+
+dependency:
+ database
+
+side effect:
+ yes
+
+를 알아냅니다.
+
+public은 최소한의 명시로 사용
+
+여기가 좋습니다.
+
+왜냐하면 모든 정보를 자동 추론하는 것도 한계가 있습니다.
+
+예:
+
+내부 함수:
+
+fn calculate_price()
+
+누가 바꿔도 영향 범위가 작음.
+
+하지만:
+
+public fn calculate_price()
+
+이 순간:
+
+"외부에서 의존할 가능성이 있다"
+
+라는 의미가 생깁니다.
+
+그래서 public만 유지보수 경계로 사용합니다.
+
+public 함수에는 더 많은 정보 제공
+
+예:
+
+public fn login(user)
+
+nova --info:
+
+Public API:
+
+login
+
+Input:
+ User
+
+Output:
+ Session
+
+Dependencies:
+ AuthService
+
+Breaking change risk:
+ High
+
+Used by:
+ 17 locations
+get_info()
+
+이것도 맞습니다.
+
+REPL:
+
+> get_info(User)
+
+결과:
+
+Type: User
+
+Fields:
+ name: String
+ age: Int
+
+Mutable:
+ false
+
+Created:
+ user.nova:15
+
+Used:
+ 34 places
+그리고 이 방식의 진짜 장점
+
+다른 언어는:
+
+"코드를 잘 작성해야 유지보수 가능"
+
+입니다.
+
+Nova는:
+
+"코드는 평범하게 작성하고, 언어가 유지보수 관점을 제공"
+
+합니다.
+
+다만 여기서 중요한 설계 하나
+
+--info는 단순한 문서 생성기가 되면 안 됩니다.
+
+예를 들어:
+
+함수 목록
+변수 목록
+
+정도면 부족합니다.
+
+진짜 필요한 것은:
+
+변경 영향 분석
+
+예:
+
+nova --impact User.name
+
+출력:
+
+Changing User.name affects:
+
+- login.nova
+- profile.nova
+- api/user.nova
+
+Public API:
+ yes
+
+Recommended:
+ create migration
+
+이런 것이 Nova가 Python보다 유지보수성이 좋은 이유가 됩니다.
+
+그래서 Nova의 새로운 핵심 철학은:
+
+"개발자는 유지보수 문서를 작성하지 않는다. 코드를 작성하면 언어가 유지보수 관점을 생성한다."
+
+이 됩니다.
+
+그리고 이건 처음 목표와도 연결됩니다.
+
+Python처럼 코드가 짧음
+Rust처럼 컴파일러가 분석함
+Java처럼 프로젝트 구조를 이해함
+하지만 개발자가 모든 메타정보를 작성하지 않음
+
+이게 Nova만의 가장 강한 차별점이 될 수 있습니다.
+```
+
+이런식으로 대화하면서 언어를 ChatGPT 랑 기획했더니 그냥 Claude Pro 한테 언어 하나 만들라고 한것보다 더 좋은 언어가 하나 생겨났다. 이게 않좋은 모델로 좋은 언어를 설계하는 법이다. 만약 이 방식이 귀찮다면, 그 언어는 Proxima Centauri 가 될것이다. 장담한다.
+
 # 여기에 나오는 언어들
 
 VarNumB 는 [VarNumB](https://github.com/DiscUnderbar/Variable-Number-Binary) 에 가면 볼수 있다.
