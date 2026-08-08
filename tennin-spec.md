@@ -96,8 +96,64 @@ Tennin 자체를 만들 때 지키는 원칙. 우선순위 순.
 이게 표현 지향이다. 왜 있냐면 단순히 Option 으로 받으면 자기만의 새로운 구조를 만들지 못한다. 전혀, 하지만 표현지향은 자신만의 새로운 구조를 만들수 있게 한다. 슬롯에 특이한 방식으로 값을 받는걸 넣거나\
 아예 이세상에는 없는 자료 구조를 만들어 벌리수도 있다. 이게 표현지향이다. 이게 표현지향인지 구분하는법은 여기서 새로운 구조를 새로 만들수 있냐다.
 
+표현지향의 예시다.
+
+```
+for (
+   int i;
+   start = 10;
+   end = 20;
+) {
+   ...
+}
+```
+
+이건 직접 얼마나 반복할지 표현하고, 말한다.
+
+이번엔 ROP 의 반대 OPOP (Option Oriented Programming) 을 보자 (참고로 Option Oriented Programming 이 OOP 가 아니라\
+OPOP 인 이유는 OOP 라고 하면 Object Oriented Programming 과 착각할수도 있기 때문이다. )
+
+```
+for (
+   variableNameIsA = false;
+   variableNameIsB = false;
+   variableNameIsC = false;
+   variableNameIsD = false;
+   variableNameIsE = false;
+   ...
+   variableNameIsi = true;
+   startIsOne = false;
+   startIsTwo = false;
+   startIsThree = false;
+   startIsFour = false;
+   startIsFive = false;
+   ...
+   startIsTen = true;
+   endIsOne = false;
+   endIsTwo = false;
+   endIsThree = false;
+   endIsFour = false;
+   endIsFive = false;
+   ...
+   endIsTwenty = true;
+) {
+   ...
+}
+```
+
+이게 OPOP 다
+
+(\
+   참고로 OPOP 가 단점만 있는건 아니다. 매개변수를 받는걸 isArgs = true; 말고 직접 파싱하게 하면\
+   너무 사용자가 쓰기 어렵다.\
+   그래서 뭐 사용자가 저런걸 다 하게 하기 싫다면 OPOP 를 쓰는것도 방법이다.\
+   하지만 Tennin 은 극적 ROP 고 OPOP 는 사용하지 않는다.\
+)
+
 정보지향은 무엇이 전달될 때 필요한 정보는 모두 보존한다. 그러니까 예를 들어서 일반적인 언어는 함수를 callback 으로 받을 때 이름은 안 받고 그냥 함수 자체를 받음 그 대신 정보지향에서는\
-이 함수의 이름이 뭔지, 어디서 호출이 됐는지, 이 호출된 위치가 어딘지 그런것까지 모두 기록해서 줌
+이 함수의 이름이 뭔지, 어디서 호출이 됐는지, 이 호출된 위치가 어딘지 그런것까지 모두 기록해서 준다.\
+정확히는 그냥 정보가 보존되는거다. 함수 이름이나, 함수가 어디에서 쓰이나 이런것까지 모두 보존하는 그런 프로그래밍 방식이\
+정보지향이다.
 
 그러면 궁금할 수 있다 — 정보 지향은 메모리 낭비가 아니냐. Tennin 의 답은 **정보 굽기**다: 정보는 나르지 않고, 굽는다.
 
