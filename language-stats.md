@@ -6715,8 +6715,9 @@ pure func clamp(x: DFloat, min: DFloat, max: DFloat) -> DFloat { }
 
 8. **없는 해법을 전제로 설계하지 않는다.**
    "1 Tick 지연을 없애면서 병렬성과 결정론을 모두 만족하는 방법"은 알지 못한다. 그래서 그걸 전제로 하지 않고, 아는 것 중에서 골랐다.
-
 ````
+
+만약 대화 내역을 보고싶으면 [Chrona 대화 내역](https://claude.ai/share/6da6f313-4f8e-4933-8f32-3eccf7ac5562) 에 가서 보면 된다.
 
 ## lmnop qrs
 

@@ -833,6 +833,8 @@ anything 은 값을 바꿀 때 무슨 타입으로 바꾸는지 적어야 한다
 그리고 결정적인 차이는 컴파일러가 타입이 any 인 변수는 아예 그냥 타입이 any 라는 정적 변수로 보고\
 anything 은 그냥 동적 변수로 본다.
 
+또한 += 나 -= 이런 연산자는 없다. 왜냐하면 += 에서 이게 몇만큼 더하기라는 의도가 잘 안보인다.
+
 간단히 정리해
 
 #### 변수 (정적):
@@ -1322,6 +1324,8 @@ func helloWorld():(
 ```
 
 처음부터 복잡하지 않고 처음에 간단한 선언문 부터 있으면 보기에 여기가 본문이구나가 바로 보이기 때문에 좀 더 읽기 좋다. ~~아님 말고~~
+
+> 참고로 이 문서에서 `using tenn;` 으로 시작하지 않는 tennin 코드는 그냥 그걸 안써도 되는게 아니라 다 쓰면 너무 길어지니까 굳이 쓰지 않은거다.
 
 ### Yulist
 
@@ -1841,9 +1845,7 @@ tenn --update <라이브러리 이름> "파일 경로" <버전>
 
 ### SubStackTurner — 턴 동기화 표준 라이브러리
 
-> 상태: 초안 (v0.1) · 작성일 2026-08-08
 > 대상: Tennin 표준 라이브러리 · 의존: 1-D 실행 모델 (Stack / Sub-stack / Queue)
-> 전제: 이 문서는 `tennin-spec.md` 의 1-D 실행 모델을 알고 있다고 가정한다.
 
 ---
 
@@ -2186,6 +2188,99 @@ World.startTurnWithUnpinnedTime();   @... 자유 (최대한 빨리)
 9. **완료 판정 방식** — 완료 카운터를 세는가, Sub-stack 이 담당 큐 목록을 순회하는가. 후자라면 **큐 소유권 트리**(1-D 의 TODO)가 먼저 정해져야 한다.
 10. **Turner 중첩** — Turner 안에 Turner 를 둘 수 있는가. 가능하다면 안쪽 Turner 의 여러 턴이 바깥 Turner 의 한 턴 안에 들어가는 구조가 된다 (물리 서브스텝이 대표 사례).
 11. **동적 제거** — 큐를 Turner 에서 빼는 방법. 턴 경계에서만 가능해야 할 것으로 보인다.
+
+### math
+
+> 수학 관련 라이브러리
+
+여러가지 수학 함수들이나 상수를 지원한다.
+
+
+#### max, min
+
+최댓 값과 최솟 값을 구해준다.
+
+예시:
+
+```tennin
+print(math.max(1, 2, 3)); @= 3
+print(math.min(1, 4, 2)); @= 1
+@... 실수도 된다.
+print(math.max(1.2, 1.43, 2.5)); @= 2.5
+print(math.max(1.4d, 2.4d, 1.2d)); @= 2.4d
+print(math.min(1.3d, 1.3d, 1.1d)); @= 1.1d
+@... 모두 수가 같으면 그냥 가장 앞에 적은걸 반환한다.
+print(math.max(1, 1, 1)); @= 1
+@... 만약 타입이 다 다르면 에러가 난다.
+print(math.max(1, 2.3, 4.1d)); @= 에러남
+print(math.min(1, 3.4, 0.1d)); @= 에러남
+```
+
+또한 만약 이 문자열의 길이가 가장 긴거 이런걸 반환하고 싶다면
+
+```tennin
+var String1 :: string = "Hello, World!";
+var String2 :: string = "Byte, World!";
+var Longer :: variable[string] | variable[string] = math.max {String1, String2}:( @... String1 이 더 길기 때문에 String1 이 variable 로 반환된다.
+   return self.len(); @... return 은 math.max 의 소국이고, self 도 math.max 의 소국이다. math.max 는 예를 들어서 String1 을 저 식에 대입할때 self 가 String1 이 되고 그런식이다.
+);
+
+Line.addLine(Longer); @= String1
+```
+
+이런식으로 하면 된다. return 으로 반환한 값이 더 큰걸 이제 반환한다.
+
+#### abs
+
+절댓값을 반환한다.
+
+```tennin
+var x :: int = math.abs(-2); @... 절댓값 반환
+print(x); @= 2
+var y :: double = math.abs(-4.32d); @... double 도 된다.
+print(y); @= 4.32
+var z :: byte[double] = math.abs(4.2); @... 다른 정밀도의 double도 된다.
+print(z); @= 4.2
+```
+
+#### sum
+
+전체 이 수들의 합을 반환한다.
+
+```tennin
+var x :: int = 1;
+var y :: int = 3;
+var z :: int = 5;
+print(x, y, z); @= 9
+```
+
+참고로 이것도 max, min 처럼 다른 타입기리 하면 에러 난다.
+
+### Line
+
+#### addLine
+
+string, int, float, double 이런 모든 타입들을 출력한다.
+
+```tennin
+using tenn;
+
+func main ():(
+   Line.addLine("Hello, World!");
+):();
+```
+
+### addLineColor
+
+특정 색으로 출력한다.
+
+```tennin
+using tenn;
+
+func main ():(
+   Line.addLineColor("Hello, World!", FFFFFF); @... 색상은 색상 코드로 naming 으로 받는다.
+):();
+```
 
 ## 2. 컴파일 파이프라인
 
