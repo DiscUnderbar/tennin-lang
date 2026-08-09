@@ -9,6 +9,51 @@
 
 Tennin 은 **숙련된 파워 유저 — 시스템·성능 지향 개발자**를 위한 언어다. 네이티브 성능과 최대 자유도(제어구조까지 재정의)를 **둘 다** 원하고, 그 대가로 학습 곡선을 기꺼이 지불하는 사람이다. Zig·Rust·Lisp을 쓰는 부류에 가깝다.
 
+**학습 곡선을 포기한게 왜 이득이냐**: 애초에 이 언어의 목적이다. 원래 다른 언어들은 한가지 문제가 있다. 코드가 많이 복잡하다. if 문은 {} 가 블럭인데 또 .forEach 로 배열 순회는 () => {} 가 블럭처럼 쓰인다.\
+그리고 애초에 이 조건이 충족하면 이걸 실행해라 할때 그냥
+
+```
+this.runIf (1 == 1) {
+   print("Hello, World!");
+}
+```
+
+이렇게 하면 않되고 복잡하게
+
+```
+let condition: condition = {
+   values: [pointEnum.ch, "~"],
+   opeartors: ["same"],
+};
+this.runIf(condition, () => {
+   print("Hello, World");
+});
+```
+
+를 해야한다. 애초에 이건 형식 따윈 개나줘버리고 언어가 허용하지 않는걸 다른 방식으로 우회해 코드가 더 복잡해 진다. 이런 코드를 짜는 언어는 누가 좋아하겠냐
+
+Java 같은 언어는 그래도 차라리 괜찮지만 그래도 아직 저런 방식의 코드를 짜야한다. Java 는 그냥 괄호 몇개 사라지고, 키워드가 다 정령되어 보이는것 뿐이다.
+
+Tennin 은 이걸 해결하고 이런 코드가 가능하다.
+
+```tennin
+this.runIf {this.ch == "~"}:(
+   Line.addLine("Hello, World!");
+);
+```
+
+훨씬더 보기 좋다. if 문도
+
+```tennin
+if {1 == 1}:(
+   Line.addLine("Hello, World!");
+);
+```
+
+일관성까지 두마리의 토끼를 잡았다.
+
+그대신 명백한 트레이닝 오프가 있다. 학습하기가 너무 어렵다. 진짜 어렵다. 그대신 코드가 훨신더 깔끔해진다. 만약 코딩 입문자라면 이 문서는 바로 때려 치우고 Python 부터 배우기 쉬운 언어를 공부하기를 바란다.
+
 **목적**: 다른 언어의 시그니처 기능까지 Tennin 의 체계적 함수(인자 함수)로 **간단히 재구현**할 수 있는 언어. 즉 Tennin 은 남의 좋은 기능을 흡수하는 메타적 함수 언어이며, 이것이 (생태계로는 못 이기는) 신생 언어가 파워 유저를 끌어올 유일한 해자다. 이 능력 — 다메커니즘 함수로 다른 언어의 시그니처 기능을 흡수·재구현하는 것 — 을 **Feature Absorption**이라 부른다. (근거·전략 → data.md #5)
 
 **설계 목적**: Tennin 는 범용 언어다. 다만 첫 목적 프로그램은 게임이다 — 내가 원하는 방식으로 코드를 짜기 위해. 설계가 갈릴 때 "게임을 짤 때 어느 쪽이 필요한가"가 심판이 된다. C 가 범용이면서 Unix 를 심판으로 삼았던 것과 같다.\
@@ -670,7 +715,9 @@ OR, AND, NOT : or 은 `or` 을 사용하고 and 는 `and` 를 사용하며 not �
 
 더하기는 `+` 빼기는 - 나누기는 `/` 곱하기는 `*` 이다.\
 나눗셈의 나머지는 % 나눗셈의 몫은 `~/` 다.\
-제곱은 `^` 을 사용한다. `x ^ y` 일 때 x, y 는 숫자 (int·double) 면 된다. (TODO: double 지수의 결과 타입 규칙)
+제곱은 `^` 을 사용한다. `x ^ y` 일 때 x, y 는 숫자 (int·double) 면 된다. (TODO: double 지수의 결과 타입 규칙)\
+두 문자열 합치기는 `$` 를 쓴다. `$` 는 결합을 상징한다. 이렇게 쓴다. `"abc" $ "def"` 이러면 `"abcdef` 가 된다.\
+`$` 가 결합인 이유는  그냥 그런 느낌이 든다. (진짜 그런 느낌이 듬)
 
 같다는 `==` 고 타입변환까지 해서 같다는 `~=` 다.\
 같지 않다는 `<>` 고 타입변환까지 해서 같지 않다는 `<~>` 다.\
@@ -1996,7 +2043,7 @@ Stack
 
 > **트레이드오프:** 큐들이 간격 안에 못 끝내면 턴이 밀린다. 이때 **밀린 만큼 따라잡을지, 그냥 건너뛸지**는 정책 결정이다 (→ 8장 미정).
 
-##### 4-2. 자유 시간 — `startTurnWithUnpinnedTime`
+##### 4-2. 자유 시간 — `startTurnWithFreeTime`
 
 큐가 전부 끝나는 즉시 다음 턴을 시작한다. 대기가 없다.
 
@@ -2074,17 +2121,34 @@ Stack
 ##### 6-1. 생성
 
 ```tennin
-using tenn;
-take SubStackTurner;
-
-var World :: SubStackTurner.Turner = SubStackTurner.create();
+var WorldEnconomy :: SubStackTurner.Turner = SubStackTurner.create();
 ```
 
 `create` 는 Sub-stack 을 하나 만들고 그것을 감싼 `Turner` 를 돌려준다.
 
-> 타입 이름이 PascalCase 인 이유: 스펙의 네이밍 컨벤션 — 자료구조 관련 타입은 PascalCase.
+참고로 자료 구조니까 PascalCase 를 쓴다. (타입에서)
 
-##### 6-2. 큐 붙이기 — 합국인자 함수
+##### 6-2. 삭제
+
+만약 이 턴을 이제 끝내고 싶다면 이렇게 하면 된다.
+
+```tennin
+var WorldEnconomy :: SubStackTurner.Turner = SubStackTurner.create();
+WorldEnconomy.delete(); @= 모든 그 SubStack 의 Queue 들은 모두 kill 되고 SubStack 은 complete 상태가 된다.
+```
+
+그리고 만약 다른 방식으로 끝내고 싶다면
+
+```tennin
+var WorldEnconomy :: SubStackTurner.Turner = SubStackTurner.create();
+WorldEnconomy.delete {}:(
+   self.waiting(); @... self 는 현제 끝내고 있는 큐, delete 의 소국이다. 그래서 이제 이 모둔 큐들을 waiting 으로 하는거
+);
+```
+
+이런식으로 하면 된다.
+
+##### 6-3. 큐 붙이기 — 합국인자 함수
 
 ```tennin
 World.addQueue {}:(
@@ -2104,7 +2168,7 @@ World.addQueue {}:(
 
 > **단점 (정직):** `doing` 은 2국이므로 `addQueue` 없이 단독으로 쓸 수 없다. 이것은 국 체계의 정상 동작이지만, 처음 보는 사람은 "왜 따로 못 쓰지?"를 한 번 넘어야 한다.
 
-##### 6-3. `doing` 블록의 계약
+##### 6-4. `doing` 블록의 계약
 
 **`doing` 이 리턴하면 그 큐의 이번 턴 몫은 끝난 것이다.** 완료 처리(구 `.done()`)는 Turner 내부에서 자동으로 일어난다 — 사용자 API 에 없다.
 
@@ -2124,16 +2188,16 @@ World.addQueue {}:(
 
 > **정직한 구멍:** 이 계약은 **컴파일러가 못 잡는다.** 라이브러리이기 때문이다(→ 1-2 트레이드오프). 규약을 어기면 런타임에 턴 지연으로만 드러난다. 완화책은 턴 데드라인 경고뿐이다 (→ 8장).
 
-##### 6-4. 시작
+##### 6-5. 시작
 
 ```tennin
 World.startTurnWithPinnedTime();     @... 고정 간격
-World.startTurnWithUnpinnedTime();   @... 자유 (최대한 빨리)
+World.startTurnWithFreeTime();   @... 자유 (최대한 빨리)
 ```
 
 > **미정:** 간격을 인자로 받는 방식(`startTurnWithPinnedTime(1000)`), 단위(ms?), 실행 중 변경 가능 여부. → 8장.
 
-##### 6-5. 턴 경계 — 이 설계의 숨은 이득
+##### 6-6. 턴 경계 — 이 설계의 숨은 이득
 
 턴 경계에서는 **소속 큐 전원이 `blocked` 이고 아무도 돌지 않는다.** 이 순간이 그 그룹의 **일관된 스냅샷**이다.
 
@@ -2189,7 +2253,7 @@ World.startTurnWithUnpinnedTime();   @... 자유 (최대한 빨리)
 10. **Turner 중첩** — Turner 안에 Turner 를 둘 수 있는가. 가능하다면 안쪽 Turner 의 여러 턴이 바깥 Turner 의 한 턴 안에 들어가는 구조가 된다 (물리 서브스텝이 대표 사례).
 11. **동적 제거** — 큐를 Turner 에서 빼는 방법. 턴 경계에서만 가능해야 할 것으로 보인다.
 
-### math
+### Math
 
 > 수학 관련 라이브러리
 
