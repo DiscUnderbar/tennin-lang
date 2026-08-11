@@ -128,3 +128,26 @@ condition 과 expression 둘다 동시에 있는거 예를 들어서 `1 + 1 == 2
 Yulist 에서 Yulist[?] 접근 대신 Yulist.? 접근 가능하게 하기 뭐 근데 숫자면 접근이 않될꺼니까 그냥 숫자도 접근 근데 가능해야하는데 어케하지? (구분을)
 tennin 에서 같은 컴포넌트를 공유하는 구역은 state 로 주 라는 뜻이며 왜 넣었냐면 뭐 둘이 컴포넌트 이름은 똑같을때 두개를 다른 팀으로 분류하거나 구조를 명확히 할수 있다.
 Tennin 에서 나라 안 슬롯을 정의하는 법을 뭐 슬롯을 naming 으로 받고 그걸 컴파일 하는 식으로 하기 근데 그걸 쉽게 하게 해주는 그런거 생각해 보기 (원래 다 컴파일 구조를 짜야하는걸 간단하게 해주는 문법 설탕 참고로 ROP 는 유지해야함)
+
+# 재미있는 언어들
+
+**시스템 언어 계열**
+
+- [Torbenx/charge](https://github.com/Torbenx/charge) — 실험적 메모리 안전 시스템 언어, C++ 구현
+- [hl-valdemar/honey](https://github.com/hl-valdemar/honey) — Jai, Zig, Odin, Go에서 영향받은 언어
+
+**컴파일 타깃이 뚜렷한 것**
+
+- [voyage-org/voyage-lang](https://github.com/voyage-org/voyage-lang) — .NET CIL로 직접 컴파일, FFI 경계 없음
+- [lechatthecat/willow](https://github.com/lechatthecat/willow) — 정적 타입 GC 기반 OOP, 네이티브 바이너리 출력
+
+**특이한 방향**
+
+- [frendsick/casa](https://github.com/frendsick/casa) — 스택 기반 언어
+- [J4n1X/aspect](https://github.com/J4n1X/aspect) — 저수준 언어, 본인이 "대규모 코드베이스 연습"이라고 명시
+
+검색 중 알게 된 점 하나: 요즘 이 영역에 AI로 대량 생성된 것 같은 저장소가 상당히 많습니다. 설명에 이모지가 붙어 있거나 "AI-native", "trustworthy", "capability-secure" 같은 표현이 겹겹이 쌓인 것들은 대부분 그쪽이라 걸러냈습니다. 위 목록도 README까지 전부 읽어본 건 아니니, 몇 개 열어보고 커밋 히스토리가 자연스러운지 보시는 게 좋습니다.
+
+더 좁은 조건(특정 구현 언어, 특정 패러다임)이 있으면 그 방향으로 다시 찾아드릴게요.
+
+
