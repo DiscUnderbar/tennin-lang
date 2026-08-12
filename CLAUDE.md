@@ -64,6 +64,8 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 
 **These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before implementation rather than after mistakes.
 
+[이 저장소에 CLAUDE.md 에서 가져옴](https://github.com/multica-ai/andrej-karpathy-skills)
+
 # 기획 관련
 
 - 모든 기록은 까먹을 수 있다. 그러므로 세세한 것까지 `tennin-spec.md` 에 저장한다. 하나가 빠지는 순간 완성도가 낮아지고 지적할 부분이 많아진다.
