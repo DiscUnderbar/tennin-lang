@@ -1097,6 +1097,8 @@ switch ("Luau"):{
 
 출력 `print` / `Line.addLine` (→ 출력 섹션). 그 밖의 것(입력, `.isEmpty` 등 Yulist 메서드, 타입 질의)은 대부분 표준 라이브러리로 가고, **컴파일러 바닥이 꼭 필요한 것만** 내장으로 남긴다 (내장 목록 최소화 — 1-B 방향성). 확정 목록은 미정. (`tenn` 은 표준 라이브러리 이름이 아니라 `using` 이 받는 **언어·모드 세팅**이다 — `using tenn` / `using vnb` / `using tenn-none-native`.)
 
+loop 다. loop {} 는 while (true):{} 랑 의마가 같다. 그냥 가독성상 넣어 놨다.
+
 ### 함수
 
 **함수의 두 쓰임 (용어).** 같은 인자 함수를 어떻게 쓰느냐로 둘로 부른다. **다른 메커니즘이 아니라 쓰임의 구분일 뿐이다.**
@@ -1561,13 +1563,28 @@ Yulist 는 언제나 참조다. 만약 그냥 복사를 쓰고 싶다면 .clone(
 
 **멤버식 접근**: `Yulist[?]` 뿐 아니라 `Yulist.키` 형태의 점 접근도 된다 (`bricks.door`). 키가 이름일 때 더 읽기 좋다. 단 키가 **숫자**일 때 `.` 접근을 어떻게 허용·구분할지는 미정 (`Yulist.0` 같은 게 애매 — → UNKNOWN).
 
-**이름**: Yu 는 You 와 발음이 같다 — "너의 자료 형식". (C 가 B 다음이라 C 인 것처럼, 이름의 이야기는 한 줄이면 된다.)
+**이름**: 그냥 뜻이 없다.
+
+**발음**: You + List 이렇게 발음한다. 한글론 유리스트 발음 기호론 juːlɪst 다.
 
 // TODO: 프리셋 목록 (array / linkedList / dictionary / set …) 과 각 프리셋의 훅 구성 명세, `Yulist[?]` 의 `?` 표기 확정, 등록부 패턴과 약한 참조 문제 (→ UNKNOWN.md).
 
 ### Array, Dict, LinkedList
 
+> 참고로 이건 Yulist 가 아닌 새로운 자료 구조가 아니라 똑같이 Yulist 다. 표준 라이브러리로.
 
+**먼저 Array다.**
+
+Array 는 배열이다. 우리가 잘 아는 배열
+
+생성법은 간단하다. **new(Array) deliver (전달한 값들)** 이다. new 라는 함수에 Array 라는 타입을 집어넣다. 이 인자의 타입은 typeof[Yulist] 다. 또한 deliver 은 new 의 나라며 뒤 내용은 생성 함수에게 전달된다.
+
+실제 활용이다.
+
+```tennin
+var ScoreList :: Array = new(Array); @... 빈 배열 생성
+
+```
 
 ### 메모리 관리
 
@@ -2412,22 +2429,199 @@ string, int, float, double 이런 모든 타입들을 출력한다.
 ```tennin
 using tenn;
 
+#main
 func main ():(
    Line.addLine("Hello, World!");
 ):();
 ```
 
-### addLineColor
+#### addLineColor
 
 특정 색으로 출력한다.
 
 ```tennin
 using tenn;
 
+#main
 func main ():(
    Line.addLineColor("Hello, World!", FFFFFF); @... 색상은 색상 코드로 naming 으로 받는다.
 ):();
 ```
+
+#### askInput
+
+입력을 받는다. Python 에 input 이랑 비슷한거다. Yield 함수가 아니고 새 큐를 생성하고 거기서 질문을 받는다. 그래서 코드 흐름이 멈추진 않고 그 input 값을 얻으려면 그 input 이 반환한 모듈을 사용해서 얻어야 하는데 와 그러냐면 askInput 은 묻지 결과를 받진 않키 때문이다.\
+AskInputModule 이라는 타입은 이 함수가 반환하는 모듈을 뜻한다. 두번째 인자로는 무슨 색으로 할껀지 색상 코드를 받는다. 없어도 되며 naming 으로 받는다. doing 은 이제 질문을 받고 나서 할껄 적어 놓는데다. self 소국은 형제 받은 input 내용을 뜻한다.\
+AskInputModule 에서 .reask 함수로 다시 물어볼수가 있다. 정확히는 .getInputAsync() 했을때 반환값이 이제 .reask 했을때 결과가 나오고 또한 답변 구할때까지 Yield 한다. 또한 reask 에 아무런 인자도 않넣으면 처음 ask 했을때 했던 질문이랑 doing 도 똑같게 한다.\
+또한 인자가 아무것도 없다면 그냥 AskInputModule 을 생성하는 것이다.
+
+```tennin
+using tenn;
+
+#main
+func main ():(
+   var Prefix :: AskInputModule = Line.askInput("Hello, World prefix: ", FF0000) doing {
+      if (self == "exit"):{
+         return nothing;
+      } else {
+         Line.addLine(`Hello, World prefix is ({self}));
+      };
+   };
+   var Surfix :: AskInputModule = Line.askInput("Hello, World surfix: ", 0000FF) doing {
+      if (self == "exit"):{
+         return nothing;
+      } else {
+         Line.addLine(`Hello, World surfix is ({self}));
+      };
+   };
+
+   loop {
+      var PrefixString :: string = Prefix.getInputAsync(); @... prefix 결과를 구한다
+      var SurfixString :: string = Surfix.getInputAsync(); @... surfix 결과를 구한다
+
+      Line.addLine(`({PrefixString}), World({SurfixString})`);
+      Line.addLine(`time to answer prefix: ({Prefix.timeOccupined})`); @... prefix 대답까지 걸린 시간
+      Line.addLine(`time to answer surfix: ({Surfix.timeOccupined})`); @... surfix 대답까지 걸린 시간
+
+      Prefix.reask();
+      Surfix.reask();
+   };
+):();
+```
+
+askInput 으로 하면 우회해야하고 그런건 inputAsync 를 써라. 이 askInput 은 구조때문에 우회해야 할때가 가끔 있는데 그래서 inputAsync 가 있는거다.
+
+#### inputAsync
+
+직접 이 큐에서 물어본다. Yield 함수고 Python 에 input 이랑 같은거다.
+
+사용법은 이렇다.
+
+```tennin
+using tenn;
+
+#main
+func main ():(
+   var Prefix :: string = Line.inputAsync("Hello, World prefix");
+   var Surfix :: string = Line.inputAsync("Hello, World sufix");
+
+   Line.addLine(`({Prefix}), World{Surfix}`);
+):();
+```
+
+inputAsync 만으로 구현이 어렵고 우회해야 하고 그런건 askInput 을 써라
+
+### time
+
+#### timer
+
+timer 이다. 시간을 초 단위로 double 로 반환한다. 만드는 법은 Yulist 고 manifesto 그러니까 선언문이 아니기 때문에 `new(timer)` 이렇게 간다.
+
+사용법이다.
+
+```tennin
+using tenn;
+
+@... 타자 게임
+
+#main
+func main ():(
+   @... 처음에는 10초보다 큰 값으로 시작한다.
+   var ShortestTime :: double = 11d;
+   var LongestTime :: double = 0d;
+   var InputSentence :: AskInputModule = askInput();
+   var MainTimer :: Timer = new(timer) deliver (0);
+   var Round :: int = 0;
+
+   const CONDITION_TIME :: double = 10d;
+   const SENTENCE :: string = "동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세";
+
+   MainTimer.start();
+
+   while (ShortestTime > CONDITION_TIME):{
+      var ThisTurnTimer :: Timer = new(timer) deliver (0);
+
+      Round = Round + 1;
+      ThisTurnTimer.start();
+
+      InputSentence.reask(`({SENTENCE})를 10초 안에 입력하세요`);
+      var Answer :: string = InputSentence.getInputAsync();
+
+      ThisTurnTimer.end();
+      var ThisTime :: double = ThisTurnTimer.getTime();
+
+      if (Answer != SENTENCE):{
+         Line.addLine(`({Round})번째 시도는 오답입니다.`);
+         continue;
+      };
+
+      @... 정답인 입력만 기록에 반영한다.
+      if (ThisTime < ShortestTime):{
+         ShortestTime = ThisTime;
+         Line.addLine(`최단 기록 경신: ({ShortestTime})초`);
+      };
+
+      if (ThisTime > LongestTime):{
+         LongestTime = ThisTime;
+      };
+
+      Line.addLine(`이번 기록: ({ThisTime})초`);
+      Line.addLine(`현재 최단 기록: ({ShortestTime})초`);
+      Line.addLine(`현재 최장 기록: ({LongestTime})초`);
+   };
+
+   MainTimer.end();
+
+   Line.addLineColor(
+      `성공! ({Round})회 만에 성공, 가장 짧은 시간 ({ShortestTime})초, 가장 오래 걸린 시간 ({LongestTime})초`,
+      0000FF
+   );
+):();
+```
+
+// TODO: 이런 함수 추가 .repeat 이래가지고 타이머가 계속 x -> y, x -> y 이렇게 하는거가 가능하고 whenRepeatEnd 라는 나라로 이제 이 다시 y 가 x 로 리셋될때 할걸 새로 넣어 놀수가 있다. 그리고 거기엔 SubStackTurner 을 사용한다 그런식으로 하고 또 몇번째 반복인가 (첫 반복은 0) 으로 이런것도
+
+### https
+
+https 요청을 보낸다.
+
+https 요청을 보낸다. .access 함수로 직접 요청 결과를 문자열로 받을수 있다. 예시:
+
+```tennin
+var MyProject :: string = https.access("https://github.com/DiscUnderbar/tennin-lang");
+Line.addLine(MyProject); @... <!DOCTYPE html><head>...</head><body>...</body>
+```
+
+만약 http URL 을 요청하면 에러 난다.
+.access 는 뭔가 위험한 거니까 위험해 보이게 함수명을 지었다.
+
+아직은 그냥 만들어논거고 자세한건 미정이다.
+
+// TODO: 자세하게
+
+### http
+
+http 요청을 보낸다. .access 함수로 직접 요청 결과를 문자열로 받을수 있다. 예시:
+
+```tennin
+var MyProject :: string = http.access("http://github.com/DiscUnderbar/tennin-lang");
+Line.addLine(MyProject); @... <!DOCTYPE html><head>...</head><body>...</body>
+```
+
+https 요청하면 에러난다.
+.access 는 뭔가 위험하니까 위험해 보이게 할려고 지은 이름이다.
+
+아직은 그냥 만들어논거고 자세한건 미정이다.
+
+// TODO: 자세하게
+
+### allHttp
+
+http 와 https 요청을 가게 한다.
+
+https 랑 다른점은, http 랑 다른점은 https, http 요청 둘다 보낼수 있다.
+
+// TODO: 자세하게
 
 ## 2. 컴파일 파이프라인
 
