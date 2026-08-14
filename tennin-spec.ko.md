@@ -1135,7 +1135,7 @@ loop 다. loop {} 는 while (true):{} 랑 의마가 같다. 그냥 가독성상 
 
 이런 형식이다.
 
-또 반복문 **FuncKind.REPEAT** 는 이런 형식을 사용한다.
+또 반복문 **FuncKind.CONTROL.LOOP** 는 이런 형식을 사용한다.
 
 ```tennin
 <함수 이름> 인자함수;
@@ -1143,7 +1143,7 @@ loop 다. loop {} 는 while (true):{} 랑 의마가 같다. 그냥 가독성상 
 
 또한 인자함수는 3형으로 받는다.
 
-그리고 조건문 **FuncKind.CONDITIONAL** 은 이런 형식을 사용한다.
+그리고 조건문 **FuncKind.CONTROL.CONDITIONAL** 은 이런 형식을 사용한다.
 
 ```tennin
 <함수 이름> 인자함수;
@@ -1161,32 +1161,43 @@ loop 다. loop {} 는 while (true):{} 랑 의마가 같다. 그냥 가독성상 
 
 이런식으로 FuncKind 는 특정한 형식을 사용한다. 정확히는 특정한 행동을 한다. 사용자는 이 함수의 FuncKind 만 보고 그 FuncKind 가 뭘 하는지 생각하고 그 형식에 따라 적으면 된다.
 
-그런데 사실 거이다 쓰는법이 비슷비슷 하다.
+그런데 사실 거이다 쓰는법이 비슷비슷 하다. 하지만 저건 쓰는 사람이 구별한다.
 
-그리고 함수 선언하는 법이다.
+그리고 **함수 선언하는 법이다.**
 
 먼저 func 를 사용한다. func 를 사용해 함수를 만들 수 있다.
 
 ```tennin
-func ...
-```
+@>> 이 함수가 하는 일 (IDE 에서 이 부분 주석이 함수를 쓸때 자동으로 표시된다.)
+@>> new 형식으로 함수 생성하게 해주는 함수
+func 함수 이름 (인자 :: 타입, 두번째 인자 :: 타입 ...):(
+   함수가 하는거
 
-또한 func 뒤에는 함수 이름이 온다.
+   setFuncKind (FuncKind.MANIFESTO); @... 없을시 자동으로 DO_RETURN
 
-```tennin
-func helloWorld ...
+   var Deliver :: country = country (나라 이름, 몇국인가); @... mapping real func 그 전단계다.
+   var ReturnCountry :: country = country (두번째 나라 이름, 몇국인가); @... mapping real func 그 전단계다.
+   ...
+
+   routing(국간 통신으로 이 1국에서 2국으로 넘길 값들);
+
+   if (Deliver):{
+      여기서 self 라는 국은 mappingRealFunc 로 이 국에 온 mappingRealFunc 고 getBefore 이라는 소국은 그 전 국이 국간 통신으로 넘긴 값들을 뜻한다. 또한 슬롯 그런것들은 mappingRealFunc 를 사용하는 부분에서 쓴다.
+      mappingRealFunc 는 값으로 못 넘긴다. 함수 안에도 못 넘기고 그런다.
+
+      // TODO: 이 mappingRealFunc 를 실행할때 확장슬롯 표기법. 지금은 이런식으로 구상하고 있다. 예를 들어서 (x :: int, y :: int) 이러면 (NAME(NamingConvention.PASCAL_CASE) TYPE SPLIT ...) 그리고 여기서 ... 은 이게 계속 반복된다는거고 TYPE 은 :: 타입 이렇게 오는거고 또한 저 NAME(NamingConvention.PascalCase | NamingConvention.cammelCase | NamingConvention.snake_case) 나 TYPE, SPLIT 이런것들, ... 이런것들 다 확장 슬롯 파싱하는법 지정하는데의 특수 문법이다. CODE 는 코드가 있다는거고 SPLIT 는 , ; 같은 구분자들로 파싱되는 그런거다. 그리고 지금 기본적으로 지원하는 확장 슬롯 케이스는 직접 ARGS (인자들) 이런식으로 되어 있다.
+   };
+
+   if (ReturnCountry):{
+      var type :: typeof[any] = {}:()self; @... mappingRealFunc 를 실행하면 반환 타입은 만약 mappingRealFunc 가 확장 슬롯이 없을땐 거기 안에 적은게 온다. 타입매직도 된다.
+
+   } ifNothing { @= 만약 나라가 없다면 (그러니까 if 문에 else 가 없을 그럴때)
+      Line.addLine("꼭 반환 할껀 써야 합니다.)
+   };
+):(반환 타입)
 ```
 
 **다메커니즘 func 문법 스케치 (미확정).** 아래는 국·소국·확장 슬롯을 갖는 체계적 함수의 대략적 뼈대다. 각 국의 실제 **내용(코드) 문법**, 제너릭 자리, values 바인딩은 아직 미정이다(→ 미정 사항 / // TODO).
-
-
-```tennin
-func 함수 이름 {
-   returnType = 
-}:(매개변수1 :: 타입, 매개변수2 :: 타입 ...):(
-
-);
-```
 
 ```tennin
 func 함수이름 {
@@ -1222,9 +1233,6 @@ func 함수이름 {
 - **미정:** country 내용(코드) 문법, 제너릭 자리(유력안: 매개변수 앞 `()` 에 naming 으로), values 커스텀 바인딩, `at manual` 의 표현형 재설계, "최소 인자 함수" 형태.
 
 /*
-
-// TODO: 함수 FuncKind 를 다시 적어 놓기 FuncKind 는 이 함수의 종류인데 kind 고 FuncKind.LOOP 하면 반복문임 또 FuncKind.RETURN 은 반환만 하는거고 FuncKind.DOING 은 뭘 하는거임, 그리고 OOP 로 FuncKindSmallCountry 라고 해서 함수종 소국이라는게 있는데\
-딱 그 종류의 함수에만 자동 추가되는 함수임, FuncKind.add 할때 같이 추가함
 
 // TODO: 함수 호출 방식을 봐꿔서 속도가 진짜 빠르게 하기
 
@@ -1839,6 +1847,37 @@ FuncKind.add(FUNC); @... 지금은 가장 마지막 인덱스가 3 이니까 ind
 사실 거의 필요 없는거여서 안쓰는걸 권장하고 필요할 때 진짜 완전 필요할 때만 쓰는걸 권장한다.
 
 참고로 왜 갑자기 FuncKind 라는게 생기는지 궁금할 수 있는데 kind 함수는 expand 로 FuncKind 타입을 선언하고 거기 안에 메소드를 추가하는 등을 한다.
+
+그리고 ChildKind 다. 자식 종류다.
+
+```tennin
+kind FuncKind (
+   CONTROLOR (
+      IF;
+      LOOP;
+   );
+   MANIFESTO (
+      MODULE (
+         MAIN;
+      );
+   );
+);
+```
+
+이런식으로 되면
+
+FuncKind.CONTROLOR 은 FuncKind.CONTROLOR.IF 와도 같고
+
+그러니까 이거다. 자식 kind 는 그거의 부모 kind 아니면 조상 kind 랑도 같다.
+
+또한 접근법은 FuncKind.CONTROLOR.IF 이런식이며 타입은 똑같이 다 FuncKind 다.
+
+자식 kind 추가는 이렇게 간다.
+
+FuncKind.CONTROLOR.add(IF);
+FuncKind.CONTROLOR.add(LOOP);
+
+(위 FuncKind 코드는 실제 FuncKind 랑은 다릅니다.)
 
 kind 의 규칙:
 
@@ -2532,6 +2571,17 @@ func main ():(
 
 askInput 으로 하면 우회해야하고 그런건 inputAsync 를 써라. 이 askInput 은 구조때문에 우회해야 할때가 가끔 있는데 그래서 inputAsync 가 있는거다.
 
+또한 실행 방식은 그냥 딱 한 질문에 딱 하나의 큐인거다. 그리고 만약에 두개의 질문이 동시에 있다면 두개를 따로 따로 답한다 이런식으로 된다.
+
+```
+Hello, World prefix: 
+Hello, World surfix: 
+```
+
+이게 동시에 두개가 나오고 포인터를 저거 위쪽에 있는곳으로 옮기면 거기에 이제 직접 입력 가능하고 아래에 있는거에 입력하면 아래에 있는거에 입력 가능하고 그런거다.\
+
+구현이 겁나 겁나 어렵겠지만 우선 해 볼꺼다.
+
 #### inputAsync
 
 직접 이 큐에서 물어본다. Yield 함수고 Python 에 input 이랑 같은거다.
@@ -2569,6 +2619,8 @@ func main ():(
 ```
 
 또한 현제 이건 정확히 몇초 기달렸나를 반환한다.
+
+이름이 이따구인 이유는 겁나 멋있어 보인다.
 
 ### untilAsync
 
@@ -2698,6 +2750,8 @@ https 랑 다른점은, http 랑 다른점은 https, http 요청 둘다 보낼�
 ### python
 
 Python 의 실행 방식을 사용한다. Py FFI 가 이걸로 만들어진다.
+
+아마도 
 
 // TODO: 어떻게 구현하지 아...
 
