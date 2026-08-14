@@ -7,6 +7,8 @@
 
 언어 이름이 Tennin 인 이유는 일본 그거가 아니라 그냥 Tennis 에서 따왔다. 이름 뭘로 지을지 생각할때 테니스 치고 있어서
 
+참고로 이거 일본어로 하면 テニン 이라고 하면 된다.
+
 ## killer use case
 
 이 언어는 학습 곡선을 포기했다.
@@ -656,7 +658,9 @@ Tennin 에서 이름은 기능을 담당하지 않는다 (이름 매직 금지, 
 | (기본) | 평가된 값 — `i < 3` → `true` |
 | condition | 식의 구조 — `i < 3` → first = i, operator = Operator.lessThan, second = 3, result = true, .get() 은 현재 그 조건의 결과를 알려준다.|
 | naming | 이름 그 자체 — `VAR` → VAR 라는 이름. 같은 이름의 변수가 있어도 이름이 이긴다 |
-| variable[T] | 변수 그 자체로 받음 `.name` 이 변수명이고 (naming 임) `.value` 가 값, `.type` 이 타입이다.|
+| anyVar | 동적 변수 현제 이름은 `.name` 그리고 값은 `.value` 타입은 `.type` 이다. variable[T] 랑 똑같이 생각하면 된다. |
+| variable[T] | 변수 그 자체로 받음 `.name` 이 변수명이고 (naming 임) `.value` 가 값, `.type` 이 타입이다. |
+| typeof[T] | 어떤 타입을 타입으로 받는다. 그 타입이 1급 시민 타입도 값이라는게 이거다. |
 | would[T] | 아직 T 형태가 아니지만 더 작업하면 T 가 될 값. `.complete()` 를 실행하면 T 타입으로 확정(봉인)된다 |
 
 **타입도 값이다.** Tennin 에선 타입이 1급 값이다 — `typeof[T]` 는 값이다. 그래서 별도의 comptime 기능(키워드)이 없다: 컴파일타임 타입 처리는 **타입 매직이 한다**. (문서에 남은 'comptime' 표현은 Tennin 의 기능이 아니라 Zig 등 외부 계보를 언급하는 것뿐이다.)
@@ -668,7 +672,7 @@ Tennin 에서 이름은 기능을 담당하지 않는다 (이름 매직 금지, 
 - **왜:** 무언가를 단계적으로 세팅해 목표 형태로 만들어 갈 때, "아직 완성 안 됨 / 완성됨" 을 타입으로 드러낸다. class 를 없앤 지금, 객체를 단계적으로 짓는 **생성 원시요소** 역할을 한다 (생성 중 미완성 값 → 완성된 T 로의 전이). 미완성 값을 완성된 T 처럼 잘못 쓰는 것을 타입이 막는다.
 - **미정:** `.complete()` 실패(형태 미충족) 시 처리, would 값에 접근 가능한 것/막히는 것의 경계.
 
-condition 세부:
+**condition 세부**:
 
 - 필드는 값이 아니라 참조다 — 재평가가 가능하다. (`ref(< condition.first = i; condition.second = 3; >);` 모델)
 - 복잡한 식은 condition.equations 로 부분식 리스트를 얻는다 (`(...condition)` 타입).
@@ -678,21 +682,29 @@ condition 세부:
 - 탈출: condition 은 자기 국의 변수를 품는다 — 클로저와 같은 취급. 국 밖으로 나가는 경로는 send 뿐이고, send 하면 캡처된 변수가 함께 이주한다. 이주는 그 시점의 스냅샷이다.
 - 정직한 단점: 호출부 (`while {i < 3}`) 만 봐서는 캡처 여부가 보이지 않는다 — 스펙이 정보원이다. 대신 호출부가 항상 깨끗하다. (`while condition (i < 3)` 같은 명시 표기는 더 복잡해져서 기각.)
 
-variable 세부:
+**variable 세부**:
 
 - **뜻:** 변수 자체를 받는다 아예 그냥 이 변수 자체를, 그냥 변수 자체를 받는다.
 - **사용법:** `.name` 이 변수의 이름이고 `.type` 이 변수의 타입, `.value` 가 변수의 값이며 만약 리터럴을 넘겼으면 에러가 난다.
 - **있는 이유:** 예를 들어서 뭐 이 변수가 형식에 맞나 검증할때 그럴때 그냥 일반적인 언어는 `lambda: variable` 을 쓸때가 많고 심지어 이름까지 받을때는 `"이름"` 으로 이름을 받고 심지어 타입까지 `"int"` 이런식으로 받을수도 있기 때문에 만들었다.
 - **단점:** 실수로 리터럴을 넣으면 애러가 나는데 그냥 봐선 캡처 여부가 안보이기 때문에 실수로 에러가 나기 쉽다.
 
-naming 세부:
+**naming 세부**:
 
 - **뜻:** 이름을 받는다. 변수 만들때 `var "x" :: int = 1;` 하지 않고 `var x :: int = 1;` 할때 x 는 뭘로 감싸지 않는다. 왜냐하면 **이름 naming 이라서 그런다.**
 - **사용법:** 그냥 타입을 naming 으로 하면 된다. 값 넣은때는 따음표 없이 그냥 아무것도 없이 `aaaa` 이런식으로 정하면 된다.
 - **있는 이유:** 이름 받을때 문자열로 받는건 최악이다.
 - **단점:** 변수를 받는것 처럼 보여서 이게 명확히 naming 으로 타입 매직하는것처럼 보이지 않는다면 실수로 이게 naming 인지 모를수도 있다.
 
+**typeof[T] 세부**:
+
+- **뜻:** 타입으로 받을때 그거에 대한 타입
+- **사용법:** typeof[T] 로 받는다. 이러면 이미 string 이라는 변수가 있어도 string 을 넣으면 typeof[string] 이 얻어지고. 가장 많이 쓰는건 typeof[any] 다. 이러면 직접 무슨 타입을 지정해야 할때 좋다.
+- **단점:** naming 이랑 똑같다. 그냥 이게 진짜 무슨 변수를 넣는지 그런걸 알기가 어렵다.
+
 왜 이름 매직은 금지고 타입 매직은 원리인가: 이름은 겉모습이고, 타입은 선언된 구조다. "기능은 명시적 구조로만 결정된다"(1-B #3) 를 타입 매직이 그대로 지킨다.
+
+> 타입 매직은 타입 변환이 아니다. 타입 변환은 따로 있다. 타입 매직은 이 값을 이 방법으로 받으라는거고 이건 타입 변환이 아니다.
 
 (선례: C# 은 람다를 Expression 타입에 대입하면 코드 대신 식 트리가 잡힌다 — LINQ 가 그 위에 서 있다. naming 캡처는 C# 의 nameof, Lisp 의 quote 계보. 타입 선언만으로 정해지는 것이 Tennin 식이다.)
 
@@ -1553,6 +1565,9 @@ Yulist 는 표현 지향 기능이다. `mode = list` 같은 옵션 (스무고개
 
 **성능 — 표현은 expand 시점에 확정된다**: 표현 = 메모리에 실제로 놓이는 모양 (연속 배열 / 흩어진 노드 / 해시 버킷). 이 Yulist 가 어떤 구성 (프리셋 + 훅) 인지 expand 가 컴파일 타임에 읽고, 구성마다 그에 맞는 진짜 배치의 기계어를 굽는다. array 프리셋은 전개 후엔 그냥 연속 배열 인덱싱 기계어다 — 런타임에 "이건 무슨 종류지?" 를 묻는 코드가 한 줄도 안 남는다. (Lua 의 table 은 뭘 담든 속이 사실상 해시라 배열의 캐시 이점이 죽는다 — 그 함정을 피하는 문장이 이거다.) 실행 중에 구성이 바뀌는 Yulist 만 간접 비용을 내고, 그 비용은 그걸 고른 사람이 낸다 (비용 정직).
 
+**생성**: 일반적으로 manifesto 함수로 선언하는 곳에선 `<함수 이름> <그거 새로 생성할꺼 이름>` 으로 한다. 하지만 만약 manifesto 함수로 만드는게 아니라 만약 직접 new 함수로 만들게 하고 싶다면 이렇게 하면 된다.\
+new 함수를 사용한다. 이렇게 한다 `new(Yulist 타입) deliver (그 Yulist 생성자에게 넘길것들)` 이다. 또한 deliver 은 new 함수의 나라며 new 함수의 인자에는 typeof[Yulist] 타입이다.
+
 Yulist 는 언제나 참조다. 만약 그냥 복사를 쓰고 싶다면 .clone() 함수를 쓴걸 담아야 한다.
 
 역할 분담: **컴파일러 몫 = 표현** (어떤 모양으로 굽나), **사용자 몫 = 배치** (그 모양들을 SM 어디에 모아 두나 — 값이 흩어지는 걸 막는 건 사용자의 몫이다).
@@ -1569,6 +1584,12 @@ Yulist 는 언제나 참조다. 만약 그냥 복사를 쓰고 싶다면 .clone(
 
 // TODO: 프리셋 목록 (array / linkedList / dictionary / set …) 과 각 프리셋의 훅 구성 명세, `Yulist[?]` 의 `?` 표기 확정, 등록부 패턴과 약한 참조 문제 (→ UNKNOWN.md).
 
+### 타입 변환
+
+changeType 함수를 사용한다.
+
+이렇게 간다. `changeType(value, type);` 이렇게 간다. value 는 any 고 type 은 typeof[any] 다. value 를 type 으로 봐꿔준다. 반약 형식에 안맞을시 nothing 이 반환된다.
+
 ### Array, Dict, LinkedList
 
 > 참고로 이건 Yulist 가 아닌 새로운 자료 구조가 아니라 똑같이 Yulist 다. 표준 라이브러리로.
@@ -1577,14 +1598,25 @@ Yulist 는 언제나 참조다. 만약 그냥 복사를 쓰고 싶다면 .clone(
 
 Array 는 배열이다. 우리가 잘 아는 배열
 
-생성법은 간단하다. **new(Array) deliver (전달한 값들)** 이다. new 라는 함수에 Array 라는 타입을 집어넣다. 이 인자의 타입은 typeof[Yulist] 다. 또한 deliver 은 new 의 나라며 뒤 내용은 생성 함수에게 전달된다.
+생성법은 new 함수로 생성한다.
 
 실제 활용이다.
 
 ```tennin
 var ScoreList :: Array = new(Array); @... 빈 배열 생성
+var AskInput :: AskInputModule = Line.askInput();
 
+loop {
+   var NewScore :: middle[double] = changeType(AskInput.reask("새 점수"), middle[double]);
+   ScoreList.append(NewScore); @... Luau 에 table.insert(self) 랑 같은거다. 똑같이 index 를 NewScore 뒤에 넣으면 그 index 에 그 값이 추가되고 않넣으면 맨 마지막에 추가된다.
+};
 ```
+
+그밖에도 .delete 함수로 직접 그 배열 전체를 지울수 있고 .remove(index) 함수로 그 index 에 값을 삭제 가능하고 .removeThisValue(값) 으로 그 배열 안에 그 값을 지운다. 또한 .find(값) 으로 그 list 에 있는 그 값을 찾아 그것의 index 를 얻을수 있다.
+
+**그리고 Dict다.**
+
+// TODO: Dict, LinkedList 하기
 
 ### 메모리 관리
 
@@ -1592,6 +1624,7 @@ var ScoreList :: Array = new(Array); @... 빈 배열 생성
 
 // BEFORE: 예전에 end with free 라는 나라가 끝나는 순간 free 해서 딱 끝나는 부분마다 메모리 누수를 막는다는게 있었는데 이건 쫌 문제가 있어서 새 방식을 고안중이다.
 // TODO: 새 메모리 관리 방식
+// 뭐 이런 방식인거임 뭐 모든 메모리는 동적일시 free 하는 코드가 있어야 하고 이렇게 free 하는게 없다면 에러내고 또 Yulist 들이 있는 저장소 storage 라는 Yulist 로 구현된 자료 구조 만들어서 거기선 직접 이 부분이 생성 함수고 이게 지우는 함수라고 직접 명시 해놔가지고 거기 안에 free 하거나 new 하는 코드가 없다면 에러내기
 
 **SM (Substitution Memories)** — Tennin 에서는 저수준으로도 코드를 짤 수 있다. 정확히는 SM 이라는 대체 메모리 위에서 주소에 값을 저장하고 그 주소에 있는 값을 얻는 것이다.
 
@@ -1603,6 +1636,14 @@ var ScoreList :: Array = new(Array); @... 빈 배열 생성
 - **포기 (기록)**: 커널·드라이버급 실메모리 직접 제어는 Tennin 의 도메인이 아니다. 그 대가로 unsafe 없는 언어를 얻는다. C FFI 는 SM ↔ 실메모리 복사 계층 (마셜링) — 아래 `C FFI` 섹션.
 
 // TODO: 복사 명시 문법, 참조/빌림 규칙 (func·큐 문법과 함께), 탈출 각각의 최소 코드 + 에러 문안.
+
+### 층위표
+
+| 이름   | 등급                            |
+|--------|---------------------------------|
+| 함수    | 1급                    |
+
+// TODO: 정리
 
 ### C FFI
 
@@ -2513,6 +2554,37 @@ inputAsync 만으로 구현이 어렵고 우회해야 하고 그런건 askInput 
 
 ### time
 
+### asyncTime
+
+몇초 기다린다. 그냥 luau 에 wait 랑 비슷한건데 이 큐나 sub-stack 을 정지시킨다. 방식은 그냥 이걸 blocked 하고 시간이 지나면 다시 그걸 running 으로 하는것이다.
+
+```tennin
+using tenn;
+
+#main
+func main ():(
+   time.asyncTime(1d); @... 1초 기다리고
+   Line.addLine("Hello, World!"); @... 출력
+):();
+```
+
+또한 현제 이건 정확히 몇초 기달렸나를 반환한다.
+
+### untilAsync
+
+이 조건이 될때까지 기다린다.
+
+```tennin
+using tenn;
+
+#main
+func main ():(
+   var x = 1;
+   var y = 1;
+   time.untilAsync(1 == 1, 10d, 0.05d) @... condition, callback, 계속 확인할때 몇초 간격으로 확인할지, callback 이 없으면 무한히 기다리는거고 몇초 간격으로 확인할지가 없으면 그냥 최대한 짧게 확인하는거다.
+):();
+```
+
 #### timer
 
 timer 이다. 시간을 초 단위로 double 로 반환한다. 만드는 법은 Yulist 고 manifesto 그러니까 선언문이 아니기 때문에 `new(timer)` 이렇게 간다.
@@ -2530,7 +2602,7 @@ func main ():(
    var ShortestTime :: double = 11d;
    var LongestTime :: double = 0d;
    var InputSentence :: AskInputModule = askInput();
-   var MainTimer :: Timer = new(timer) deliver (0);
+   var MainTimer :: Timer = new(timer) deliver (0d);
    var Round :: int = 0;
 
    const CONDITION_TIME :: double = 10d;
@@ -2539,7 +2611,7 @@ func main ():(
    MainTimer.start();
 
    while (ShortestTime > CONDITION_TIME):{
-      var ThisTurnTimer :: Timer = new(timer) deliver (0);
+      var ThisTurnTimer :: Timer = new(timer) deliver (0d);
 
       Round = Round + 1;
       ThisTurnTimer.start();
@@ -2615,13 +2687,31 @@ https 요청하면 에러난다.
 
 // TODO: 자세하게
 
-### allHttp
+### allHttpReqeust
 
 http 와 https 요청을 가게 한다.
 
 https 랑 다른점은, http 랑 다른점은 https, http 요청 둘다 보낼수 있다.
 
 // TODO: 자세하게
+
+### python
+
+Python 의 실행 방식을 사용한다. Py FFI 가 이걸로 만들어진다.
+
+// TODO: 어떻게 구현하지 아...
+
+### html
+
+html 코드를 보고 html 이라는 형태의 Yulist 로 변환시킨다.
+
+// TOOD: 대충 사용법 만들어 놓기
+
+### Json
+
+외부에서 오는 데이터 형식의 Yulist
+
+// TODO: 외부에서 오는 Json 은 이 Json 이라는 자료 구조다. 또한 이 현제 이 Yulist 를 Json 으로 봐꾸면 이 Yulist 에 대한 정보를 내보낼때 쫌 다르게 뭐 Yulist 에 대한 interception 정보까지도 넣고싶다면 뭐 직접 파싱할때 한가지 더 할꺼 하는거 나라 그런것도
 
 ## 2. 컴파일 파이프라인
 
