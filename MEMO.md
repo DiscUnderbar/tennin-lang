@@ -131,6 +131,8 @@ Tennin 에서 나라 안 슬롯을 정의하는 법을 뭐 슬롯을 naming 으�
 
 # 재미있는 언어들
 
+> Cluade 한테 물어본거 답변
+
 **시스템 언어 계열**
 
 - [Torbenx/charge](https://github.com/Torbenx/charge) — 실험적 메모리 안전 시스템 언어, C++ 구현
