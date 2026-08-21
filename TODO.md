@@ -79,4 +79,8 @@ values 는 그냥 인자함수에 인자 부분과 똑같다. values 없에고 n
 
 kind 에서 이 kind 안 뭐 FuncKind.CONTROLOR.CONDITIONAL 이러면 뭐 FuncKind.CONTROLOR 도 포함되도 그러니까 kind 선언할때 거기 안에 다시 childKind 라고 해서 선언하면 그게 또 그 kind 안 kind 가 되는 그런 개념.
 
+----------------------------------------------------------------------------
+
+집합 만들기 (set)
+
 -- *tenn*
